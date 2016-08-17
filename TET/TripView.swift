@@ -8,31 +8,39 @@
 
 import UIKit
 
-class TripView: UIViewController, UITextFieldDelegate {
-    @IBOutlet weak var tripLabel: UILabel!
-    @IBOutlet weak var totalLabel: UILabel!
-    @IBOutlet weak var transportationLabel: UILabel!
-    @IBOutlet weak var livingLabel: UILabel!
-    @IBOutlet weak var eatingLabel: UILabel!
-    @IBOutlet weak var entertainmentLabel: UILabel!
-    @IBOutlet weak var souvenirLabel: UILabel!
+class TripView: UIViewController, UITextFieldDelegate{
+    @IBOutlet weak var trC: UILabel!
     
     @IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var trc_add: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        trC.text = "\(0)"
         // Handle the text field’s user input through delegate callbacks.
         nameTextField.delegate = self
+        trc_add.delegate = self
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         //Hide the keyboard when the user presses return key
         textField.resignFirstResponder()
+        transportationAdd(trc_add)
         return true
     }
     
     func textFieldDidEndEditing(textField: UITextField) {
-        tripLabel.text = textField.text
+    }
+    
+    @IBAction func transportationAdd(sender: AnyObject) {
+        let newTotal:Int
+        let previousAmount = Int(trC.text!)
+        if let addAmount = Int(trc_add.text!) {
+            newTotal = addAmount + previousAmount!
+        } else {
+            newTotal = 0
+        }
+        trC.text = "\(newTotal)"
     }
 }
