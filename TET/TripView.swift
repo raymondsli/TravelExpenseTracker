@@ -17,7 +17,7 @@ class TripView: UIViewController, UITextFieldDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        trC.text = "\(0)"
+        trC.text = "$0"
         // Handle the text field’s user input through delegate callbacks.
         nameTextField.delegate = self
         trc_add.delegate = self
@@ -26,7 +26,6 @@ class TripView: UIViewController, UITextFieldDelegate{
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         //Hide the keyboard when the user presses return key
         textField.resignFirstResponder()
-        transportationAdd(trc_add)
         return true
     }
     
@@ -34,13 +33,28 @@ class TripView: UIViewController, UITextFieldDelegate{
     }
     
     @IBAction func transportationAdd(sender: AnyObject) {
-        let newTotal:Int
-        let previousAmount = Int(trC.text!)
-        if let addAmount = Int(trc_add.text!) {
-            newTotal = addAmount + previousAmount!
+        //Adds number in trc_add.text to the previous amount in trC.text
+        let newTotal:Double
+        let previousAmount = getDollarNumber(trC.text!)
+        let addAmount: Double? = Double(trc_add.text!)
+        if addAmount != nil {
+            newTotal = addAmount! + previousAmount
         } else {
-            newTotal = 0
+            newTotal = previousAmount
         }
-        trC.text = "\(newTotal)"
+        trC.text = "$\(newTotal)"
+        trc_add.text = ""
+    }
+    
+    func getDollarNumber(dollarAmount: String) -> Double {
+        //Takes off $ sign and converts rest of string to a double
+        let startIndex = dollarAmount.startIndex.advancedBy(1)
+        let amount = dollarAmount.substringFromIndex(startIndex)
+        let newNumber: Double? = Double(amount)
+        if newNumber != nil {
+            return newNumber!
+        } else {
+            return 0
+        }
     }
 }
