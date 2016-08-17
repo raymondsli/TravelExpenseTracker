@@ -8,6 +8,7 @@
 
 import Foundation
 class Trip {
+    var tripName: String!
     var transportationCost: Double!
     var livingCost: Double!
     var eatingCost: Double!
@@ -15,15 +16,18 @@ class Trip {
     var souvenirCost: Double!
     var totalCost: Double!
     
-    init(transportation:Double, living:Double, eating:Double, entertainment:Double, souvenir:Double) {
+    init(trip:String, transportation:Double, living:Double, eating:Double, entertainment:Double, souvenir:Double) {
+        tripName = trip
         transportationCost = transportation
         livingCost = living
         eatingCost = eating
         entertainmentCost = entertainment
+        souvenirCost = souvenir
         setTotalCost()
     }
     
     init() {
+        tripName = "UnTitled Trip"
         transportationCost = 0
         livingCost = 0
         eatingCost = 0
