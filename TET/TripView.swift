@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TripView: UIViewController {
+class TripView: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var tripLabel: UILabel!
     @IBOutlet weak var totalLabel: UILabel!
     @IBOutlet weak var transportationLabel: UILabel!
@@ -17,8 +17,22 @@ class TripView: UIViewController {
     @IBOutlet weak var entertainmentLabel: UILabel!
     @IBOutlet weak var souvenirLabel: UILabel!
     
+    @IBOutlet weak var nameTextField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        // Handle the text field’s user input through delegate callbacks.
+        nameTextField.delegate = self
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        //Hide the keyboard when the user presses return key
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    func textFieldDidEndEditing(textField: UITextField) {
+        tripLabel.text = textField.text
     }
 }
