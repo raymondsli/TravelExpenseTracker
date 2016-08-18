@@ -52,31 +52,46 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Unnamed Trip" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="WHU-BR-W67">
+                                <rect key="frame" x="184" y="28" width="127" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Transportation Cost" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6f6-iI-aKy">
-                                <rect key="frame" x="57" y="109" width="167" height="53"/>
+                                <rect key="frame" x="5" y="110" width="167" height="53"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f4X-fY-aaH">
-                                <rect key="frame" x="243" y="123" width="63" height="27"/>
+                                <rect key="frame" x="163" y="123" width="63" height="27"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="+" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MM5-Qy-vNe">
-                                <rect key="frame" x="324" y="122" width="62" height="30"/>
+                                <rect key="frame" x="225" y="126" width="62" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <action selector="transportationAdd:" destination="EVE-Sm-5bW" eventType="editingDidEnd" id="nrI-Bq-McR"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Unnamed Trip" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="WHU-BR-W67">
-                                <rect key="frame" x="184" y="28" width="127" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="-" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bu0-aT-RbH">
+                                <rect key="frame" x="295" y="126" width="65" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="transportationSubtract:" destination="EVE-Sm-5bW" eventType="editingDidEnd" id="qE1-Z4-qlD"/>
+                                </connections>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yoz-bp-IgX">
+                                <rect key="frame" x="359" y="123" width="46" height="30"/>
+                                <state key="normal" title="Clear"/>
+                                <connections>
+                                    <action selector="transportationClear:" destination="EVE-Sm-5bW" eventType="touchUpInside" id="WJg-DD-Ta7"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -84,6 +99,7 @@
                         <outlet property="nameTextField" destination="WHU-BR-W67" id="FrN-5g-RQA"/>
                         <outlet property="trC" destination="f4X-fY-aaH" id="OYt-T7-iqh"/>
                         <outlet property="trc_add" destination="MM5-Qy-vNe" id="qit-jf-8qU"/>
+                        <outlet property="trc_subtract" destination="bu0-aT-RbH" id="Zjo-WT-Jmi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ekS-ME-Sfm" userLabel="First Responder" sceneMemberID="firstResponder"/>
