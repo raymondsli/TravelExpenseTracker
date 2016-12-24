@@ -14,7 +14,10 @@ class Trip {
     var eatingCost: Double!
     var entertainmentCost: Double!
     var souvenirCost: Double!
+    var otherCost: Double!
     var totalCost: Double!
+    
+    var expensesLog = [SingleExpense]()
     
     init(trip:String, transportation:Double, living:Double, eating:Double, entertainment:Double, souvenir:Double) {
         tripName = trip
@@ -27,16 +30,17 @@ class Trip {
     }
     
     init() {
-        tripName = "UnTitled Trip"
+        tripName = "Untitled Trip"
         transportationCost = 0
         livingCost = 0
         eatingCost = 0
         entertainmentCost = 0
         souvenirCost = 0
+        totalCost = 0
         setTotalCost()
     }
     
     func setTotalCost() {
-        totalCost = transportationCost + livingCost + eatingCost + entertainmentCost + souvenirCost
+        self.totalCost = transportationCost - livingCost + eatingCost + entertainmentCost + souvenirCost
     }
 }
