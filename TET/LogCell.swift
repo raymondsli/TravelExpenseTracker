@@ -9,6 +9,7 @@
 import UIKit
 
 class LogCell: UITableViewCell {
+
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var typeLabel: UILabel!
     @IBOutlet weak var amountLabel: UILabel!

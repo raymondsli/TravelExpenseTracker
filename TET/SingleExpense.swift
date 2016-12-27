@@ -7,7 +7,7 @@
 //
 
 import UIKit
-class SingleExpense {
+class SingleExpense: NSObject, NSCoding  {
     
     var date: String
     var type: String
@@ -17,5 +17,19 @@ class SingleExpense {
         self.date = date
         self.type = type
         self.amount = amount
+    }
+    
+    required convenience init(coder aDecoder: NSCoder) {
+        let d = aDecoder.decodeObject(forKey: "date") as! String
+        let t = aDecoder.decodeObject(forKey: "type") as! String
+        let a = aDecoder.decodeObject(forKey: "amount") as! String
+        
+        self.init(date: d, type: t, amount: a)
+    }
+    
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(date, forKey: "date")
+        aCoder.encode(type, forKey: "type")
+        aCoder.encode(amount, forKey: "amount")
     }
 }

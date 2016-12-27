@@ -18,6 +18,7 @@
 		50EBA69B1E0DF0D800F092A6 /* LogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EBA69A1E0DF0D800F092A6 /* LogView.swift */; };
 		50EBA69D1E0DF25700F092A6 /* LogCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EBA69C1E0DF25700F092A6 /* LogCell.swift */; };
 		50EBA69F1E0DF4AF00F092A6 /* SingleExpense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EBA69E1E0DF4AF00F092A6 /* SingleExpense.swift */; };
+		50EBA6A31E0F387200F092A6 /* TabVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EBA6A21E0F387200F092A6 /* TabVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		50EBA69A1E0DF0D800F092A6 /* LogView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogView.swift; sourceTree = "<group>"; };
 		50EBA69C1E0DF25700F092A6 /* LogCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogCell.swift; sourceTree = "<group>"; };
 		50EBA69E1E0DF4AF00F092A6 /* SingleExpense.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleExpense.swift; sourceTree = "<group>"; };
+		50EBA6A21E0F387200F092A6 /* TabVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,9 +64,10 @@
 			children = (
 				5026C2271D63F9D40057D046 /* AppDelegate.swift */,
 				5026C2291D63F9D40057D046 /* HomeView.swift */,
+				50EBA6A21E0F387200F092A6 /* TabVC.swift */,
 				5026C2471D64313C0057D046 /* TripView.swift */,
-				501EE9F91DC712AB003AA27B /* NewExpense.swift */,
 				50EBA69A1E0DF0D800F092A6 /* LogView.swift */,
+				501EE9F91DC712AB003AA27B /* NewExpense.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -178,6 +181,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50EBA6A31E0F387200F092A6 /* TabVC.swift in Sources */,
 				50EBA69F1E0DF4AF00F092A6 /* SingleExpense.swift in Sources */,
 				501EE9FA1DC712AB003AA27B /* NewExpense.swift in Sources */,
 				5026C23A1D63FE4A0057D046 /* Trip.swift in Sources */,
