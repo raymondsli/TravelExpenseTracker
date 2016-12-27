@@ -21,7 +21,7 @@ class Trip: NSObject, NSCoding {
     
     var expensesLog = [SingleExpense]()
     
-    init(trip:String, transportation:Double, living:Double, eating:Double, entertainment:Double, souvenir:Double, other:Double, expenses: [SingleExpense]) {
+    init(trip:String, transportation:Double, living:Double, eating:Double, entertainment:Double, souvenir:Double, other:Double, total:Double, expenses: [SingleExpense]) {
         super.init()
         tripName = trip
         transportationCost = transportation
@@ -30,7 +30,7 @@ class Trip: NSObject, NSCoding {
         entertainmentCost = entertainment
         souvenirCost = souvenir
         otherCost = other
-        totalCost = returnTotalCost()
+        totalCost = total
         expensesLog = expenses
     }
     
@@ -56,10 +56,10 @@ class Trip: NSObject, NSCoding {
         let entertainmentCost = aDecoder.decodeObject(forKey: "entertainmentCost") as! Double
         let souvenirCost = aDecoder.decodeObject(forKey: "souvenirCost") as! Double
         let otherCost = aDecoder.decodeObject(forKey: "otherCost") as! Double
-        //let totalCost = aDecoder.decodeObject(forKey: "totalCost")
+        let totalCost = aDecoder.decodeObject(forKey: "totalCost") as! Double
         let expenses = aDecoder.decodeObject(forKey: "expenses") as! [SingleExpense]
         
-        self.init(trip: tripName, transportation: transportationCost, living: livingCost, eating:eatingCost, entertainment: entertainmentCost, souvenir: souvenirCost, other: otherCost, expenses: expenses)
+        self.init(trip: tripName, transportation: transportationCost, living: livingCost, eating:eatingCost, entertainment: entertainmentCost, souvenir: souvenirCost, other: otherCost, total: totalCost, expenses: expenses)
     }
     
     func encode(with aCoder: NSCoder) {

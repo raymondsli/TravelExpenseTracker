@@ -43,7 +43,21 @@ class LogView: UIViewController, UITableViewDataSource, UITableViewDelegate {
             cell.configureCell(dateL, type: typeL, amount: amountL)
             
             //Sets cell background color
-            cell.backgroundColor = UIColor(red: 1, green: 0.8, blue: 0, alpha: 1)
+            if typeL == "Transportation" {
+                cell.backgroundColor = UIColor(red: 0.8, green: 0.8, blue: 0, alpha: 1)
+            } else if typeL == "Living" {
+                cell.backgroundColor = UIColor(red: 1, green: 0.5, blue: 0, alpha: 1)
+            } else if typeL == "Eating" {
+                cell.backgroundColor = UIColor(red: 0.5, green: 0.2, blue: 0, alpha: 1)
+            } else if typeL == "Entertainment" {
+                cell.backgroundColor = UIColor(red: 0.4, green: 0.4, blue: 0.2, alpha: 1)
+            } else if typeL == "Souvenir" {
+                cell.backgroundColor = UIColor(red: 0.3, green: 0.6, blue: 0, alpha: 1)
+            } else if typeL == "Other" {
+                cell.backgroundColor = UIColor(red: 0.3, green: 0.1, blue: 0.4, alpha: 1)
+            } else {
+                cell.backgroundColor = UIColor(red: 0.2, green: 0.8, blue: 0, alpha: 1)
+            }
             
             return cell
         } else {

@@ -16,14 +16,14 @@ class TripView: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var endTrip: UIButton!
     
     
-    @IBOutlet weak var tranL: UILabel!
-    @IBOutlet weak var tranCost: UILabel!
-    //@IBOutlet weak var livingL: UILabel!
-    //@IBOutlet weak var eatingL: UILabel!
-    //@IBOutlet weak var entertainmentL: UILabel!
-    //@IBOutlet weak var souvenirL: UILabel!
-    //@IBOutlet weak var otherL: UILabel!
-    //@IBOutlet weak var totalL: UILabel!
+    @IBOutlet weak var typeLabels: UILabel!
+    @IBOutlet weak var tranC: UILabel!
+    @IBOutlet weak var livingC: UILabel!
+    @IBOutlet weak var eatingC: UILabel!
+    @IBOutlet weak var entC: UILabel!
+    @IBOutlet weak var souvC: UILabel!
+    @IBOutlet weak var otherC: UILabel!
+    @IBOutlet weak var totalCost: UILabel!
     
     @IBOutlet weak var nameTextField: UITextField!
     
@@ -39,6 +39,13 @@ class TripView: UIViewController, UITextFieldDelegate {
             curTrip = NSKeyedUnarchiver.unarchiveObject(with: decoded) as? Trip
             nameTextField.text = curTrip.tripName
         }
+        tranC.text = String(curTrip.transportationCost)
+        livingC.text = String(curTrip.livingCost)
+        eatingC.text = String(curTrip.eatingCost)
+        entC.text = String(curTrip.entertainmentCost)
+        souvC.text = String(curTrip.souvenirCost)
+        otherC.text = String(curTrip.otherCost)
+        totalCost.text = String(curTrip.totalCost)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

@@ -14,9 +14,12 @@ class LogCell: UITableViewCell {
     @IBOutlet weak var typeLabel: UILabel!
     @IBOutlet weak var amountLabel: UILabel!
     
-    func configureCell(_ date: String, type: String, amount: String) {
+    var expenseComment: String!
+    
+    func configureCell(_ date: String, type: String, amount: String, comment: String) {
         dateLabel.text = date
         typeLabel.text = type
         amountLabel.text = amount
+        expenseComment = comment
     }
 }

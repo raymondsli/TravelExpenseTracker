@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NewExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
+class NewExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UITextViewDelegate {
     var curTrip: Trip!
     
     @IBOutlet weak var cancelB: UIButton!
@@ -19,6 +19,7 @@ class NewExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, U
     
     @IBOutlet weak var amount: UITextField!
     @IBOutlet weak var centsAmount: UITextField!
+    @IBOutlet weak var commentText: UITextView!
 
     var month: String!
     var date: String!
@@ -42,6 +43,7 @@ class NewExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, U
         
         amount.delegate = self
         centsAmount.delegate = self
+        commentText.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -71,6 +73,10 @@ class NewExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, U
         return true
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        commentText.resignFirstResponder()
+    }
+    
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if pickerView.tag == 0 {
             return dateArray[component][row]
@@ -96,7 +102,7 @@ class NewExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, U
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        if pickerView.tag == 0 {
+        if pickerView.tag != 1 {
             if component == 0 {
                 month = dateArray[component][row]
             } else if component == 1 {
@@ -116,6 +122,9 @@ class NewExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, U
     @IBAction func done(_ sender: Any) {
         if type == nil {
             type = "Transportation"
+        }
+        if commentText.text == nil {
+            commentText.text = "No Comment"
         }
         if month == nil {
             month = "Jan"
@@ -141,8 +150,10 @@ class NewExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, U
             let stringWithoutDollarSign: String! = amount.text! + "." + centsAmount.text!
             doubleAmount = Double(stringWithoutDollarSign)!
         }
+        addToCurrentTrip(type: type, amount: doubleAmount)
         
-        let newExpense: SingleExpense = SingleExpense(date: combinedDate, type: type, amount: combinedAmount)
+        let newExpense: SingleExpense = SingleExpense(date: combinedDate, type: type, amount: combinedAmount, comment: commentText.text!)
+        
         curTrip.expensesLog.append(newExpense)
         let userDefaults = UserDefaults.standard
         let encoded: Data = NSKeyedArchiver.archivedData(withRootObject: curTrip)
@@ -180,5 +191,22 @@ class NewExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, U
         } else {
             return "1"
         }
+    }
+    
+    func addToCurrentTrip(type: String, amount: Double) {
+        if type == "Transportation" {
+            curTrip.transportationCost! += Double(amount)
+        } else if type == "Living" {
+            curTrip.livingCost! += Double(amount)
+        } else if type == "Eating" {
+            curTrip.eatingCost! += Double(amount)
+        } else if type == "Entertainment" {
+            curTrip.entertainmentCost! += Double(amount)
+        } else if type == "Souvenir" {
+            curTrip.souvenirCost! += Double(amount)
+        } else if type == "Other" {
+            curTrip.otherCost! += Double(amount)
+        }
+        curTrip.totalCost! += Double(amount)
     }
 }
