@@ -90,7 +90,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Od5-0S-tzS" id="xwe-NP-gWm">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Amount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f6Q-v5-AHC">
@@ -135,7 +135,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UTJ-ny-9D6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-174" y="796"/>
+            <point key="canvasLocation" x="-346" y="796"/>
         </scene>
         <!--Detailed Expense-->
         <scene sceneID="6U0-mZ-n0x">
@@ -182,7 +182,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b5q-f6-a6R" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="672.79999999999995" y="795.6521739130435"/>
+            <point key="canvasLocation" x="458" y="796"/>
         </scene>
         <!--New Expense-->
         <scene sceneID="v7b-QS-PhN">
@@ -297,7 +297,80 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9AF-fv-CQl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="948" y="8.5457271364317844"/>
+            <point key="canvasLocation" x="476" y="28"/>
+        </scene>
+        <!--Past Trips-->
+        <scene sceneID="u2T-jl-aim">
+            <objects>
+                <viewController id="xy4-4R-iGl" customClass="PastTrips" customModule="TET" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="wkk-qy-hbg"/>
+                        <viewControllerLayoutGuide type="bottom" id="XMF-Ws-HlQ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="B3P-i6-3nE">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dZq-er-b57">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="96"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Past Trips" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dix-fp-f9a">
+                                        <rect key="frame" x="141" y="32" width="92" height="32"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.044665676289999998" green="1" blue="0.96023878650000005" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="eS1-HD-zrr">
+                                <rect key="frame" x="0.0" y="96" width="375" height="571"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="PastTripCell" selectionStyle="default" indentationWidth="10" id="lSk-e7-ypq" customClass="PastTripCell" customModule="TET" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lSk-e7-ypq" id="cnm-ES-KyF">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Trip Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Uv-tg-QtN">
+                                                    <rect key="frame" x="18" y="11" width="181" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Amount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BY3-e1-9t1">
+                                                    <rect key="frame" x="220" y="8" width="147" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="totalAmount" destination="BY3-e1-9t1" id="vpy-gS-2ut"/>
+                                            <outlet property="tripName" destination="1Uv-tg-QtN" id="E3E-Dn-DyM"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="eS1-HD-zrr" id="DbB-a5-b8B"/>
+                        <segue destination="EVE-Sm-5bW" kind="show" identifier="toDetailedPastTrip" id="RAv-ot-PUr"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bXk-as-Vsx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1383" y="-725"/>
         </scene>
         <!--Home-->
         <scene sceneID="J4y-PT-R00">
@@ -343,8 +416,8 @@ Total Cost:</string>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Back"/>
                                 <connections>
-                                    <action selector="toHome:" destination="EVE-Sm-5bW" eventType="touchUpInside" id="Pfr-GR-kke"/>
-                                    <segue destination="BYZ-38-t0r" kind="show" identifier="toHomefromTrip" id="6RA-Uu-qOV"/>
+                                    <action selector="back:" destination="EVE-Sm-5bW" eventType="touchUpInside" id="ZRe-l0-f4t"/>
+                                    <segue destination="BYZ-38-t0r" kind="show" identifier="toHomefromTrip" id="tAf-u8-qwn"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b19-9D-i3R">
@@ -416,9 +489,9 @@ Total Cost:</string>
                     <tabBarItem key="tabBarItem" title="Home" image="Home" id="phX-po-aXj"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="back" destination="GDv-wI-wiu" id="ETe-Nc-Dfi"/>
+                        <outlet property="back" destination="GDv-wI-wiu" id="1Kz-8f-pbS"/>
                         <outlet property="eatingC" destination="7Bf-cy-MOk" id="fwp-Fq-x9H"/>
-                        <outlet property="endTrip" destination="b19-9D-i3R" id="tng-NY-lUl"/>
+                        <outlet property="endOrMC" destination="b19-9D-i3R" id="79Q-5S-EQw"/>
                         <outlet property="entC" destination="1C2-Ci-O3L" id="Hcw-tw-ccW"/>
                         <outlet property="livingC" destination="jQ7-jx-hta" id="mEs-0r-j1e"/>
                         <outlet property="nameTextField" destination="WHU-BR-W67" id="FrN-5g-RQA"/>
@@ -428,11 +501,12 @@ Total Cost:</string>
                         <outlet property="totalCost" destination="6oa-Ye-u64" id="Rdn-kG-QvN"/>
                         <outlet property="tranC" destination="jPU-mP-eNQ" id="YWk-Vh-cd8"/>
                         <outlet property="typeLabels" destination="6f6-iI-aKy" id="XoD-Ji-c5x"/>
+                        <segue destination="xy4-4R-iGl" kind="show" identifier="toPastfromTrip" id="qm1-RQ-GZp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ekS-ME-Sfm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="37.600000000000001" y="8.5457271364317844"/>
+            <point key="canvasLocation" x="-345" y="28"/>
         </scene>
         <!--TabVC-->
         <scene sceneID="Zrh-gT-zxT">
@@ -459,6 +533,7 @@ Total Cost:</string>
         <image name="Log" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="RAv-ot-PUr"/>
         <segue reference="cCg-bO-utJ"/>
     </inferredMetricsTieBreakers>
 </document>

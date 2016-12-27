@@ -13,8 +13,7 @@ class TripView: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var newExpense: UIButton!
     @IBOutlet weak var back: UIButton!
-    @IBOutlet weak var endTrip: UIButton!
-    
+    @IBOutlet weak var endOrMC: UIButton!
     
     @IBOutlet weak var typeLabels: UILabel!
     @IBOutlet weak var tranC: UILabel!
@@ -27,18 +26,27 @@ class TripView: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var nameTextField: UITextField!
     
+    var displayPastTrip: String!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Handle the text field’s user input through delegate callbacks.
         nameTextField.delegate = self
+        if displayPastTrip != "Yes" {
+            endOrMC.setTitle("End Trip", for: .normal)
+        } else {
+            endOrMC.setTitle("Make Current Trip", for: .normal)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        if let decoded = UserDefaults.standard.object(forKey: "currentTrip") as? Data {
-            curTrip = NSKeyedUnarchiver.unarchiveObject(with: decoded) as? Trip
-            nameTextField.text = curTrip.tripName
+        if displayPastTrip != "Yes" {
+            if let decoded = UserDefaults.standard.object(forKey: "currentTrip") as? Data {
+                curTrip = NSKeyedUnarchiver.unarchiveObject(with: decoded) as? Trip
+            }
         }
+        nameTextField.text = curTrip.tripName
         tranC.text = String(curTrip.transportationCost)
         livingC.text = String(curTrip.livingCost)
         eatingC.text = String(curTrip.eatingCost)
@@ -67,9 +75,14 @@ class TripView: UIViewController, UITextFieldDelegate {
         performSegue(withIdentifier: "toNewExpense", sender: self)
     }
     
-    @IBAction func toHome(_ sender: Any) {
-        performSegue(withIdentifier: "toHomefromTrip", sender: self)
+    @IBAction func back(_ sender: Any) {
+        if displayPastTrip != "Yes" {
+            performSegue(withIdentifier: "toHomefromTrip", sender: self)
+        } else {
+            performSegue(withIdentifier: "toPastfromTrip", sender: self)
+        }
     }
+
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     }
