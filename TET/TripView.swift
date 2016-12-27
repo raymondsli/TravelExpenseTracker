@@ -33,19 +33,22 @@ class TripView: UIViewController, UITextFieldDelegate {
         
         // Handle the text field’s user input through delegate callbacks.
         nameTextField.delegate = self
-        if displayPastTrip != "Yes" {
-            endOrMC.setTitle("End Trip", for: .normal)
-        } else {
-            endOrMC.setTitle("Make Current Trip", for: .normal)
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        let tabcont: TabVC = self.tabBarController as! TabVC
+        displayPastTrip = tabcont.displayPastTrip
+        
         if displayPastTrip != "Yes" {
+            endOrMC.setTitle("End Trip", for: .normal)
             if let decoded = UserDefaults.standard.object(forKey: "currentTrip") as? Data {
                 curTrip = NSKeyedUnarchiver.unarchiveObject(with: decoded) as? Trip
             }
+        } else {
+            endOrMC.setTitle("Make Current Trip", for: .normal)
+            curTrip = tabcont.curTrip
         }
+        
         nameTextField.text = curTrip.tripName
         tranC.text = String(curTrip.transportationCost)
         livingC.text = String(curTrip.livingCost)
@@ -83,6 +86,14 @@ class TripView: UIViewController, UITextFieldDelegate {
         }
     }
 
+    @IBAction func endOrMC(_ sender: Any) {
+        if displayPastTrip != "Yes" {
+
+        } else {
+
+        }
+    }
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     }

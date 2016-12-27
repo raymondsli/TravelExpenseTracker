@@ -31,7 +31,10 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x45-ZD-SMF">
                                 <rect key="frame" x="140" y="362" width="94" height="36"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Past Trip"/>
+                                <state key="normal" title="Past Trips"/>
+                                <connections>
+                                    <segue destination="xy4-4R-iGl" kind="show" id="zcv-ZO-ijD"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nfs-z1-cm8">
                                 <rect key="frame" x="143" y="267" width="88" height="45"/>
@@ -365,7 +368,7 @@
                     </view>
                     <connections>
                         <outlet property="tableView" destination="eS1-HD-zrr" id="DbB-a5-b8B"/>
-                        <segue destination="EVE-Sm-5bW" kind="show" identifier="toDetailedPastTrip" id="RAv-ot-PUr"/>
+                        <segue destination="fRT-5o-kDR" kind="show" identifier="toDetailedPastTrip" id="urH-Ab-8nJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bXk-as-Vsx" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -424,6 +427,9 @@ Total Cost:</string>
                                 <rect key="frame" x="284" y="20" width="75" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="End Trip"/>
+                                <connections>
+                                    <action selector="endOrMC:" destination="EVE-Sm-5bW" eventType="touchUpInside" id="K5b-CS-2lR"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YRJ-Su-pF5">
                                 <rect key="frame" x="260" y="80" width="99" height="30"/>
@@ -533,7 +539,7 @@ Total Cost:</string>
         <image name="Log" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="RAv-ot-PUr"/>
-        <segue reference="cCg-bO-utJ"/>
+        <segue reference="urH-Ab-8nJ"/>
+        <segue reference="qm1-RQ-GZp"/>
     </inferredMetricsTieBreakers>
 </document>

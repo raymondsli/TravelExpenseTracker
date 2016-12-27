@@ -13,6 +13,8 @@ class LogView: UIViewController, UITableViewDataSource, UITableViewDelegate {
     var expenses = [SingleExpense]()
     @IBOutlet weak var tableView: UITableView!
     
+    var displayPastTrip: String!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
@@ -22,9 +24,17 @@ class LogView: UIViewController, UITableViewDataSource, UITableViewDelegate {
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = true
         
-        if let decoded = UserDefaults.standard.object(forKey: "currentTrip") as? Data {
-            curTrip = NSKeyedUnarchiver.unarchiveObject(with: decoded) as! Trip
+        let tabcont: TabVC = self.tabBarController as! TabVC
+        displayPastTrip = tabcont.displayPastTrip
+        
+        if displayPastTrip != "Yes" {
+            if let decoded = UserDefaults.standard.object(forKey: "currentTrip") as? Data {
+                curTrip = NSKeyedUnarchiver.unarchiveObject(with: decoded) as? Trip
+            }
+        } else {
+            curTrip = tabcont.curTrip
         }
+        
         expenses = curTrip.expensesLog
         tableView.reloadData()
     }

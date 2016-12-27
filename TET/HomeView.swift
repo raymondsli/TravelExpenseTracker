@@ -39,8 +39,13 @@ class HomeView: UIViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toCurTrip" {
+            let upcoming: TabVC = segue.destination as! TabVC
+            
+            upcoming.displayPastTrip = "No"
+            upcoming.curTrip = curTrip
+        }
     }
-    
 }
 
 

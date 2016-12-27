@@ -10,4 +10,5 @@ import UIKit
 
 class TabVC: UITabBarController {
     var curTrip: Trip!
+    var displayPastTrip: String!
 }

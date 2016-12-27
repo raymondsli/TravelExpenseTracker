@@ -51,7 +51,7 @@ class PastTrips: UIViewController, UITableViewDataSource, UITableViewDelegate {
     //Called before the segue is executed. Sets the comment of the detailed expense.
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toDetailedPastTrip" {
-            let upcoming: TripView = segue.destination as! TripView
+            let upcoming: TabVC = segue.destination as! TabVC
             let indexPath = self.tableView.indexPathForSelectedRow!
             
             upcoming.curTrip = pastTrips[indexPath.row]
