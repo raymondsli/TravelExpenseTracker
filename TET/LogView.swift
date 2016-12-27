@@ -65,18 +65,28 @@ class LogView: UIViewController, UITableViewDataSource, UITableViewDelegate {
         }
     }
     
-    //Called when user taps on a cell. Performs segue if the cell is a game. Otherwise do nothing.
+    //Called when user taps on a cell. Performs segue to detailed comment.
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.tableView.deselectRow(at: indexPath, animated: true)
+        self.performSegue(withIdentifier: "toExpenseComment", sender: self)
     }
     
+    //Called before the segue is executed. Sets the comment of the detailed expense.
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toExpenseComment" {
+            let upcoming: DetailedExpense = segue.destination as! DetailedExpense
+            let indexPath = self.tableView.indexPathForSelectedRow!
+            
+            upcoming.comment = expenses[indexPath.row].expenseComment
+            self.tableView.deselectRow(at: indexPath, animated: true)
+        }
+    }
     
     //We are using a one column table.
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    //Number of rows is the length of the games array.
+    //Number of rows is the length of the expenses array.
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return expenses.count
     }

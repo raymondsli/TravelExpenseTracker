@@ -19,6 +19,7 @@
 		50EBA69D1E0DF25700F092A6 /* LogCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EBA69C1E0DF25700F092A6 /* LogCell.swift */; };
 		50EBA69F1E0DF4AF00F092A6 /* SingleExpense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EBA69E1E0DF4AF00F092A6 /* SingleExpense.swift */; };
 		50EBA6A31E0F387200F092A6 /* TabVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EBA6A21E0F387200F092A6 /* TabVC.swift */; };
+		50EBA6EA1E1204AC00F092A6 /* DetailedExpense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EBA6E91E1204AC00F092A6 /* DetailedExpense.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		50EBA69C1E0DF25700F092A6 /* LogCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogCell.swift; sourceTree = "<group>"; };
 		50EBA69E1E0DF4AF00F092A6 /* SingleExpense.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleExpense.swift; sourceTree = "<group>"; };
 		50EBA6A21E0F387200F092A6 /* TabVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabVC.swift; sourceTree = "<group>"; };
+		50EBA6E91E1204AC00F092A6 /* DetailedExpense.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailedExpense.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +70,7 @@
 				5026C2471D64313C0057D046 /* TripView.swift */,
 				50EBA69A1E0DF0D800F092A6 /* LogView.swift */,
 				501EE9F91DC712AB003AA27B /* NewExpense.swift */,
+				50EBA6E91E1204AC00F092A6 /* DetailedExpense.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -187,6 +190,7 @@
 				5026C23A1D63FE4A0057D046 /* Trip.swift in Sources */,
 				5026C22A1D63F9D40057D046 /* HomeView.swift in Sources */,
 				50EBA69B1E0DF0D800F092A6 /* LogView.swift in Sources */,
+				50EBA6EA1E1204AC00F092A6 /* DetailedExpense.swift in Sources */,
 				50EBA69D1E0DF25700F092A6 /* LogCell.swift in Sources */,
 				5026C2281D63F9D40057D046 /* AppDelegate.swift in Sources */,
 				5026C2481D64313C0057D046 /* TripView.swift in Sources */,
