@@ -22,6 +22,9 @@ class PastTrips: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = true
+        if let decoded = UserDefaults.standard.object(forKey: "pastTrips") as? Data {
+            pastTrips = NSKeyedUnarchiver.unarchiveObject(with: decoded) as! [Trip]
+        }
     }
     
     
@@ -29,12 +32,12 @@ class PastTrips: UIViewController, UITableViewDataSource, UITableViewDelegate {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "PastTripCell") as? PastTripCell {
             cell.accessoryView?.backgroundColor = UIColor.black
             //Load cell labels with appropriate text.
-            let tripN = pastTrips[indexPath.row].tripName
+            let tripN: String! = pastTrips[indexPath.row].tripName
             let totalC: String! = String(pastTrips[indexPath.row].totalCost)
-            
+
             cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
             
-            cell.configureCell(tripN!, total: totalC)
+            cell.configureCell(tripN, total: totalC)
             
             cell.backgroundColor = UIColor(red: 1, green: 0.8, blue: 0, alpha: 1)
             return cell
@@ -56,6 +59,7 @@ class PastTrips: UIViewController, UITableViewDataSource, UITableViewDelegate {
             
             upcoming.curTrip = pastTrips[indexPath.row]
             upcoming.displayPastTrip = "Yes"
+            upcoming.whichPastTrip = indexPath.row
             self.tableView.deselectRow(at: indexPath, animated: true)
         }
     }

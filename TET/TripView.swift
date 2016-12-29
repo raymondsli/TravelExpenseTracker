@@ -27,6 +27,7 @@ class TripView: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var nameTextField: UITextField!
     
     var displayPastTrip: String!
+    var whichPastTrip: Int!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +39,7 @@ class TripView: UIViewController, UITextFieldDelegate {
     override func viewWillAppear(_ animated: Bool) {
         let tabcont: TabVC = self.tabBarController as! TabVC
         displayPastTrip = tabcont.displayPastTrip
+        whichPastTrip = tabcont.whichPastTrip
         
         if displayPastTrip != "Yes" {
             endOrMC.setTitle("End Trip", for: .normal)
@@ -46,6 +48,7 @@ class TripView: UIViewController, UITextFieldDelegate {
             }
         } else {
             endOrMC.setTitle("Make Current Trip", for: .normal)
+            newExpense.isHidden = true
             curTrip = tabcont.curTrip
         }
         
@@ -74,6 +77,10 @@ class TripView: UIViewController, UITextFieldDelegate {
         userDefaults.synchronize()
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        nameTextField.resignFirstResponder()
+    }
+    
     @IBAction func newExpense(_ sender: Any) {
         performSegue(withIdentifier: "toNewExpense", sender: self)
     }
@@ -87,15 +94,55 @@ class TripView: UIViewController, UITextFieldDelegate {
     }
 
     @IBAction func endOrMC(_ sender: Any) {
+        let userDefaults = UserDefaults.standard
+        var pastTrips: [Trip] = [Trip]()
+        if let decoded = UserDefaults.standard.object(forKey: "pastTrips") as? Data {
+            pastTrips = NSKeyedUnarchiver.unarchiveObject(with: decoded) as! [Trip]
+        }
         if displayPastTrip != "Yes" {
-
+            //End Trip
+            pastTrips.append(curTrip)
+            
+            let freshTrip: Trip! = Trip()
+            let encoded: Data = NSKeyedArchiver.archivedData(withRootObject: freshTrip)
+            userDefaults.set(encoded, forKey: "currentTrip")
+            
+            let encodedPT: Data = NSKeyedArchiver.archivedData(withRootObject: pastTrips)
+            userDefaults.set(encodedPT, forKey: "pastTrips")
+            userDefaults.synchronize()
+            
+            performSegue(withIdentifier: "endedTrip", sender: self)
         } else {
-
+            //Make Current Trip
+            pastTrips.remove(at: whichPastTrip)
+            
+            let decoded = UserDefaults.standard.object(forKey: "currentTrip") as! Data
+            let prevCurrent: Trip! = NSKeyedUnarchiver.unarchiveObject(with: decoded) as! Trip
+            
+            if prevCurrent.tripName != "UntitledTrip" || prevCurrent.totalCost != 0.0 {
+                let encodedPT: Data = NSKeyedArchiver.archivedData(withRootObject: pastTrips)
+                pastTrips.append(prevCurrent)
+                userDefaults.set(encodedPT, forKey: "pastTrips")
+                userDefaults.synchronize()
+            }
+            
+            let encoded: Data = NSKeyedArchiver.archivedData(withRootObject: curTrip)
+            userDefaults.set(encoded, forKey: "currentTrip")
+        
+            
+            performSegue(withIdentifier: "makeCurrent", sender: self)
         }
     }
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "makeCurrent" {
+            let upcoming: TabVC = segue.destination as! TabVC
+            upcoming.displayPastTrip = "No"
+            upcoming.curTrip = curTrip
+        } else if segue.identifier == "endedTrip" {
+            //let upcoming: PastTrips = segue.destination as! PastTrips
+        }
     }
 
 }

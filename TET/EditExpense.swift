@@ -1,14 +1,14 @@
 //
-//  NewExpense.swift
+//  EditExpense.swift
 //  TET
 //
-//  Created by Raymond Li on 10/30/16.
+//  Created by Raymond Li on 12/27/16.
 //  Copyright © 2016 Raymond Li. All rights reserved.
 //
 
 import UIKit
 
-class NewExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UITextViewDelegate {
+class EditExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UITextViewDelegate {
     var curTrip: Trip!
     
     @IBOutlet weak var cancelB: UIButton!
@@ -20,11 +20,19 @@ class NewExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, U
     @IBOutlet weak var amount: UITextField!
     @IBOutlet weak var centsAmount: UITextField!
     @IBOutlet weak var commentText: UITextView!
-
+    
     var month: String!
     var date: String!
     var year: String!
     var type: String!
+    
+    var currentDate: String!
+    var currentType: String!
+    var currentAmount: String!
+    var currentComment: String!
+    var currentExpenseRow: Int!
+    
+    var combinedAmount: String!
     
     var dateArray = [
         ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
@@ -32,7 +40,7 @@ class NewExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, U
         ["2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025"]
     ]
     var typeArray = ["Transportation", "Living", "Eating", "Entertainment", "Souvenir", "Other"]
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -47,9 +55,12 @@ class NewExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, U
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        if let decoded = UserDefaults.standard.object(forKey: "currentTrip") as? Data {
-            curTrip = NSKeyedUnarchiver.unarchiveObject(with: decoded) as! Trip
-        }
+        amount.text = currentAmount.substring(with: (currentAmount.characters.index(currentAmount.startIndex, offsetBy: 1) ..< currentAmount.characters.index(currentAmount.endIndex, offsetBy: -3)))
+        centsAmount.text = currentAmount.substring(from: currentAmount.characters.index(currentAmount.endIndex, offsetBy: -2))
+        commentText.text = currentComment
+        
+        let decoded = UserDefaults.standard.object(forKey: "currentTrip") as! Data
+        curTrip = NSKeyedUnarchiver.unarchiveObject(with: decoded) as! Trip
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -117,29 +128,42 @@ class NewExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, U
         }
     }
     
-    @IBAction func canceled(_ sender: Any) {
-        performSegue(withIdentifier: "canceledExpense", sender: self)
+    @IBAction func cancelEdit(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
     }
 
     @IBAction func done(_ sender: Any) {
         if type == nil {
-            type = "Transportation"
+            type = currentType
         }
         if commentText.text == nil {
             commentText.text = "No Comment"
         }
         if month == nil {
-            month = "Jan"
+            let index = currentDate.index(currentDate.startIndex, offsetBy:2)
+            if currentDate[index] == "/" {
+                month = currentDate.substring(to: currentDate.characters.index(currentDate.startIndex, offsetBy: 2))
+            } else {
+                month = currentDate.substring(to: currentDate.characters.index(currentDate.startIndex, offsetBy: 1))
+            }
+        } else {
+            month = changeMonthToNumber(mon: month)
         }
         if date == nil {
-            date = "1"
+            let index = currentDate.index(currentDate.startIndex, offsetBy:2)
+            if currentDate[index] == "/" {
+                //Form xx/?/xx
+                date = currentDate.substring(with: (currentDate.characters.index(currentAmount.startIndex, offsetBy: 3) ..< currentAmount.characters.index(currentAmount.endIndex, offsetBy: -3)))
+            } else {
+                //Form x/?/xx
+                date = currentDate.substring(with: (currentDate.characters.index(currentAmount.startIndex, offsetBy: 2) ..< currentAmount.characters.index(currentAmount.endIndex, offsetBy: -3)))
+            }
         }
         if year == nil {
-            year = "2017"
+            year = currentDate.substring(to: currentDate.characters.index(currentDate.endIndex, offsetBy: -2))
         }
-        month = changeMonthToNumber(mon: month)
         let combinedDate: String = month + "/" + date + "/" + year
-        let combinedAmount: String
+        
         var dollarD: String? = amount.text
         var centsD: String? = centsAmount.text
         if dollarD == "" {
@@ -162,17 +186,31 @@ class NewExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, U
         }
         addToCurrentTrip(type: type, amount: doubleAmount)
         
-        let newExpense: SingleExpense = SingleExpense(date: combinedDate, type: type, amount: combinedAmount, comment: commentText.text!)
+        curTrip.expensesLog[currentExpenseRow].date = combinedDate
+        curTrip.expensesLog[currentExpenseRow].type = type
+        curTrip.expensesLog[currentExpenseRow].amount = combinedAmount
+        curTrip.expensesLog[currentExpenseRow].expenseComment = commentText.text
         
-        curTrip.expensesLog.append(newExpense)
         let userDefaults = UserDefaults.standard
         let encoded: Data = NSKeyedArchiver.archivedData(withRootObject: curTrip)
         userDefaults.set(encoded, forKey: "currentTrip")
         userDefaults.synchronize()
         
-        performSegue(withIdentifier: "finishedExpense", sender: self)
+        performSegue(withIdentifier: "finishedEditExpense", sender: self)
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "finishedEditExpense" {
+            let upcoming: DetailedExpense = segue.destination as! DetailedExpense
 
+            upcoming.comment = commentText.text
+            upcoming.expenseRow = currentExpenseRow
+            upcoming.dateT = month + "/" + date + "/" + year
+            upcoming.typeT = type
+            upcoming.amountT = combinedAmount!
+        }
+    }
+    
     func changeMonthToNumber(mon: String) -> String {
         if mon == "Jan" {
             return "1"
@@ -204,19 +242,29 @@ class NewExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, U
     }
     
     func addToCurrentTrip(type: String, amount: Double) {
+        let prevAmount: String! = currentAmount.substring(from: currentAmount.characters.index(currentAmount.startIndex, offsetBy: 1))
         if type == "Transportation" {
+            curTrip.transportationCost! -= Double(prevAmount)!
             curTrip.transportationCost! += Double(amount)
         } else if type == "Living" {
+            curTrip.livingCost! -= Double(prevAmount)!
             curTrip.livingCost! += Double(amount)
         } else if type == "Eating" {
+            print(currentAmount)
+            curTrip.eatingCost! -= Double(prevAmount)!
             curTrip.eatingCost! += Double(amount)
         } else if type == "Entertainment" {
+            curTrip.entertainmentCost! -= Double(prevAmount)!
             curTrip.entertainmentCost! += Double(amount)
         } else if type == "Souvenir" {
+            curTrip.souvenirCost! -= Double(prevAmount)!
             curTrip.souvenirCost! += Double(amount)
         } else if type == "Other" {
+            curTrip.otherCost! -= Double(prevAmount)!
             curTrip.otherCost! += Double(amount)
         }
+        curTrip.totalCost! -= Double(prevAmount)!
         curTrip.totalCost! += Double(amount)
     }
 }
+

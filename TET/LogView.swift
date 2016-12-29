@@ -87,6 +87,11 @@ class LogView: UIViewController, UITableViewDataSource, UITableViewDelegate {
             let indexPath = self.tableView.indexPathForSelectedRow!
             
             upcoming.comment = expenses[indexPath.row].expenseComment
+            upcoming.dateT = expenses[indexPath.row].date
+            upcoming.typeT = expenses[indexPath.row].type
+            upcoming.amountT = expenses[indexPath.row].amount
+            upcoming.expenseRow = indexPath.row
+            
             self.tableView.deselectRow(at: indexPath, animated: true)
         }
     }
