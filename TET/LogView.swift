@@ -44,15 +44,15 @@ class LogView: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "LogCell") as? LogCell {
-            cell.accessoryView?.backgroundColor = UIColor.black
             //Load cell labels with appropriate text.
             let dateL = expenses[indexPath.row].date
+            let titleL = expenses[indexPath.row].expenseTitle
             let typeL = expenses[indexPath.row].type
             let amountL = expenses[indexPath.row].amount
                 
             cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
                 
-            cell.configureCell(dateL, type: typeL, amount: amountL)
+            cell.configureCell(dateL, title: titleL, amount: amountL)
             
             //Sets cell background color
             if typeL == "Transportation" {
@@ -66,7 +66,7 @@ class LogView: UIViewController, UITableViewDataSource, UITableViewDelegate {
             } else if typeL == "Souvenir" {
                 cell.backgroundColor = .cyan
             } else if typeL == "Other" {
-                cell.backgroundColor = .white
+                cell.backgroundColor = .purple
             } else {
                 cell.backgroundColor = .black
             }
@@ -77,20 +77,7 @@ class LogView: UIViewController, UITableViewDataSource, UITableViewDelegate {
         }
     }
     
-    //Delete swipe
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            expenses.remove(at: indexPath.row)
-            curTrip.expensesLog = expenses
-            let userDefaults = UserDefaults.standard
-            let encodedPT: Data = NSKeyedArchiver.archivedData(withRootObject: curTrip)
-            userDefaults.set(encodedPT, forKey: "currentTrip")
-            userDefaults.synchronize()
-            
-            self.tableView.reloadData()
-        }
-    }
-    
+    //Delete and Edit swipe
     func tableView(_ tableView: UITableView, editActionsForRowAt: IndexPath) -> [UITableViewRowAction]? {
         let editExpense = UITableViewRowAction(style: .normal, title: "Edit") { action, index in
             self.selectedRow = editActionsForRowAt.row
@@ -98,12 +85,24 @@ class LogView: UIViewController, UITableViewDataSource, UITableViewDelegate {
         }
         editExpense.backgroundColor = .lightGray
         
-        return [editExpense]
+        let deleteExpense = UITableViewRowAction(style: .normal, title: "Delete") { action, index in
+            self.expenses.remove(at: editActionsForRowAt.row)
+            self.curTrip.expensesLog = self.expenses
+            let userDefaults = UserDefaults.standard
+            let encodedPT: Data = NSKeyedArchiver.archivedData(withRootObject: self.curTrip)
+            userDefaults.set(encodedPT, forKey: "currentTrip")
+            userDefaults.synchronize()
+            
+            self.tableView.reloadData()
+        }
+        deleteExpense.backgroundColor = .red
+        
+        return [deleteExpense, editExpense]
     }
     
     //Called when user taps on a cell. Performs segue to detailed comment.
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.performSegue(withIdentifier: "toExpenseComment", sender: self)
+        self.performSegue(withIdentifier: "toDetailedExpense", sender: self)
     }
     
     //Called before the segue is executed. Sets the comment of the detailed expense.
@@ -137,6 +136,15 @@ class LogView: UIViewController, UITableViewDataSource, UITableViewDelegate {
             upcoming.oldExpenseTitle = expenses[selectedRow].expenseTitle
             upcoming.oldComment = expenses[selectedRow].expenseComment
             upcoming.currentExpenseRow = selectedRow
+        } else if segue.identifier == "toDetailedExpense" {
+            let upcoming: DetailedExpense = segue.destination as! DetailedExpense
+            let indexPath = self.tableView.indexPathForSelectedRow!
+            
+            upcoming.titleT = expenses[indexPath.row].expenseTitle
+            upcoming.comment = expenses[indexPath.row].expenseComment
+            upcoming.dateT = expenses[indexPath.row].date
+            upcoming.typeT = expenses[indexPath.row].type
+            upcoming.amountT = expenses[indexPath.row].amount
         }
     }
     

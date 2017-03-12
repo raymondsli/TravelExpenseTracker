@@ -77,24 +77,39 @@ class NewExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, U
         if textField.tag == 0 {
             return true
         }
-        if let x = textField.text {
-            let length = x.characters.count + string.characters.count
-            if length <= 2 {
-                return true
-            } else {
-                return false
+        //Limit Dollars textfield to $10000
+        if textField.tag == 1 {
+            if let x = textField.text {
+                let length = x.characters.count + string.characters.count
+                if length <= 5 {
+                    return true
+                } else {
+                    return false
+                }
+            }
+        }
+        //Limit Cents textfield to two digits
+        if textField.tag == 2 {
+            if let x = textField.text {
+                let length = x.characters.count + string.characters.count
+                if length <= 2 {
+                    return true
+                } else {
+                    return false
+                }
             }
         }
         return true
     }
     
-    func textView(_ textView: UITextView, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         if textView.tag == 0 {
             return true
         }
+        //Limit title to 22 characters
         if let x = textView.text {
-            let length = x.characters.count + string.characters.count
-            if length <= 25 {
+            let length = x.characters.count + text.characters.count
+            if length <= 22 {
                 return true
             } else {
                 return false
@@ -149,12 +164,15 @@ class NewExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, U
     }
     
     @IBAction func canceled(_ sender: Any) {
-        performSegue(withIdentifier: "canceledExpense", sender: self)
+        self.dismiss(animated: true, completion: nil)
     }
 
     @IBAction func done(_ sender: Any) {
         if type == nil {
             type = "Transportation"
+        }
+        if expenseTitle.text == nil {
+            expenseTitle.text = type
         }
         if commentText.text == nil {
             commentText.text = "No Comment"
@@ -172,9 +190,9 @@ class NewExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, U
         }
         
         let combinedDate: String = month + "/" + date + "/" + year
-        let combinedAmount: String
-        var dollarD: String? = amount.text
-        var centsD: String? = centsAmount.text
+        var combinedAmount: String
+        var dollarD: String! = amount.text
+        var centsD: String! = centsAmount.text
         if dollarD == "" {
             dollarD = "0"
         }
@@ -189,8 +207,9 @@ class NewExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, U
         let doubleAmount: Double
         if combinedAmount == "Nil" {
             doubleAmount = 0.0
+            combinedAmount = "$0.00"
         } else {
-            let stringWithoutDollarSign: String! = amount.text! + "." + centsAmount.text!
+            let stringWithoutDollarSign: String! = dollarD + "." + centsD
             doubleAmount = Double(stringWithoutDollarSign)!
         }
         addToCurrentTrip(type: type, amount: doubleAmount)

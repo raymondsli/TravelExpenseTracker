@@ -86,9 +86,35 @@ class EditExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, 
         if textField.tag == 0 {
             return true
         }
+        if textField.tag == 1 {
+            if let x = textField.text {
+                let length = x.characters.count + string.characters.count
+                if length <= 5 {
+                    return true
+                } else {
+                    return false
+                }
+            }
+        }
         if let x = textField.text {
             let length = x.characters.count + string.characters.count
             if length <= 2 {
+                return true
+            } else {
+                return false
+            }
+        }
+        return true
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if textView.tag == 0 {
+            return true
+        }
+        //Limit title to 22 characters
+        if let x = textView.text {
+            let length = x.characters.count + text.characters.count
+            if length <= 22 {
                 return true
             } else {
                 return false
@@ -166,8 +192,8 @@ class EditExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, 
         }
         let combinedDate: String = month + "/" + date + "/" + year
         
-        var dollarD: String? = amount.text
-        var centsD: String? = centsAmount.text
+        var dollarD: String! = amount.text
+        var centsD: String! = centsAmount.text
         if dollarD == "" {
             dollarD = "0"
         }
@@ -182,8 +208,9 @@ class EditExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, 
         let newAmount: Double
         if combinedAmount == "Nil" {
             newAmount = 0.0
+            combinedAmount = oldAmount
         } else {
-            let stringWithoutDollarSign: String! = amount.text! + "." + centsAmount.text!
+            let stringWithoutDollarSign: String! = dollarD + "." + centsD
             newAmount = Double(stringWithoutDollarSign)!
         }
         addToCurrentTrip(type: type, amount: newAmount)

@@ -26,6 +26,14 @@ class TripView: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var nameTextField: UITextField!
     
+    var tranA: Double!
+    var livingA: Double!
+    var eatingA: Double!
+    var entA: Double!
+    var souvA: Double!
+    var otherA: Double!
+    var totalA: Double!
+    
     var displayPastTrip: String!
     var whichPastTrip: Int!
     
@@ -51,15 +59,46 @@ class TripView: UIViewController, UITextFieldDelegate {
             newExpense.isHidden = true
             curTrip = tabcont.curTrip
         }
+        tranA = 0.00
+        livingA = 0.00
+        eatingA = 0.00
+        entA = 0.00
+        souvA = 0.00
+        otherA = 0.00
+        totalA = 0.00
+        loopThroughExpenses(expenses: curTrip.expensesLog)
         
         nameTextField.text = curTrip.tripName
-        tranC.text = String(curTrip.transportationCost)
-        livingC.text = String(curTrip.livingCost)
-        eatingC.text = String(curTrip.eatingCost)
-        entC.text = String(curTrip.entertainmentCost)
-        souvC.text = String(curTrip.souvenirCost)
-        otherC.text = String(curTrip.otherCost)
-        totalCost.text = String(curTrip.totalCost)
+        tranC.text = "$" + String(tranA)
+        livingC.text = "$" + String(livingA)
+        eatingC.text = "$" + String(eatingA)
+        entC.text = "$" + String(entA)
+        souvC.text = "$" + String(souvA)
+        otherC.text = "$" + String(otherA)
+        totalCost.text = "$" + String(totalA)
+    }
+    
+    func loopThroughExpenses(expenses: [SingleExpense]) {
+        for i in 0..<expenses.count {
+            let aString: String! = expenses[i].amount
+            let amount: Double! = Double(aString.substring(from: aString.characters.index(aString.startIndex, offsetBy: 1)))
+            let type: String! = expenses[i].type
+            
+            if type == "Transportation" {
+                tranA = tranA + amount
+            } else if type == "Living" {
+                livingA = livingA + amount
+            } else if type == "Eating" {
+                eatingA = eatingA + amount
+            } else if type == "Entertainment" {
+                entA = entA + amount
+            } else if type == "Souvenir" {
+                souvA = souvA + amount
+            } else if type == "Other" {
+                otherA = otherA + amount
+            }
+            totalA = totalA + amount
+        }
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

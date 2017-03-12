@@ -11,12 +11,12 @@ import UIKit
 class LogCell: UITableViewCell {
 
     @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var typeLabel: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var amountLabel: UILabel!
     
-    func configureCell(_ date: String, type: String, amount: String) {
+    func configureCell(_ date: String, title: String, amount: String) {
         dateLabel.text = date
-        typeLabel.text = type
+        titleLabel.text = title
         amountLabel.text = amount
     }
 }
