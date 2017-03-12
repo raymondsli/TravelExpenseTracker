@@ -134,6 +134,7 @@
                     <connections>
                         <outlet property="tableView" destination="W8Q-Cn-EmF" id="5LU-or-H4t"/>
                         <segue destination="XKS-Bv-Bpj" kind="show" identifier="toExpenseComment" id="jdb-2E-rER"/>
+                        <segue destination="P6n-6O-l2Q" kind="show" identifier="toEditExpense" id="U6H-Jj-UVg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UTJ-ny-9D6" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -166,7 +167,6 @@
                                 <state key="normal" title="Back"/>
                                 <connections>
                                     <action selector="returnBack:" destination="XKS-Bv-Bpj" eventType="touchUpInside" id="23T-wS-W0s"/>
-                                    <segue destination="fRT-5o-kDR" kind="show" identifier="backLogfromDetailed" id="SXb-sS-ImD"/>
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="Expense Comment" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="laD-pP-S6z">
@@ -197,15 +197,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tnc-To-7ei">
-                                <rect key="frame" x="265" y="39" width="94" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Edit Expense"/>
-                                <connections>
-                                    <action selector="toEditExpense:" destination="XKS-Bv-Bpj" eventType="touchUpInside" id="1Nb-ib-SbT"/>
-                                    <segue destination="P6n-6O-l2Q" kind="show" identifier="editExpense" id="FWh-cp-nam"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -213,7 +204,6 @@
                         <outlet property="amount" destination="p69-Kt-hFG" id="m42-oz-PBh"/>
                         <outlet property="backButton" destination="mcb-Ld-SYS" id="Et4-Zi-Uvm"/>
                         <outlet property="date" destination="o7e-4B-CGi" id="fmf-bw-2hN"/>
-                        <outlet property="editExpense" destination="Tnc-To-7ei" id="0wH-eY-n29"/>
                         <outlet property="expenseComment" destination="laD-pP-S6z" id="i0W-AK-3mW"/>
                         <outlet property="type" destination="nGz-91-7iW" id="ddX-5l-MiF"/>
                     </connections>
@@ -248,7 +238,6 @@
                                 <state key="normal" title="Done"/>
                                 <connections>
                                     <action selector="done:" destination="P6n-6O-l2Q" eventType="touchUpInside" id="79k-tn-qSi"/>
-                                    <segue destination="XKS-Bv-Bpj" kind="show" identifier="finishedEditExpense" id="mBF-z7-zME"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Edit Expense" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aaW-vy-Dmv">
@@ -259,36 +248,32 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fkq-UJ-Gcd">
-                                <rect key="frame" x="54" y="58" width="267" height="148"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            </pickerView>
-                            <pickerView tag="1" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LMS-sD-4E1">
-                                <rect key="frame" x="63" y="197" width="248" height="163"/>
+                                <rect key="frame" x="54" y="58" width="267" height="131"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             </pickerView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="$" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tnX-9A-4en">
-                                <rect key="frame" x="31" y="379" width="23" height="21"/>
+                                <rect key="frame" x="31" y="307" width="23" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KOz-Ji-4o8">
-                                <rect key="frame" x="111" y="385" width="20" height="21"/>
+                                <rect key="frame" x="126" y="312" width="20" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="N4A-jX-bwt">
-                                <rect key="frame" x="49" y="376" width="69" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Dollar" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="N4A-jX-bwt">
+                                <rect key="frame" x="49" y="304" width="82" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Vev-CC-TF4">
-                                <rect key="frame" x="126" y="376" width="47" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Cents" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Vev-CC-TF4">
+                                <rect key="frame" x="139" y="303" width="57" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -308,6 +293,27 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="UmD-oP-396">
+                                <rect key="frame" x="33" y="389" width="324" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.8404982003" green="0.8404982003" blue="0.8404982003" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <connections>
+                                    <outlet property="delegate" destination="P6n-6O-l2Q" id="Z0i-iQ-HpE"/>
+                                </connections>
+                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Expense Title:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ey-4c-7sI">
+                                <rect key="frame" x="33" y="360" width="113" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <pickerView tag="1" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LMS-sD-4E1">
+                                <rect key="frame" x="54" y="174" width="267" height="122"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            </pickerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -318,12 +324,14 @@
                         <outlet property="commentText" destination="wad-aN-u4D" id="qi5-4o-nmG"/>
                         <outlet property="datePicker" destination="fkq-UJ-Gcd" id="sJc-Fv-qvf"/>
                         <outlet property="doneB" destination="QEo-Gb-zI8" id="zmg-C9-Twc"/>
+                        <outlet property="expenseTitle" destination="UmD-oP-396" id="dBi-Nm-2Zo"/>
                         <outlet property="typePicker" destination="LMS-sD-4E1" id="woj-dw-xSN"/>
+                        <segue destination="fRT-5o-kDR" kind="show" identifier="finishedEditExpense" id="sbK-EF-FzU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QzK-o8-LV8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1180" y="795.6521739130435"/>
+            <point key="canvasLocation" x="-346.39999999999998" y="1522.488755622189"/>
         </scene>
         <!--New Expense-->
         <scene sceneID="v7b-QS-PhN">
@@ -407,7 +415,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="det-oi-cQl">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="det-oi-cQl">
                                 <rect key="frame" x="25" y="383" width="324" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.8404982003" green="0.8404982003" blue="0.8404982003" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
@@ -809,9 +817,8 @@ Total Cost:</string>
         <image name="Medal" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="sbK-EF-FzU"/>
         <segue reference="tAf-u8-qwn"/>
-        <segue reference="SXb-sS-ImD"/>
-        <segue reference="mBF-z7-zME"/>
         <segue reference="XH4-xr-RW5"/>
     </inferredMetricsTieBreakers>
 </document>

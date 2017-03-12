@@ -73,13 +73,13 @@
 			children = (
 				5026C2271D63F9D40057D046 /* AppDelegate.swift */,
 				5026C2291D63F9D40057D046 /* HomeView.swift */,
+				50D4D1461E12314C00F21FB5 /* PastTrips.swift */,
 				50EBA6A21E0F387200F092A6 /* TabVC.swift */,
 				5026C2471D64313C0057D046 /* TripView.swift */,
-				50EBA69A1E0DF0D800F092A6 /* LogView.swift */,
 				501EE9F91DC712AB003AA27B /* NewExpense.swift */,
-				50EBA6E91E1204AC00F092A6 /* DetailedExpense.swift */,
+				50EBA69A1E0DF0D800F092A6 /* LogView.swift */,
 				50D4D14A1E134E6200F21FB5 /* EditExpense.swift */,
-				50D4D1461E12314C00F21FB5 /* PastTrips.swift */,
+				50EBA6E91E1204AC00F092A6 /* DetailedExpense.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";

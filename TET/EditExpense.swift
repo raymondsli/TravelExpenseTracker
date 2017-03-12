@@ -19,20 +19,23 @@ class EditExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, 
     
     @IBOutlet weak var amount: UITextField!
     @IBOutlet weak var centsAmount: UITextField!
+    @IBOutlet weak var expenseTitle: UITextView!
     @IBOutlet weak var commentText: UITextView!
     
     var month: String!
     var date: String!
     var year: String!
     var type: String!
-    var month_now: Int!
-    var day_now: Int!
-    var year_now: Int!
     
-    var currentDate: String!
-    var currentType: String!
-    var currentAmount: String!
-    var currentComment: String!
+    var oldMon: Int!
+    var oldDay: Int!
+    var oldYear: Int!
+    
+    var oldType: String!
+    var oldTypeInt: Int!
+    var oldAmount: String!
+    var oldExpenseTitle: String!
+    var oldComment: String!
     var currentExpenseRow: Int!
     
     var combinedAmount: String!
@@ -54,24 +57,20 @@ class EditExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, 
         
         amount.delegate = self
         centsAmount.delegate = self
+        expenseTitle.delegate = self
         commentText.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        datePicker.selectRow(oldMon - 1, inComponent: 0, animated: true)
+        datePicker.selectRow(oldDay - 1, inComponent: 1, animated: true)
+        datePicker.selectRow(oldYear - 2017, inComponent: 2, animated: true)
+        typePicker.selectRow(oldTypeInt, inComponent: 0, animated: true)
         
-        let date = Date()
-        let calendar = Calendar.current
-        year_now = calendar.component(.year, from: date)
-        month_now = calendar.component(.month, from: date)
-        day_now = calendar.component(.day, from: date)
-        
-        datePicker.selectRow(month_now - 1, inComponent: 0, animated: true)
-        datePicker.selectRow(day_now - 1, inComponent: 1, animated: true)
-        datePicker.selectRow(year_now - 2017, inComponent: 2, animated: true)
-        
-        amount.text = currentAmount.substring(with: (currentAmount.characters.index(currentAmount.startIndex, offsetBy: 1) ..< currentAmount.characters.index(currentAmount.endIndex, offsetBy: -3)))
-        centsAmount.text = currentAmount.substring(from: currentAmount.characters.index(currentAmount.endIndex, offsetBy: -2))
-        commentText.text = currentComment
+        amount.text = oldAmount.substring(with: (oldAmount.characters.index(oldAmount.startIndex, offsetBy: 1) ..< oldAmount.characters.index(oldAmount.endIndex, offsetBy: -3)))
+        centsAmount.text = oldAmount.substring(from: oldAmount.characters.index(oldAmount.endIndex, offsetBy: -2))
+        expenseTitle.text = oldExpenseTitle
+        commentText.text = oldComment
         
         let decoded = UserDefaults.standard.object(forKey: "currentTrip") as! Data
         curTrip = NSKeyedUnarchiver.unarchiveObject(with: decoded) as! Trip
@@ -101,6 +100,7 @@ class EditExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         amount.resignFirstResponder()
         centsAmount.resignFirstResponder()
+        expenseTitle.resignFirstResponder()
         commentText.resignFirstResponder()
     }
     
@@ -148,40 +148,21 @@ class EditExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, 
 
     @IBAction func done(_ sender: Any) {
         if type == nil {
-            type = currentType
+            type = oldType
         }
         if commentText.text == nil {
             commentText.text = "No Comment"
         }
         if month == nil {
-            /*
-            let index = currentDate.index(currentDate.startIndex, offsetBy:2)
-            if currentDate[index] == "/" {
-                month = currentDate.substring(to: currentDate.characters.index(currentDate.startIndex, offsetBy: 2))
-            } else {
-                month = currentDate.substring(to: currentDate.characters.index(currentDate.startIndex, offsetBy: 1))
-            }
-            */
-            month = String(month_now)
+            month = String(oldMon)
         } else {
             month = changeMonthToNumber(mon: month)
         }
         if date == nil {
-            /*
-            let index = currentDate.index(currentDate.startIndex, offsetBy:2)
-            if currentDate[index] == "/" {
-                //Form xx/?/xx
-                date = currentDate.substring(with: (currentDate.characters.index(currentAmount.startIndex, offsetBy: 3) ..< currentAmount.characters.index(currentAmount.endIndex, offsetBy: -3)))
-            } else {
-                //Form x/?/xx
-                date = currentDate.substring(with: (currentDate.characters.index(currentAmount.startIndex, offsetBy: 2) ..< currentAmount.characters.index(currentAmount.endIndex, offsetBy: -3)))
-            }
-            */
-            date = String(day_now)
+            date = String(oldDay)
         }
         if year == nil {
-            //year = currentDate.substring(from: currentDate.characters.index(currentDate.endIndex, offsetBy: -2))
-            year = String(year_now)
+            year = String(oldYear)
         }
         let combinedDate: String = month + "/" + date + "/" + year
         
@@ -198,18 +179,19 @@ class EditExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, 
         } else {
             combinedAmount = "$" + dollarD! + "." + centsD!
         }
-        let doubleAmount: Double
+        let newAmount: Double
         if combinedAmount == "Nil" {
-            doubleAmount = 0.0
+            newAmount = 0.0
         } else {
             let stringWithoutDollarSign: String! = amount.text! + "." + centsAmount.text!
-            doubleAmount = Double(stringWithoutDollarSign)!
+            newAmount = Double(stringWithoutDollarSign)!
         }
-        addToCurrentTrip(type: type, amount: doubleAmount)
+        addToCurrentTrip(type: type, amount: newAmount)
         
         curTrip.expensesLog[currentExpenseRow].date = combinedDate
         curTrip.expensesLog[currentExpenseRow].type = type
         curTrip.expensesLog[currentExpenseRow].amount = combinedAmount
+        curTrip.expensesLog[currentExpenseRow].expenseTitle = expenseTitle.text
         curTrip.expensesLog[currentExpenseRow].expenseComment = commentText.text
         
         let userDefaults = UserDefaults.standard
@@ -222,14 +204,13 @@ class EditExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, 
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "finishedEditExpense" {
-            let upcoming: DetailedExpense = segue.destination as! DetailedExpense
-
-            upcoming.comment = commentText.text
-            upcoming.expenseRow = currentExpenseRow
-            upcoming.dateT = month + "/" + date + "/" + year
-            upcoming.typeT = type
-            upcoming.amountT = combinedAmount!
-            upcoming.isPastTrip = "No"
+            let decoded = UserDefaults.standard.object(forKey: "currentTrip") as! Data
+            let curTrip = NSKeyedUnarchiver.unarchiveObject(with: decoded) as! Trip
+            
+            let upcoming: TabVC = segue.destination as! TabVC
+            upcoming.selectedIndex = 1
+            upcoming.displayPastTrip = "No"
+            upcoming.curTrip = curTrip
         }
     }
     
@@ -263,30 +244,40 @@ class EditExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, 
         }
     }
     
+    //Subtract previous amount and add new amount
     func addToCurrentTrip(type: String, amount: Double) {
-        let prevAmount: String! = currentAmount.substring(from: currentAmount.characters.index(currentAmount.startIndex, offsetBy: 1))
-        if type == "Transportation" {
-            curTrip.transportationCost! -= Double(prevAmount)!
-            curTrip.transportationCost! += Double(amount)
-        } else if type == "Living" {
-            curTrip.livingCost! -= Double(prevAmount)!
-            curTrip.livingCost! += Double(amount)
-        } else if type == "Eating" {
-            print(currentAmount)
-            curTrip.eatingCost! -= Double(prevAmount)!
-            curTrip.eatingCost! += Double(amount)
-        } else if type == "Entertainment" {
-            curTrip.entertainmentCost! -= Double(prevAmount)!
-            curTrip.entertainmentCost! += Double(amount)
-        } else if type == "Souvenir" {
-            curTrip.souvenirCost! -= Double(prevAmount)!
-            curTrip.souvenirCost! += Double(amount)
-        } else if type == "Other" {
-            curTrip.otherCost! -= Double(prevAmount)!
-            curTrip.otherCost! += Double(amount)
+        let temp: String! = oldAmount.substring(from: oldAmount.characters.index(oldAmount.startIndex, offsetBy: 1))
+        let prevAmount: Double! = Double(temp)
+        if oldType == "Transportation" {
+            curTrip.transportationCost! -= prevAmount
+        } else if oldType == "Living" {
+            curTrip.livingCost! -= prevAmount
+        } else if oldType == "Eating" {
+            curTrip.eatingCost! -= prevAmount
+        } else if oldType == "Entertainment" {
+            curTrip.entertainmentCost! -= prevAmount
+        } else if oldType == "Souvenir" {
+            curTrip.souvenirCost! -= prevAmount
+        } else if oldType == "Other" {
+            curTrip.otherCost! -= prevAmount
         }
-        curTrip.totalCost! -= Double(prevAmount)!
-        curTrip.totalCost! += Double(amount)
+        
+        if type == "Transportation" {
+            curTrip.transportationCost! += amount
+        } else if type == "Living" {
+            curTrip.livingCost! += amount
+        } else if type == "Eating" {
+            curTrip.eatingCost! += amount
+        } else if type == "Entertainment" {
+            curTrip.entertainmentCost! += amount
+        } else if type == "Souvenir" {
+            curTrip.souvenirCost! += amount
+        } else if type == "Other" {
+            curTrip.otherCost! += amount
+        }
+        
+        curTrip.totalCost! -= prevAmount
+        curTrip.totalCost! += amount
     }
 }
 

@@ -28,8 +28,9 @@ class SingleExpense: NSObject, NSCoding  {
         let t = aDecoder.decodeObject(forKey: "type") as! String
         let a = aDecoder.decodeObject(forKey: "amount") as! String
         let c = aDecoder.decodeObject(forKey: "comment") as! String
+        let b = aDecoder.decodeObject(forKey: "title") as! String
         
-        self.init(date: d, type: t, amount: a, comment: c)
+        self.init(date: d, type: t, amount: a, comment: c, title: b)
     }
     
     func encode(with aCoder: NSCoder) {
@@ -37,5 +38,6 @@ class SingleExpense: NSObject, NSCoding  {
         aCoder.encode(type, forKey: "type")
         aCoder.encode(amount, forKey: "amount")
         aCoder.encode(expenseComment, forKey: "comment")
+        aCoder.encode(expenseTitle, forKey: "title")
     }
 }

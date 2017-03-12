@@ -14,6 +14,7 @@ class LogView: UIViewController, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var tableView: UITableView!
     
     var displayPastTrip: String!
+    var selectedRow: Int!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +27,7 @@ class LogView: UIViewController, UITableViewDataSource, UITableViewDelegate {
         
         let tabcont: TabVC = self.tabBarController as! TabVC
         displayPastTrip = tabcont.displayPastTrip
+        selectedRow = 0
         
         if displayPastTrip != "Yes" {
             if let decoded = UserDefaults.standard.object(forKey: "currentTrip") as? Data {
@@ -54,19 +56,19 @@ class LogView: UIViewController, UITableViewDataSource, UITableViewDelegate {
             
             //Sets cell background color
             if typeL == "Transportation" {
-                cell.backgroundColor = UIColor(red: 0.8, green: 0.8, blue: 0, alpha: 1)
+                cell.backgroundColor = .blue
             } else if typeL == "Living" {
-                cell.backgroundColor = UIColor(red: 1, green: 0.5, blue: 0, alpha: 1)
+                cell.backgroundColor = .yellow
             } else if typeL == "Eating" {
-                cell.backgroundColor = UIColor(red: 0.5, green: 0.2, blue: 0, alpha: 1)
+                cell.backgroundColor = .green
             } else if typeL == "Entertainment" {
-                cell.backgroundColor = UIColor(red: 0.4, green: 0.4, blue: 0.2, alpha: 1)
+                cell.backgroundColor = .orange
             } else if typeL == "Souvenir" {
-                cell.backgroundColor = UIColor(red: 0.3, green: 0.6, blue: 0, alpha: 1)
+                cell.backgroundColor = .cyan
             } else if typeL == "Other" {
-                cell.backgroundColor = UIColor(red: 0.3, green: 0.1, blue: 0.4, alpha: 1)
+                cell.backgroundColor = .white
             } else {
-                cell.backgroundColor = UIColor(red: 0.2, green: 0.8, blue: 0, alpha: 1)
+                cell.backgroundColor = .black
             }
             
             return cell
@@ -89,6 +91,16 @@ class LogView: UIViewController, UITableViewDataSource, UITableViewDelegate {
         }
     }
     
+    func tableView(_ tableView: UITableView, editActionsForRowAt: IndexPath) -> [UITableViewRowAction]? {
+        let editExpense = UITableViewRowAction(style: .normal, title: "Edit") { action, index in
+            self.selectedRow = editActionsForRowAt.row
+            self.performSegue(withIdentifier: "toEditExpense", sender: self)
+        }
+        editExpense.backgroundColor = .lightGray
+        
+        return [editExpense]
+    }
+    
     //Called when user taps on a cell. Performs segue to detailed comment.
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.performSegue(withIdentifier: "toExpenseComment", sender: self)
@@ -96,18 +108,35 @@ class LogView: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     //Called before the segue is executed. Sets the comment of the detailed expense.
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "toExpenseComment" {
-            let upcoming: DetailedExpense = segue.destination as! DetailedExpense
-            let indexPath = self.tableView.indexPathForSelectedRow!
+        if segue.identifier == "toEditExpense" {
+            let upcoming: EditExpense = segue.destination as! EditExpense
             
-            upcoming.comment = expenses[indexPath.row].expenseComment
-            upcoming.dateT = expenses[indexPath.row].date
-            upcoming.typeT = expenses[indexPath.row].type
-            upcoming.amountT = expenses[indexPath.row].amount
-            upcoming.expenseRow = indexPath.row
-            upcoming.isPastTrip = displayPastTrip
+            let oldDate: String! = expenses[selectedRow].date
+            var month: String!
+            var day: String!
             
-            self.tableView.deselectRow(at: indexPath, animated: true)
+            let index = oldDate.index(oldDate.startIndex, offsetBy:2)
+            
+            if oldDate[index] == "/" {
+                //Form xx/?/xx
+                month = oldDate.substring(to: oldDate.characters.index(oldDate.startIndex, offsetBy: 2))
+                day = oldDate.substring(with: (oldDate.characters.index(oldDate.startIndex, offsetBy: 3) ..< oldDate.characters.index(oldDate.endIndex, offsetBy: -3)))
+            } else {
+                //Form x/?/xx
+                month = oldDate.substring(to: oldDate.characters.index(oldDate.startIndex, offsetBy: 1))
+                day = oldDate.substring(with: (oldDate.characters.index(oldDate.startIndex, offsetBy: 2) ..< oldDate.characters.index(oldDate.endIndex, offsetBy: -5)))
+            }
+            let year: String! = oldDate.substring(from: oldDate.characters.index(oldDate.endIndex, offsetBy: -4))
+            
+            upcoming.oldMon = Int(month)
+            upcoming.oldDay = Int(day)
+            upcoming.oldYear = Int(year)
+            upcoming.oldType = expenses[selectedRow].type
+            upcoming.oldTypeInt = getNumberFromType(type: expenses[selectedRow].type)
+            upcoming.oldAmount = expenses[selectedRow].amount
+            upcoming.oldExpenseTitle = expenses[selectedRow].expenseTitle
+            upcoming.oldComment = expenses[selectedRow].expenseComment
+            upcoming.currentExpenseRow = selectedRow
         }
     }
     
@@ -121,7 +150,22 @@ class LogView: UIViewController, UITableViewDataSource, UITableViewDelegate {
         return expenses.count
     }
     
-    
+    func getNumberFromType(type: String) -> Int {
+        if type == "Transportation" {
+            return 0
+        } else if type == "Living" {
+            return 1
+        } else if type == "Eating" {
+            return 2
+        } else if type == "Entertainment" {
+            return 3
+        } else if type == "Souvenir" {
+            return 4
+        } else if type == "Other" {
+            return 5
+        }
+        return 0
+    }
 }
 
 
