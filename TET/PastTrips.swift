@@ -46,6 +46,20 @@ class PastTrips: UIViewController, UITableViewDataSource, UITableViewDelegate {
         }
     }
     
+    //Delete swipe
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            pastTrips.remove(at: indexPath.row)
+            
+            let userDefaults = UserDefaults.standard
+            let encodedPT: Data = NSKeyedArchiver.archivedData(withRootObject: pastTrips)
+            userDefaults.set(encodedPT, forKey: "pastTrips")
+            userDefaults.synchronize()
+            
+            self.tableView.reloadData()
+        }
+    }
+    
     //Called when user taps on a cell. Performs segue to detailed comment.
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.performSegue(withIdentifier: "toDetailedPastTrip", sender: self)

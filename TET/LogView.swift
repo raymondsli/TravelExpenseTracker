@@ -75,6 +75,20 @@ class LogView: UIViewController, UITableViewDataSource, UITableViewDelegate {
         }
     }
     
+    //Delete swipe
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            expenses.remove(at: indexPath.row)
+            curTrip.expensesLog = expenses
+            let userDefaults = UserDefaults.standard
+            let encodedPT: Data = NSKeyedArchiver.archivedData(withRootObject: curTrip)
+            userDefaults.set(encodedPT, forKey: "currentTrip")
+            userDefaults.synchronize()
+            
+            self.tableView.reloadData()
+        }
+    }
+    
     //Called when user taps on a cell. Performs segue to detailed comment.
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.performSegue(withIdentifier: "toExpenseComment", sender: self)
@@ -91,6 +105,7 @@ class LogView: UIViewController, UITableViewDataSource, UITableViewDelegate {
             upcoming.typeT = expenses[indexPath.row].type
             upcoming.amountT = expenses[indexPath.row].amount
             upcoming.expenseRow = indexPath.row
+            upcoming.isPastTrip = displayPastTrip
             
             self.tableView.deselectRow(at: indexPath, animated: true)
         }

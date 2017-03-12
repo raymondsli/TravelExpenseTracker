@@ -25,6 +25,9 @@ class EditExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, 
     var date: String!
     var year: String!
     var type: String!
+    var month_now: Int!
+    var day_now: Int!
+    var year_now: Int!
     
     var currentDate: String!
     var currentType: String!
@@ -55,6 +58,17 @@ class EditExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, 
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
+        let date = Date()
+        let calendar = Calendar.current
+        year_now = calendar.component(.year, from: date)
+        month_now = calendar.component(.month, from: date)
+        day_now = calendar.component(.day, from: date)
+        
+        datePicker.selectRow(month_now - 1, inComponent: 0, animated: true)
+        datePicker.selectRow(day_now - 1, inComponent: 1, animated: true)
+        datePicker.selectRow(year_now - 2017, inComponent: 2, animated: true)
+        
         amount.text = currentAmount.substring(with: (currentAmount.characters.index(currentAmount.startIndex, offsetBy: 1) ..< currentAmount.characters.index(currentAmount.endIndex, offsetBy: -3)))
         centsAmount.text = currentAmount.substring(from: currentAmount.characters.index(currentAmount.endIndex, offsetBy: -2))
         commentText.text = currentComment
@@ -140,16 +154,20 @@ class EditExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, 
             commentText.text = "No Comment"
         }
         if month == nil {
+            /*
             let index = currentDate.index(currentDate.startIndex, offsetBy:2)
             if currentDate[index] == "/" {
                 month = currentDate.substring(to: currentDate.characters.index(currentDate.startIndex, offsetBy: 2))
             } else {
                 month = currentDate.substring(to: currentDate.characters.index(currentDate.startIndex, offsetBy: 1))
             }
+            */
+            month = String(month_now)
         } else {
             month = changeMonthToNumber(mon: month)
         }
         if date == nil {
+            /*
             let index = currentDate.index(currentDate.startIndex, offsetBy:2)
             if currentDate[index] == "/" {
                 //Form xx/?/xx
@@ -158,9 +176,12 @@ class EditExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, 
                 //Form x/?/xx
                 date = currentDate.substring(with: (currentDate.characters.index(currentAmount.startIndex, offsetBy: 2) ..< currentAmount.characters.index(currentAmount.endIndex, offsetBy: -3)))
             }
+            */
+            date = String(day_now)
         }
         if year == nil {
-            year = currentDate.substring(to: currentDate.characters.index(currentDate.endIndex, offsetBy: -2))
+            //year = currentDate.substring(from: currentDate.characters.index(currentDate.endIndex, offsetBy: -2))
+            year = String(year_now)
         }
         let combinedDate: String = month + "/" + date + "/" + year
         
@@ -208,6 +229,7 @@ class EditExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, 
             upcoming.dateT = month + "/" + date + "/" + year
             upcoming.typeT = type
             upcoming.amountT = combinedAmount!
+            upcoming.isPastTrip = "No"
         }
     }
     

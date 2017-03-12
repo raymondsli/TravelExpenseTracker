@@ -13,12 +13,14 @@ class SingleExpense: NSObject, NSCoding  {
     var type: String
     var amount: String
     var expenseComment: String
+    var expenseTitle: String
     
-    init(date: String = "", type: String = "", amount: String = "", comment: String = "") {
+    init(date: String = "", type: String = "", amount: String = "", comment: String = "", title: String = "") {
         self.date = date
         self.type = type
         self.amount = amount
         self.expenseComment = comment
+        self.expenseTitle = title
     }
     
     required convenience init(coder aDecoder: NSCoder) {

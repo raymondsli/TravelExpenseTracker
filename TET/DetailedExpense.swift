@@ -23,6 +23,8 @@ class DetailedExpense: UIViewController, UITextViewDelegate {
     var typeT: String!
     var amountT: String!
     
+    var isPastTrip: String!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         expenseComment.delegate = self
@@ -33,8 +35,13 @@ class DetailedExpense: UIViewController, UITextViewDelegate {
         date.text = dateT
         type.text = typeT
         amount.text = amountT
+        
+        if isPastTrip == "Yes" {
+            editExpense.isHidden = true
+        }
     }
     
+    /*
     func textViewDidEndEditing(_ textView: UITextView) {
         comment = textView.text
         if let decoded = UserDefaults.standard.object(forKey: "currentTrip") as? Data {
@@ -53,9 +60,11 @@ class DetailedExpense: UIViewController, UITextViewDelegate {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         expenseComment.resignFirstResponder()
     }
+    */
     
     @IBAction func returnBack(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+        performSegue(withIdentifier: "backLogfromDetailed", sender: self)
+        //self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func toEditExpense(_ sender: Any) {
@@ -73,6 +82,14 @@ class DetailedExpense: UIViewController, UITextViewDelegate {
             upcoming.currentAmount = expenses[expenseRow].amount
             upcoming.currentComment = expenses[expenseRow].expenseComment
             upcoming.currentExpenseRow = expenseRow
+        } else if segue.identifier == "backLogfromDetailed" {
+            let decoded = UserDefaults.standard.object(forKey: "currentTrip") as! Data
+            let curTrip = NSKeyedUnarchiver.unarchiveObject(with: decoded) as! Trip
+            
+            let upcoming: TabVC = segue.destination as! TabVC
+            upcoming.selectedIndex = 1
+            upcoming.displayPastTrip = "No"
+            upcoming.curTrip = curTrip
         }
     }
 }

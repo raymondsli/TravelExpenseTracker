@@ -19,12 +19,16 @@ class NewExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, U
     
     @IBOutlet weak var amount: UITextField!
     @IBOutlet weak var centsAmount: UITextField!
+    @IBOutlet weak var expenseTitle: UITextView!
     @IBOutlet weak var commentText: UITextView!
 
     var month: String!
     var date: String!
     var year: String!
     var type: String!
+    var month_now: Int!
+    var day_now: Int!
+    var year_now: Int!
     
     var dateArray = [
         ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
@@ -43,7 +47,18 @@ class NewExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, U
         
         amount.delegate = self
         centsAmount.delegate = self
+        expenseTitle.delegate = self
         commentText.delegate = self
+        
+        let date = Date()
+        let calendar = Calendar.current
+        year_now = calendar.component(.year, from: date)
+        month_now = calendar.component(.month, from: date)
+        day_now = calendar.component(.day, from: date)
+        
+        datePicker.selectRow(month_now - 1, inComponent: 0, animated: true)
+        datePicker.selectRow(day_now - 1, inComponent: 1, animated: true)
+        datePicker.selectRow(year_now - 2017, inComponent: 2, animated: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -73,9 +88,25 @@ class NewExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, U
         return true
     }
     
+    func textView(_ textView: UITextView, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if textView.tag == 0 {
+            return true
+        }
+        if let x = textView.text {
+            let length = x.characters.count + string.characters.count
+            if length <= 25 {
+                return true
+            } else {
+                return false
+            }
+        }
+        return true
+    }
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         amount.resignFirstResponder()
         centsAmount.resignFirstResponder()
+        expenseTitle.resignFirstResponder()
         commentText.resignFirstResponder()
     }
     
@@ -129,15 +160,17 @@ class NewExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, U
             commentText.text = "No Comment"
         }
         if month == nil {
-            month = "Jan"
+            month = String(month_now)
+        } else {
+            month = changeMonthToNumber(mon: month)
         }
         if date == nil {
-            date = "1"
+            date = String(day_now)
         }
         if year == nil {
-            year = "2017"
+            year = String(year_now)
         }
-        month = changeMonthToNumber(mon: month)
+        
         let combinedDate: String = month + "/" + date + "/" + year
         let combinedAmount: String
         var dollarD: String? = amount.text
@@ -162,7 +195,7 @@ class NewExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, U
         }
         addToCurrentTrip(type: type, amount: doubleAmount)
         
-        let newExpense: SingleExpense = SingleExpense(date: combinedDate, type: type, amount: combinedAmount, comment: commentText.text!)
+        let newExpense: SingleExpense = SingleExpense(date: combinedDate, type: type, amount: combinedAmount, comment: commentText.text!, title: expenseTitle.text!)
         
         curTrip.expensesLog.append(newExpense)
         let userDefaults = UserDefaults.standard
@@ -172,8 +205,18 @@ class NewExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, U
         
         performSegue(withIdentifier: "finishedExpense", sender: self)
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let upcoming: TabVC = segue.destination as! TabVC
+        upcoming.selectedIndex = 1
+        upcoming.displayPastTrip = "No"
+        upcoming.curTrip = curTrip
+    }
 
     func changeMonthToNumber(mon: String) -> String {
+        if (Int(mon) != nil) {
+            return mon
+        }
         if mon == "Jan" {
             return "1"
         } else if mon == "Feb" {
