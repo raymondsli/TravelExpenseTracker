@@ -16,7 +16,6 @@ class LogView: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var displayPastTrip: String!
     var selectedRow: Int!
-    var orderBy: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,18 +39,224 @@ class LogView: UIViewController, UITableViewDataSource, UITableViewDelegate {
         }
         
         expenses = curTrip.expensesLog
-        tableView.reloadData()
         
-        orderBy = curTrip.orderBy
-        
-        drop.initMenu(["Date", "Category", "Amount"], actions: [({ () -> (Void) in
-            curTrip.orderBy = "Date"
+        drop.initMenu(["Date: Oldest First", "Date: Newest First", "Category", "Amount: Highest to Lowest", "Amount: Lowest to Highest"], actions: [({ () -> (Void) in
+            self.curTrip.orderBy = "Date: Oldest First"
+            self.sortExpensesBy(order: "Date: Oldest First")
+            self.tableView.reloadData()
         }), ({ () -> (Void) in
-            curTrip.orderBy = "Category"
+            self.curTrip.orderBy = "Date: Newest First"
+            self.sortExpensesBy(order: "Date: Newest First")
+            self.tableView.reloadData()
         }), ({ () -> (Void) in
-            print("Estou fazendo a ação C")
+            self.curTrip.orderBy = "Category"
+            self.sortExpensesBy(order: "Category")
+            self.tableView.reloadData()
+        }), ({ () -> (Void) in
+            self.curTrip.orderBy = "Amount: Highest to Lowest"
+            self.sortExpensesBy(order: "Amount: Highest to Lowest")
+            self.tableView.reloadData()
+        }), ({ () -> (Void) in
+            self.curTrip.orderBy = "Amount: Lowest to Highest"
+            self.sortExpensesBy(order: "Amount: Lowest to Highest")
+            self.tableView.reloadData()
         })])
         
+        if curTrip.orderBy == "Category" {
+            sortExpensesBy(order: "Category")
+        } else if curTrip.orderBy == "Amount: Highest to Lowest" {
+            sortExpensesBy(order: "Amount: Highest to Lowest")
+        } else if curTrip.orderBy == "Amount: Lowest to Highest" {
+            sortExpensesBy(order: "Amount: Lowest to Highest")
+        } else if curTrip.orderBy == "Date: Newest First" {
+            sortExpensesBy(order: "Date: Newest First")
+        } else {
+            sortExpensesBy(order: "Date: Oldest First")
+        }
+        
+        drop.text = curTrip.orderBy
+        
+        tableView.reloadData()
+    }
+    
+    func sortExpensesBy(order: String) {
+        var sortedExpenses = [SingleExpense]()
+        if expenses.count > 1 {
+            sortedExpenses.append(expenses[0])
+        } else {
+            return
+        }
+        if order == "Date: Newest First" {
+            for i in 1..<expenses.count {
+                for j in 0..<sortedExpenses.count {
+                    let check: Int! = whichDateOlder(date1: expenses[i].date, date2: sortedExpenses[j].date)
+                    //Insert if expenses date is newer than sortedDate
+                    if check == -1 {
+                        sortedExpenses.insert(expenses[i], at: j)
+                        break;
+                    } else if check == 0 {
+                        //Subsort by type
+                        let check1: Int! = checkTypeOrder(t1: sortedExpenses[j].type, t2: expenses[i].type)
+                        if check1 == 1 {
+                            sortedExpenses.insert(expenses[i], at: j)
+                            break;
+                        }
+                    } else {
+                        if j == sortedExpenses.count - 1 {
+                            sortedExpenses.append(expenses[i])
+                        }
+                    }
+                }
+            }
+        } else if order == "Date: Oldest First" {
+            for i in 1..<expenses.count {
+                for j in 0..<sortedExpenses.count {
+                    let check: Int! = whichDateOlder(date1: expenses[i].date, date2: sortedExpenses[j].date)
+                    //Insert if expenses date is older than sortedDate
+                    if check == 1 {
+                        sortedExpenses.insert(expenses[i], at: j)
+                        break;
+                    } else if check == 0 {
+                        //Subsort by type
+                        let check1: Int! = checkTypeOrder(t1: sortedExpenses[j].type, t2: expenses[i].type)
+                        if check1 == 1 {
+                            sortedExpenses.insert(expenses[i], at: j)
+                            break;
+                        }
+                    } else {
+                        if j == sortedExpenses.count - 1 {
+                            sortedExpenses.append(expenses[i])
+                        }
+                    }
+                }
+            }
+        } else if order == "Category" {
+            for i in 1..<expenses.count {
+                for j in 0..<sortedExpenses.count {
+                    let check: Int! = checkTypeOrder(t1: expenses[i].type, t2: sortedExpenses[j].type)
+                    if check == 1 {
+                        sortedExpenses.insert(expenses[i], at: j)
+                        break;
+                    } else if check == 0 {
+                        //Subsort by date
+                        let dateCheck: Int! = whichDateOlder(date1: expenses[i].date, date2: sortedExpenses[j].date)
+                        if dateCheck == 1 {
+                            sortedExpenses.insert(expenses[i], at: j)
+                            break;
+                        }
+                    } else {
+                        if j == sortedExpenses.count - 1 {
+                            sortedExpenses.append(expenses[i])
+                        }
+                    }
+                }
+            }
+        } else if order == "Amount: Highest to Lowest" {
+            for i in 1..<expenses.count {
+                for j in 0..<sortedExpenses.count {
+                    let ae: String! = truncateAmount(amount: expenses[i].amount)
+                    let ase: String! = truncateAmount(amount: sortedExpenses[j].amount)
+                    if Double(ae)! > Double(ase)! {
+                        sortedExpenses.insert(expenses[i], at: j)
+                        break;
+                    } else if Double(ae)! == Double(ase)! {
+                        //Subsort by type
+                        let check: Int! = checkTypeOrder(t1: sortedExpenses[j].type, t2: expenses[i].type)
+                        if check == 1 {
+                            sortedExpenses.insert(expenses[i], at: j)
+                            break;
+                        }
+                    } else {
+                        if j == sortedExpenses.count - 1 {
+                            sortedExpenses.append(expenses[i])
+                        }
+                    }
+                }
+            }
+        } else if order == "Amount: Lowest to Highest" {
+            for i in 1..<expenses.count {
+                for j in 0..<sortedExpenses.count {
+                    let ae: String! = truncateAmount(amount: expenses[i].amount)
+                    let ase: String! = truncateAmount(amount: sortedExpenses[j].amount)
+                    if Double(ae)! < Double(ase)! {
+                        sortedExpenses.insert(expenses[i], at: j)
+                        break;
+                    } else if Double(ae)! == Double(ase)! {
+                        //Subsort by type
+                        let check: Int! = checkTypeOrder(t1: sortedExpenses[j].type, t2: expenses[i].type)
+                        if check == 1 {
+                            sortedExpenses.insert(expenses[i], at: j)
+                            break;
+                        }
+                    } else {
+                        if j == sortedExpenses.count - 1 {
+                            sortedExpenses.append(expenses[i])
+                        }
+                    }
+                }
+            }
+        }
+        expenses = sortedExpenses
+        curTrip.expensesLog = expenses
+        let userDefaults = UserDefaults.standard
+        let encoded: Data = NSKeyedArchiver.archivedData(withRootObject: curTrip)
+        userDefaults.set(encoded, forKey: "currentTrip")
+        userDefaults.synchronize()
+    }
+    
+    //returns 1 if date1 is older than date2, -1 is newer, 0 is same
+    func whichDateOlder(date1: String, date2: String) -> Int {
+        let oMon: Int! = Int(getMonth(oldDate: date1))
+        let oDay: Int! = Int(getDay(oldDate: date1))
+        let oYear: Int! = Int(getYear(oldDate: date1))
+        let nMon: Int! = Int(getMonth(oldDate: date2))
+        let nDay: Int! = Int(getDay(oldDate: date2))
+        let nYear: Int! = Int(getYear(oldDate: date2))
+        
+        if nYear > oYear {
+            return 1
+        } else if nYear == oYear {
+            if nMon > oMon {
+                return 1
+            } else if nMon == oMon {
+                if nDay > oDay {
+                    return 1
+                } else if nDay == oDay {
+                    return 0
+                }
+            }
+        }
+        return -1
+    }
+    
+    /* Return 1 is t1 comes before t2, 0 if same type, and -1 is t1 comes after t2
+    *  Ordering is Transportation, Living, Eating, Entertainment, Souvenir, Other
+    */
+    func checkTypeOrder(t1: String, t2: String) -> Int {
+        let t1_int: Int! = typeToInt(type: t1)
+        let t2_int: Int! = typeToInt(type: t2)
+        if t1_int < t2_int {
+            return 1
+        } else if t1_int > t2_int {
+            return -1
+        }
+        return 0
+    }
+    
+    func typeToInt(type: String) -> Int {
+        if type == "Transportation" {
+            return 0
+        } else if type == "Living" {
+            return 1
+        } else if type == "Eating" {
+            return 2
+        } else if type == "Entertainment" {
+            return 3
+        } else if type == "Souvenir" {
+            return 4
+        } else {
+            return 5
+        }
     }
     
     
@@ -124,25 +329,10 @@ class LogView: UIViewController, UITableViewDataSource, UITableViewDelegate {
             let upcoming: EditExpense = segue.destination as! EditExpense
             
             let oldDate: String! = expenses[selectedRow].date
-            var month: String!
-            var day: String!
             
-            let index = oldDate.index(oldDate.startIndex, offsetBy:2)
-            
-            if oldDate[index] == "/" {
-                //Form xx/?/xx
-                month = oldDate.substring(to: oldDate.characters.index(oldDate.startIndex, offsetBy: 2))
-                day = oldDate.substring(with: (oldDate.characters.index(oldDate.startIndex, offsetBy: 3) ..< oldDate.characters.index(oldDate.endIndex, offsetBy: -3)))
-            } else {
-                //Form x/?/xx
-                month = oldDate.substring(to: oldDate.characters.index(oldDate.startIndex, offsetBy: 1))
-                day = oldDate.substring(with: (oldDate.characters.index(oldDate.startIndex, offsetBy: 2) ..< oldDate.characters.index(oldDate.endIndex, offsetBy: -5)))
-            }
-            let year: String! = oldDate.substring(from: oldDate.characters.index(oldDate.endIndex, offsetBy: -4))
-            
-            upcoming.oldMon = Int(month)
-            upcoming.oldDay = Int(day)
-            upcoming.oldYear = Int(year)
+            upcoming.oldMon = Int(getMonth(oldDate: oldDate))
+            upcoming.oldDay = Int(getDay(oldDate: oldDate))
+            upcoming.oldYear = Int(getYear(oldDate: oldDate))
             upcoming.oldType = expenses[selectedRow].type
             upcoming.oldTypeInt = getNumberFromType(type: expenses[selectedRow].type)
             upcoming.oldAmount = expenses[selectedRow].amount
@@ -159,6 +349,39 @@ class LogView: UIViewController, UITableViewDataSource, UITableViewDelegate {
             upcoming.typeT = expenses[indexPath.row].type
             upcoming.amountT = expenses[indexPath.row].amount
         }
+    }
+    
+    func getMonth(oldDate: String) -> String {
+        let index = oldDate.index(oldDate.startIndex, offsetBy:2)
+        
+        if oldDate[index] == "/" {
+            //Form xx/?/xx
+            return oldDate.substring(to: oldDate.characters.index(oldDate.startIndex, offsetBy: 2))
+        } else {
+            //Form x/?/xx
+            return oldDate.substring(to: oldDate.characters.index(oldDate.startIndex, offsetBy: 1))
+        }
+    }
+    
+    func getDay(oldDate: String) -> String {
+        let index = oldDate.index(oldDate.startIndex, offsetBy:2)
+        
+        if oldDate[index] == "/" {
+            //Form xx/?/xx
+            return oldDate.substring(with: (oldDate.characters.index(oldDate.startIndex, offsetBy: 3) ..< oldDate.characters.index(oldDate.endIndex, offsetBy: -3)))
+        } else {
+            //Form x/?/xx
+            return oldDate.substring(with: (oldDate.characters.index(oldDate.startIndex, offsetBy: 2) ..< oldDate.characters.index(oldDate.endIndex, offsetBy: -5)))
+        }
+    }
+    
+    func getYear(oldDate: String) -> String {
+        return oldDate.substring(from: oldDate.characters.index(oldDate.endIndex, offsetBy: -4))
+    }
+    
+    //Gets rid of dollar sign at the beginning
+    func truncateAmount(amount: String) -> String {
+        return amount.substring(from: amount.characters.index(amount.startIndex, offsetBy: 1))
     }
     
     //We are using a one column table.

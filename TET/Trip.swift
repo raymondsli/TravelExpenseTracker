@@ -48,7 +48,7 @@ class Trip: NSObject, NSCoding {
         totalCost = 0.0
         totalCost = 0.0
         expensesLog = [SingleExpense]()
-        orderBy = "Date"
+        orderBy = "Date: Oldest First"
     }
     
     required convenience init(coder aDecoder: NSCoder) {

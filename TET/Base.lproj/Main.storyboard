@@ -75,14 +75,14 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Log" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xsV-Hk-X8J">
-                                        <rect key="frame" x="158" y="22" width="59" height="47"/>
+                                        <rect key="frame" x="158" y="8" width="59" height="47"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                         <color key="textColor" red="0.065796339826945771" green="0.62524541884816753" blue="0.38536626060985874" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o3r-IW-lDp" customClass="DropMenuButton" customModule="TET" customModuleProvider="target">
-                                        <rect key="frame" x="283" y="31" width="84" height="30"/>
+                                        <rect key="frame" x="169" y="54" width="198" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.18405086276637528" green="0.87634508666272903" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <state key="normal" title="Order By">
