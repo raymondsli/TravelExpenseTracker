@@ -85,7 +85,7 @@
                                         <rect key="frame" x="169" y="54" width="198" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.18405086276637528" green="0.87634508666272903" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <state key="normal" title="Order By">
+                                        <state key="normal">
                                             <color key="titleColor" red="0.1230822593136823" green="0.53032967931937169" blue="0.065389618608533345" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                     </button>

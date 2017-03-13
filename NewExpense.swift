@@ -188,6 +188,7 @@ class NewExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, U
         if year == nil {
             year = String(year_now)
         }
+        print("c1")
         
         let combinedDate: String = month + "/" + date + "/" + year
         var combinedAmount: String
@@ -200,18 +201,11 @@ class NewExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, U
             centsD = "00"
         }
         if (Int(dollarD!) == nil || Int(centsD!) == nil) {
-            combinedAmount = "Nil"
-        } else {
-            combinedAmount = "$" + dollarD! + "." + centsD!
+            self.dismiss(animated: true, completion: nil)
         }
-        let doubleAmount: Double
-        if combinedAmount == "Nil" {
-            doubleAmount = 0.0
-            combinedAmount = "$0.00"
-        } else {
-            let stringWithoutDollarSign: String! = dollarD + "." + centsD
-            doubleAmount = Double(stringWithoutDollarSign)!
-        }
+        
+        combinedAmount = "$" + dollarD! + "." + centsD!
+        let doubleAmount: Double = Double(dollarD + "." + centsD)!
         addToCurrentTrip(type: type, amount: doubleAmount)
         
         let newExpense: SingleExpense = SingleExpense(date: combinedDate, type: type, amount: combinedAmount, comment: commentText.text!, title: expenseTitle.text!)

@@ -39,6 +39,7 @@ class LogView: UIViewController, UITableViewDataSource, UITableViewDelegate {
         }
         
         expenses = curTrip.expensesLog
+        print("Len1 " + String(expenses.count))
         
         drop.initMenu(["Date: Oldest First", "Date: Newest First", "Category", "Amount: Highest to Lowest", "Amount: Lowest to Highest"], actions: [({ () -> (Void) in
             self.curTrip.orderBy = "Date: Oldest First"
@@ -74,8 +75,9 @@ class LogView: UIViewController, UITableViewDataSource, UITableViewDelegate {
             sortExpensesBy(order: "Date: Oldest First")
         }
         
-        drop.text = curTrip.orderBy
+        drop.setTitle(curTrip.orderBy, for: .normal)
         
+        print("Length " + String(expenses.count))
         tableView.reloadData()
     }
     
@@ -96,15 +98,14 @@ class LogView: UIViewController, UITableViewDataSource, UITableViewDelegate {
                         break;
                     } else if check == 0 {
                         //Subsort by type
-                        let check1: Int! = checkTypeOrder(t1: sortedExpenses[j].type, t2: expenses[i].type)
+                        let check1: Int! = checkTypeOrder(t1: expenses[i].type, t2: sortedExpenses[j].type)
                         if check1 == 1 {
                             sortedExpenses.insert(expenses[i], at: j)
                             break;
                         }
-                    } else {
-                        if j == sortedExpenses.count - 1 {
-                            sortedExpenses.append(expenses[i])
-                        }
+                    }
+                    if j == sortedExpenses.count - 1 {
+                        sortedExpenses.append(expenses[i])
                     }
                 }
             }
@@ -118,15 +119,14 @@ class LogView: UIViewController, UITableViewDataSource, UITableViewDelegate {
                         break;
                     } else if check == 0 {
                         //Subsort by type
-                        let check1: Int! = checkTypeOrder(t1: sortedExpenses[j].type, t2: expenses[i].type)
+                        let check1: Int! = checkTypeOrder(t1: expenses[i].type, t2: sortedExpenses[j].type)
                         if check1 == 1 {
                             sortedExpenses.insert(expenses[i], at: j)
                             break;
                         }
-                    } else {
-                        if j == sortedExpenses.count - 1 {
-                            sortedExpenses.append(expenses[i])
-                        }
+                    }
+                    if j == sortedExpenses.count - 1 {
+                        sortedExpenses.append(expenses[i])
                     }
                 }
             }
@@ -144,10 +144,9 @@ class LogView: UIViewController, UITableViewDataSource, UITableViewDelegate {
                             sortedExpenses.insert(expenses[i], at: j)
                             break;
                         }
-                    } else {
-                        if j == sortedExpenses.count - 1 {
+                    }
+                    if j == sortedExpenses.count - 1 {
                             sortedExpenses.append(expenses[i])
-                        }
                     }
                 }
             }
@@ -161,15 +160,14 @@ class LogView: UIViewController, UITableViewDataSource, UITableViewDelegate {
                         break;
                     } else if Double(ae)! == Double(ase)! {
                         //Subsort by type
-                        let check: Int! = checkTypeOrder(t1: sortedExpenses[j].type, t2: expenses[i].type)
+                        let check: Int! = checkTypeOrder(t1: expenses[i].type, t2: sortedExpenses[j].type)
                         if check == 1 {
                             sortedExpenses.insert(expenses[i], at: j)
                             break;
                         }
-                    } else {
-                        if j == sortedExpenses.count - 1 {
-                            sortedExpenses.append(expenses[i])
-                        }
+                    }
+                    if j == sortedExpenses.count - 1 {
+                        sortedExpenses.append(expenses[i])
                     }
                 }
             }
@@ -183,15 +181,14 @@ class LogView: UIViewController, UITableViewDataSource, UITableViewDelegate {
                         break;
                     } else if Double(ae)! == Double(ase)! {
                         //Subsort by type
-                        let check: Int! = checkTypeOrder(t1: sortedExpenses[j].type, t2: expenses[i].type)
+                        let check: Int! = checkTypeOrder(t1: expenses[i].type, t2: sortedExpenses[j].type)
                         if check == 1 {
                             sortedExpenses.insert(expenses[i], at: j)
                             break;
                         }
-                    } else {
-                        if j == sortedExpenses.count - 1 {
-                            sortedExpenses.append(expenses[i])
-                        }
+                    }
+                    if j == sortedExpenses.count - 1 {
+                        sortedExpenses.append(expenses[i])
                     }
                 }
             }
