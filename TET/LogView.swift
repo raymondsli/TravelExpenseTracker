@@ -12,9 +12,11 @@ class LogView: UIViewController, UITableViewDataSource, UITableViewDelegate {
     var curTrip: Trip!
     var expenses = [SingleExpense]()
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var drop: DropMenuButton!
     
     var displayPastTrip: String!
     var selectedRow: Int!
+    var orderBy: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +41,17 @@ class LogView: UIViewController, UITableViewDataSource, UITableViewDelegate {
         
         expenses = curTrip.expensesLog
         tableView.reloadData()
+        
+        orderBy = curTrip.orderBy
+        
+        drop.initMenu(["Date", "Category", "Amount"], actions: [({ () -> (Void) in
+            curTrip.orderBy = "Date"
+        }), ({ () -> (Void) in
+            curTrip.orderBy = "Category"
+        }), ({ () -> (Void) in
+            print("Estou fazendo a ação C")
+        })])
+        
     }
     
     

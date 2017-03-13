@@ -18,10 +18,11 @@ class Trip: NSObject, NSCoding {
     var souvenirCost: Double!
     var otherCost: Double!
     var totalCost: Double!
+    var orderBy: String!
     
     var expensesLog = [SingleExpense]()
     
-    init(trip:String, transportation:Double, living:Double, eating:Double, entertainment:Double, souvenir:Double, other:Double, total:Double, expenses: [SingleExpense]) {
+    init(trip:String, transportation:Double, living:Double, eating:Double, entertainment:Double, souvenir:Double, other:Double, total:Double, expenses: [SingleExpense], order: String) {
         super.init()
         tripName = trip
         transportationCost = transportation
@@ -32,6 +33,7 @@ class Trip: NSObject, NSCoding {
         otherCost = other
         totalCost = total
         expensesLog = expenses
+        orderBy = order
     }
     
     override init() {
@@ -46,6 +48,7 @@ class Trip: NSObject, NSCoding {
         totalCost = 0.0
         totalCost = 0.0
         expensesLog = [SingleExpense]()
+        orderBy = "Date"
     }
     
     required convenience init(coder aDecoder: NSCoder) {
@@ -58,8 +61,9 @@ class Trip: NSObject, NSCoding {
         let otherCost = aDecoder.decodeObject(forKey: "otherCost") as! Double
         let totalCost = aDecoder.decodeObject(forKey: "totalCost") as! Double
         let expenses = aDecoder.decodeObject(forKey: "expenses") as! [SingleExpense]
+        let orderBy = aDecoder.decodeObject(forKey: "orderBy") as! String
         
-        self.init(trip: tripName, transportation: transportationCost, living: livingCost, eating:eatingCost, entertainment: entertainmentCost, souvenir: souvenirCost, other: otherCost, total: totalCost, expenses: expenses)
+        self.init(trip: tripName, transportation: transportationCost, living: livingCost, eating:eatingCost, entertainment: entertainmentCost, souvenir: souvenirCost, other: otherCost, total: totalCost, expenses: expenses, order: orderBy)
     }
     
     func encode(with aCoder: NSCoder) {
@@ -72,6 +76,7 @@ class Trip: NSObject, NSCoding {
         aCoder.encode(otherCost, forKey: "otherCost")
         aCoder.encode(totalCost, forKey: "totalCost")
         aCoder.encode(expensesLog, forKey: "expenses")
+        aCoder.encode(orderBy, forKey: "orderBy")
     }
     
     func returnTotalCost() -> Double {
