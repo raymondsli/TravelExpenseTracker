@@ -39,7 +39,6 @@ class LogView: UIViewController, UITableViewDataSource, UITableViewDelegate {
         }
         
         expenses = curTrip.expensesLog
-        print("Len1 " + String(expenses.count))
         
         drop.initMenu(["Date: Oldest First", "Date: Newest First", "Category", "Amount: Highest to Lowest", "Amount: Lowest to Highest"], actions: [({ () -> (Void) in
             self.curTrip.orderBy = "Date: Oldest First"
@@ -77,7 +76,6 @@ class LogView: UIViewController, UITableViewDataSource, UITableViewDelegate {
         
         drop.setTitle(curTrip.orderBy, for: .normal)
         
-        print("Length " + String(expenses.count))
         tableView.reloadData()
     }
     
@@ -265,7 +263,7 @@ class LogView: UIViewController, UITableViewDataSource, UITableViewDelegate {
             let typeL = expenses[indexPath.row].type
             let amountL = expenses[indexPath.row].amount
                 
-            cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
+            //cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
                 
             cell.configureCell(dateL, title: titleL, amount: amountL)
             

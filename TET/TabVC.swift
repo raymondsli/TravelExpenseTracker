@@ -11,5 +11,4 @@ import UIKit
 class TabVC: UITabBarController {
     var curTrip: Trip!
     var displayPastTrip: String! = "No"
-    var whichPastTrip: Int! = -1
 }

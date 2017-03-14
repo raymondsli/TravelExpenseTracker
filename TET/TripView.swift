@@ -47,7 +47,7 @@ class TripView: UIViewController, UITextFieldDelegate {
     override func viewWillAppear(_ animated: Bool) {
         let tabcont: TabVC = self.tabBarController as! TabVC
         displayPastTrip = tabcont.displayPastTrip
-        whichPastTrip = tabcont.whichPastTrip
+        whichPastTrip = UserDefaults.standard.integer(forKey: "whichPastTrip")
         
         if displayPastTrip != "Yes" {
             endOrMC.setTitle("End Trip", for: .normal)
@@ -56,7 +56,7 @@ class TripView: UIViewController, UITextFieldDelegate {
             }
         } else {
             endOrMC.setTitle("Make Current Trip", for: .normal)
-            newExpense.isHidden = true
+            //newExpense.isHidden = true
             curTrip = tabcont.curTrip
         }
         tranA = 0.00
@@ -158,16 +158,15 @@ class TripView: UIViewController, UITextFieldDelegate {
             let decoded = UserDefaults.standard.object(forKey: "currentTrip") as! Data
             let prevCurrent: Trip! = NSKeyedUnarchiver.unarchiveObject(with: decoded) as! Trip
             
-            if prevCurrent.tripName != "UntitledTrip" || prevCurrent.totalCost != 0.0 {
-                let encodedPT: Data = NSKeyedArchiver.archivedData(withRootObject: pastTrips)
+            if prevCurrent.tripName != "Untitled Trip" || prevCurrent.expensesLog.count != 0 {
                 pastTrips.append(prevCurrent)
-                userDefaults.set(encodedPT, forKey: "pastTrips")
-                userDefaults.synchronize()
             }
+            let encodedPT: Data = NSKeyedArchiver.archivedData(withRootObject: pastTrips)
+            userDefaults.set(encodedPT, forKey: "pastTrips")
             
             let encoded: Data = NSKeyedArchiver.archivedData(withRootObject: curTrip)
             userDefaults.set(encoded, forKey: "currentTrip")
-        
+            userDefaults.synchronize()
             
             performSegue(withIdentifier: "makeCurrent", sender: self)
         }
@@ -181,6 +180,10 @@ class TripView: UIViewController, UITextFieldDelegate {
             upcoming.curTrip = curTrip
         } else if segue.identifier == "endedTrip" {
             //let upcoming: PastTrips = segue.destination as! PastTrips
+        } else if segue.identifier == "toNewExpense" {
+            let upcoming: NewExpense = segue.destination as! NewExpense
+            upcoming.displayPastTrip = displayPastTrip
+            //upcoming.curTrip = curTrip
         }
     }
 

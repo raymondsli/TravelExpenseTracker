@@ -30,6 +30,10 @@ class NewExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, U
     var day_now: Int!
     var year_now: Int!
     
+    var displayPastTrip: String!
+    var whichPastTrip: Int!
+    var pastTrips: [Trip] = [Trip]()
+    
     var dateArray = [
         ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
         ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"],
@@ -62,8 +66,17 @@ class NewExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, U
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        if let decoded = UserDefaults.standard.object(forKey: "currentTrip") as? Data {
-            curTrip = NSKeyedUnarchiver.unarchiveObject(with: decoded) as! Trip
+        if displayPastTrip == "Yes" {
+            if let decoded = UserDefaults.standard.object(forKey: "pastTrips") as? Data {
+                pastTrips = NSKeyedUnarchiver.unarchiveObject(with: decoded) as! [Trip]
+            }
+            whichPastTrip = UserDefaults.standard.integer(forKey: "whichPastTrip")
+            curTrip = pastTrips[whichPastTrip]
+        }
+        else {
+            if let decoded = UserDefaults.standard.object(forKey: "currentTrip") as? Data {
+                curTrip = NSKeyedUnarchiver.unarchiveObject(with: decoded) as! Trip
+            }
         }
     }
     
@@ -171,10 +184,7 @@ class NewExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, U
         if type == nil {
             type = "Transportation"
         }
-        if expenseTitle.text == nil {
-            expenseTitle.text = type
-        }
-        if commentText.text == nil {
+        if commentText.text == "" {
             commentText.text = "No Comment"
         }
         if month == nil {
@@ -188,7 +198,6 @@ class NewExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, U
         if year == nil {
             year = String(year_now)
         }
-        print("c1")
         
         let combinedDate: String = month + "/" + date + "/" + year
         var combinedAmount: String
@@ -211,9 +220,17 @@ class NewExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, U
         let newExpense: SingleExpense = SingleExpense(date: combinedDate, type: type, amount: combinedAmount, comment: commentText.text!, title: expenseTitle.text!)
         
         curTrip.expensesLog.append(newExpense)
+        
         let userDefaults = UserDefaults.standard
-        let encoded: Data = NSKeyedArchiver.archivedData(withRootObject: curTrip)
-        userDefaults.set(encoded, forKey: "currentTrip")
+        if displayPastTrip == "Yes" {
+            pastTrips.remove(at: whichPastTrip)
+            pastTrips.insert(curTrip, at: whichPastTrip)
+            let encodedPT: Data = NSKeyedArchiver.archivedData(withRootObject: pastTrips)
+            userDefaults.set(encodedPT, forKey: "pastTrips")
+        } else {
+            let encoded: Data = NSKeyedArchiver.archivedData(withRootObject: curTrip)
+            userDefaults.set(encoded, forKey: "currentTrip")
+        }
         userDefaults.synchronize()
         
         performSegue(withIdentifier: "finishedExpense", sender: self)
@@ -222,7 +239,7 @@ class NewExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, U
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let upcoming: TabVC = segue.destination as! TabVC
         upcoming.selectedIndex = 1
-        upcoming.displayPastTrip = "No"
+        upcoming.displayPastTrip = displayPastTrip
         upcoming.curTrip = curTrip
     }
 

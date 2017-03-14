@@ -30,12 +30,9 @@ class PastTrips: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "PastTripCell") as? PastTripCell {
-            cell.accessoryView?.backgroundColor = UIColor.black
             //Load cell labels with appropriate text.
             let tripN: String! = pastTrips[indexPath.row].tripName
             let totalC: String! = String(pastTrips[indexPath.row].totalCost)
-
-            cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
             
             cell.configureCell(tripN, total: totalC)
             
@@ -73,7 +70,7 @@ class PastTrips: UIViewController, UITableViewDataSource, UITableViewDelegate {
             
             upcoming.curTrip = pastTrips[indexPath.row]
             upcoming.displayPastTrip = "Yes"
-            upcoming.whichPastTrip = indexPath.row
+            UserDefaults.standard.set(indexPath.row, forKey: "whichPastTrip")
             self.tableView.deselectRow(at: indexPath, animated: true)
         }
     }
