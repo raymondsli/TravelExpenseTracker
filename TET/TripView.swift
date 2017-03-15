@@ -75,13 +75,13 @@ class TripView: UIViewController, UITextFieldDelegate {
         loopThroughExpenses(expenses: curTrip.expensesLog)
         
         nameTextField.text = curTrip.tripName
-        tranC.text = "$" + String(tranA)
-        livingC.text = "$" + String(livingA)
-        eatingC.text = "$" + String(eatingA)
-        entC.text = "$" + String(entA)
-        souvC.text = "$" + String(souvA)
-        otherC.text = "$" + String(otherA)
-        totalCost.text = "$" + String(totalA)
+        tranC.text = "$" + String(format: "%.2f", tranA)
+        livingC.text = "$" + String(format: "%.2f", livingA)
+        eatingC.text = "$" + String(format: "%.2f", eatingA)
+        entC.text = "$" + String(format: "%.2f", entA)
+        souvC.text = "$" + String(format: "%.2f", souvA)
+        otherC.text = "$" + String(format: "%.2f", otherA)
+        totalCost.text = "$" + String(format: "%.2f", totalA)
     }
     
     func loopThroughExpenses(expenses: [SingleExpense]) {

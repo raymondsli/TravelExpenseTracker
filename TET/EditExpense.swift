@@ -210,6 +210,8 @@ class EditExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, 
         }
         if centsD == "" {
             centsD = "00"
+        } else if centsD.characters.count == 1 {
+            centsD = centsD + "0"
         }
         if (Int(dollarD!) == nil || Int(centsD!) == nil) {
             combinedAmount = "Nil"

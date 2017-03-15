@@ -282,7 +282,7 @@ class LogView: UIViewController, UITableViewDataSource, UITableViewDelegate {
             
             //Sets cell background color
             if typeL == "Transportation" {
-                cell.backgroundColor = .blue
+                cell.backgroundColor = UIColor(colorLiteralRed: 0, green: 0, blue: 1, alpha: 0.7)
             } else if typeL == "Living" {
                 cell.backgroundColor = .yellow
             } else if typeL == "Eating" {
@@ -292,7 +292,7 @@ class LogView: UIViewController, UITableViewDataSource, UITableViewDelegate {
             } else if typeL == "Souvenir" {
                 cell.backgroundColor = .cyan
             } else if typeL == "Other" {
-                cell.backgroundColor = .purple
+                cell.backgroundColor = UIColor(colorLiteralRed: 0.5, green: 0, blue: 0.5, alpha: 0.6)
             } else {
                 cell.backgroundColor = .black
             }

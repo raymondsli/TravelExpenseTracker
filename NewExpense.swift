@@ -208,6 +208,8 @@ class NewExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, U
         }
         if centsD == "" {
             centsD = "00"
+        } else if centsD.characters.count == 1 {
+            centsD = centsD + "0"
         }
         if (Int(dollarD!) == nil || Int(centsD!) == nil) {
             self.dismiss(animated: true, completion: nil)
