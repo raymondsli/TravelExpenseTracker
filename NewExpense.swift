@@ -223,11 +223,13 @@ class NewExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, U
         
         let userDefaults = UserDefaults.standard
         if displayPastTrip == "Yes" {
+            print("check")
             pastTrips.remove(at: whichPastTrip)
             pastTrips.insert(curTrip, at: whichPastTrip)
             let encodedPT: Data = NSKeyedArchiver.archivedData(withRootObject: pastTrips)
             userDefaults.set(encodedPT, forKey: "pastTrips")
         } else {
+            print("sum")
             let encoded: Data = NSKeyedArchiver.archivedData(withRootObject: curTrip)
             userDefaults.set(encoded, forKey: "currentTrip")
         }

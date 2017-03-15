@@ -15,6 +15,8 @@ class LogView: UIViewController, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var drop: DropMenuButton!
     
     var displayPastTrip: String!
+    var pastTrips: [Trip] = [Trip]()
+    var whichPastTrip: Int!
     var selectedRow: Int!
     
     override func viewDidLoad() {
@@ -30,12 +32,17 @@ class LogView: UIViewController, UITableViewDataSource, UITableViewDelegate {
         displayPastTrip = tabcont.displayPastTrip
         selectedRow = 0
         
-        if displayPastTrip != "Yes" {
-            if let decoded = UserDefaults.standard.object(forKey: "currentTrip") as? Data {
-                curTrip = NSKeyedUnarchiver.unarchiveObject(with: decoded) as? Trip
+        if displayPastTrip == "Yes" {
+            if let decoded = UserDefaults.standard.object(forKey: "pastTrips") as? Data {
+                pastTrips = NSKeyedUnarchiver.unarchiveObject(with: decoded) as! [Trip]
             }
-        } else {
-            curTrip = tabcont.curTrip
+            whichPastTrip = UserDefaults.standard.integer(forKey: "whichPastTrip")
+            curTrip = pastTrips[whichPastTrip]
+        }
+        else {
+            if let decoded = UserDefaults.standard.object(forKey: "currentTrip") as? Data {
+                curTrip = NSKeyedUnarchiver.unarchiveObject(with: decoded) as! Trip
+            }
         }
         
         expenses = curTrip.expensesLog
@@ -194,8 +201,15 @@ class LogView: UIViewController, UITableViewDataSource, UITableViewDelegate {
         expenses = sortedExpenses
         curTrip.expensesLog = expenses
         let userDefaults = UserDefaults.standard
-        let encoded: Data = NSKeyedArchiver.archivedData(withRootObject: curTrip)
-        userDefaults.set(encoded, forKey: "currentTrip")
+        if displayPastTrip == "Yes" {
+            pastTrips.remove(at: whichPastTrip)
+            pastTrips.insert(curTrip, at: whichPastTrip)
+            let encodedPT: Data = NSKeyedArchiver.archivedData(withRootObject: pastTrips)
+            userDefaults.set(encodedPT, forKey: "pastTrips")
+        } else {
+            let encoded: Data = NSKeyedArchiver.archivedData(withRootObject: curTrip)
+            userDefaults.set(encoded, forKey: "currentTrip")
+        }
         userDefaults.synchronize()
     }
     
@@ -253,7 +267,6 @@ class LogView: UIViewController, UITableViewDataSource, UITableViewDelegate {
             return 5
         }
     }
-    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "LogCell") as? LogCell {
@@ -334,6 +347,7 @@ class LogView: UIViewController, UITableViewDataSource, UITableViewDelegate {
             upcoming.oldExpenseTitle = expenses[selectedRow].expenseTitle
             upcoming.oldComment = expenses[selectedRow].expenseComment
             upcoming.currentExpenseRow = selectedRow
+            upcoming.displayPastTrip = displayPastTrip
         } else if segue.identifier == "toDetailedExpense" {
             let upcoming: DetailedExpense = segue.destination as! DetailedExpense
             let indexPath = self.tableView.indexPathForSelectedRow!

@@ -40,6 +40,10 @@ class EditExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, 
     
     var combinedAmount: String!
     
+    var displayPastTrip: String!
+    var whichPastTrip: Int!
+    var pastTrips: [Trip] = [Trip]()
+    
     var dateArray = [
         ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
         ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"],
@@ -71,9 +75,16 @@ class EditExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, 
         centsAmount.text = oldAmount.substring(from: oldAmount.characters.index(oldAmount.endIndex, offsetBy: -2))
         expenseTitle.text = oldExpenseTitle
         commentText.text = oldComment
-        
-        let decoded = UserDefaults.standard.object(forKey: "currentTrip") as! Data
-        curTrip = NSKeyedUnarchiver.unarchiveObject(with: decoded) as! Trip
+        if displayPastTrip == "Yes" {
+            if let decoded = UserDefaults.standard.object(forKey: "pastTrips") as? Data {
+                pastTrips = NSKeyedUnarchiver.unarchiveObject(with: decoded) as! [Trip]
+            }
+            whichPastTrip = UserDefaults.standard.integer(forKey: "whichPastTrip")
+            curTrip = pastTrips[whichPastTrip]
+        } else {
+            let decoded = UserDefaults.standard.object(forKey: "currentTrip") as! Data
+            curTrip = NSKeyedUnarchiver.unarchiveObject(with: decoded) as! Trip
+        }
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -222,9 +233,17 @@ class EditExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, 
         curTrip.expensesLog[currentExpenseRow].expenseComment = commentText.text
         
         let userDefaults = UserDefaults.standard
-        let encoded: Data = NSKeyedArchiver.archivedData(withRootObject: curTrip)
-        userDefaults.set(encoded, forKey: "currentTrip")
+        if displayPastTrip == "Yes" {
+            pastTrips.remove(at: whichPastTrip)
+            pastTrips.insert(curTrip, at: whichPastTrip)
+            let encodedPT: Data = NSKeyedArchiver.archivedData(withRootObject: pastTrips)
+            userDefaults.set(encodedPT, forKey: "pastTrips")
+        } else {
+            let encoded: Data = NSKeyedArchiver.archivedData(withRootObject: curTrip)
+            userDefaults.set(encoded, forKey: "currentTrip")
+        }
         userDefaults.synchronize()
+
         
         performSegue(withIdentifier: "finishedEditExpense", sender: self)
     }

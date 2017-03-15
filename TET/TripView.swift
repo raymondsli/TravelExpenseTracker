@@ -36,6 +36,8 @@ class TripView: UIViewController, UITextFieldDelegate {
     
     var displayPastTrip: String!
     var whichPastTrip: Int!
+    var tabcont: TabVC!
+    var pastTrips: [Trip] = [Trip]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,20 +47,24 @@ class TripView: UIViewController, UITextFieldDelegate {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        let tabcont: TabVC = self.tabBarController as! TabVC
+        tabcont = self.tabBarController as! TabVC
         displayPastTrip = tabcont.displayPastTrip
-        whichPastTrip = UserDefaults.standard.integer(forKey: "whichPastTrip")
         
-        if displayPastTrip != "Yes" {
+        if displayPastTrip == "Yes" {
+            endOrMC.setTitle("Make Current Trip", for: .normal)
+            if let decoded = UserDefaults.standard.object(forKey: "pastTrips") as? Data {
+                pastTrips = NSKeyedUnarchiver.unarchiveObject(with: decoded) as! [Trip]
+            }
+            whichPastTrip = UserDefaults.standard.integer(forKey: "whichPastTrip")
+            curTrip = pastTrips[whichPastTrip]
+        }
+        else {
             endOrMC.setTitle("End Trip", for: .normal)
             if let decoded = UserDefaults.standard.object(forKey: "currentTrip") as? Data {
-                curTrip = NSKeyedUnarchiver.unarchiveObject(with: decoded) as? Trip
+                curTrip = NSKeyedUnarchiver.unarchiveObject(with: decoded) as! Trip
             }
-        } else {
-            endOrMC.setTitle("Make Current Trip", for: .normal)
-            //newExpense.isHidden = true
-            curTrip = tabcont.curTrip
         }
+        
         tranA = 0.00
         livingA = 0.00
         eatingA = 0.00
@@ -111,8 +117,15 @@ class TripView: UIViewController, UITextFieldDelegate {
         nameTextField.text = textField.text
         curTrip.tripName = textField.text
         let userDefaults = UserDefaults.standard
-        let encodedData: Data = NSKeyedArchiver.archivedData(withRootObject: curTrip)
-        userDefaults.set(encodedData, forKey: "currentTrip")
+        if displayPastTrip == "Yes" {
+            pastTrips.remove(at: whichPastTrip)
+            pastTrips.insert(curTrip, at: whichPastTrip)
+            let encodedPT: Data = NSKeyedArchiver.archivedData(withRootObject: pastTrips)
+            userDefaults.set(encodedPT, forKey: "pastTrips")
+        } else {
+            let encoded: Data = NSKeyedArchiver.archivedData(withRootObject: curTrip)
+            userDefaults.set(encoded, forKey: "currentTrip")
+        }
         userDefaults.synchronize()
     }
     
