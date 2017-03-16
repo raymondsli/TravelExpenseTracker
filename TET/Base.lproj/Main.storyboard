@@ -476,7 +476,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9AF-fv-CQl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="476" y="27.436281859070466"/>
+            <point key="canvasLocation" x="481" y="28"/>
         </scene>
         <!--Past Trips-->
         <scene sceneID="u2T-jl-aim">
@@ -717,7 +717,7 @@ Total Cost:</string>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5dv-OO-hep" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1305" y="796"/>
+            <point key="canvasLocation" x="-1263" y="796"/>
         </scene>
     </scenes>
     <resources>
@@ -726,7 +726,7 @@ Total Cost:</string>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="nNV-k3-wNI"/>
-        <segue reference="tAf-u8-qwn"/>
         <segue reference="qm1-RQ-GZp"/>
+        <segue reference="tAf-u8-qwn"/>
     </inferredMetricsTieBreakers>
 </document>
