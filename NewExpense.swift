@@ -90,6 +90,10 @@ class NewExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, U
         if textField.tag == 0 {
             return true
         }
+        //Only allow numbers and backspace
+        if Int(string) == nil && string != "" {
+            return false
+        }
         //Limit Dollars textfield to $10000
         if textField.tag == 1 {
             if let x = textField.text {
@@ -118,6 +122,10 @@ class NewExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, U
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         if textView.tag == 0 {
             return true
+        }
+        //Prevent multiple lines title
+        if text == "\n" {
+            textView.resignFirstResponder()
         }
         //Limit title to 22 characters
         if let x = textView.text {

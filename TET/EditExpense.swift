@@ -97,6 +97,10 @@ class EditExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, 
         if textField.tag == 0 {
             return true
         }
+        //Only allow numbers and backspace
+        if Int(string) == nil && string != "" {
+            return false
+        }
         if textField.tag == 1 {
             if let x = textField.text {
                 let length = x.characters.count + string.characters.count
@@ -121,6 +125,10 @@ class EditExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, 
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         if textView.tag == 0 {
             return true
+        }
+        //Prevent multiple lines title
+        if text == "\n" {
+            textView.resignFirstResponder()
         }
         //Limit title to 22 characters
         if let x = textView.text {
