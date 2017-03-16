@@ -5,7 +5,6 @@
 //  Created by Raymond Li on 10/30/16.
 //  Copyright © 2016 Raymond Li. All rights reserved.
 //
-
 import UIKit
 
 class NewExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UITextViewDelegate {
@@ -21,7 +20,7 @@ class NewExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, U
     @IBOutlet weak var centsAmount: UITextField!
     @IBOutlet weak var expenseTitle: UITextView!
     @IBOutlet weak var commentText: UITextView!
-
+    
     var month: String!
     var date: String!
     var year: String!
@@ -40,7 +39,7 @@ class NewExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, U
         ["2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025"]
     ]
     var typeArray = ["Transportation", "Living", "Eating", "Entertainment", "Souvenir", "Other"]
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -187,7 +186,7 @@ class NewExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, U
     @IBAction func canceled(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
-
+    
     @IBAction func done(_ sender: Any) {
         if type == nil {
             type = "Transportation"
@@ -254,7 +253,7 @@ class NewExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, U
         upcoming.displayPastTrip = displayPastTrip
         upcoming.curTrip = curTrip
     }
-
+    
     func changeMonthToNumber(mon: String) -> String {
         if (Int(mon) != nil) {
             return mon
