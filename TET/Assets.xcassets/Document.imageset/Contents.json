@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "Basketball Filled-29.png",
+      "filename" : "Document Filled-29.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "Basketball Filled-50.png",
+      "filename" : "Document Filled-50.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "Basketball Filled-100.png",
+      "filename" : "Document Filled-100.png",
       "scale" : "3x"
     }
   ],
