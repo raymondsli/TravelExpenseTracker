@@ -16,13 +16,7 @@ class TripView: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var endOrMC: UIButton!
     
     @IBOutlet weak var typeLabels: UILabel!
-    @IBOutlet weak var tranC: UILabel!
-    @IBOutlet weak var livingC: UILabel!
-    @IBOutlet weak var eatingC: UILabel!
-    @IBOutlet weak var entC: UILabel!
-    @IBOutlet weak var souvC: UILabel!
-    @IBOutlet weak var otherC: UILabel!
-    @IBOutlet weak var totalCost: UILabel!
+    @IBOutlet weak var categoryAmounts: UILabel!
     
     @IBOutlet weak var nameTextField: UITextField!
     
@@ -33,6 +27,14 @@ class TripView: UIViewController, UITextFieldDelegate {
     var souvA: Double!
     var otherA: Double!
     var totalA: Double!
+    
+    var tranC: String!
+    var livingC: String!
+    var eatingC: String!
+    var entC: String!
+    var souvC: String!
+    var otherC: String!
+    var totalC: String!
     
     var displayPastTrip: String!
     var whichPastTrip: Int!
@@ -75,13 +77,14 @@ class TripView: UIViewController, UITextFieldDelegate {
         loopThroughExpenses(expenses: curTrip.expensesLog)
         
         nameTextField.text = curTrip.tripName
-        tranC.text = "$" + String(format: "%.2f", tranA)
-        livingC.text = "$" + String(format: "%.2f", livingA)
-        eatingC.text = "$" + String(format: "%.2f", eatingA)
-        entC.text = "$" + String(format: "%.2f", entA)
-        souvC.text = "$" + String(format: "%.2f", souvA)
-        otherC.text = "$" + String(format: "%.2f", otherA)
-        totalCost.text = "$" + String(format: "%.2f", totalA)
+        tranC = "$" + String(format: "%.2f", tranA)
+        livingC = "$" + String(format: "%.2f", livingA)
+        eatingC = "$" + String(format: "%.2f", eatingA)
+        entC = "$" + String(format: "%.2f", entA)
+        souvC = "$" + String(format: "%.2f", souvA)
+        otherC = "$" + String(format: "%.2f", otherA)
+        totalC = "$" + String(format: "%.2f", totalA)
+        categoryAmounts.text = tranC + "\n\n" + livingC + "\n\n" + eatingC + "\n\n" + entC + "\n\n" + souvC + "\n\n" + otherC + "\n\n\n" + totalC
     }
     
     func loopThroughExpenses(expenses: [SingleExpense]) {

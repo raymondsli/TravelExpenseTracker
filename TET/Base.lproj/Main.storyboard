@@ -637,15 +637,52 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Unnamed Trip" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="WHU-BR-W67">
-                                <rect key="frame" x="124" y="20" width="127" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Unnamed Trip" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="WHU-BR-W67">
+                                <rect key="frame" x="124" y="28" width="127" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="127" id="867-y3-I0v"/>
+                                    <constraint firstAttribute="height" constant="30" id="WCJ-Xn-XMU"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6f6-iI-aKy">
-                                <rect key="frame" x="16" y="148" width="185" height="312"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GDv-wI-wiu">
+                                <rect key="frame" x="16" y="67" width="46" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="jU7-Np-drq"/>
+                                    <constraint firstAttribute="width" constant="46" id="jX8-6U-FYa"/>
+                                </constraints>
+                                <state key="normal" title="Back"/>
+                                <connections>
+                                    <action selector="back:" destination="EVE-Sm-5bW" eventType="touchUpInside" id="ZRe-l0-f4t"/>
+                                    <segue destination="BYZ-38-t0r" kind="show" identifier="toHomefromTrip" id="tAf-u8-qwn"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b19-9D-i3R">
+                                <rect key="frame" x="237" y="67" width="138" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="ZEG-3Q-nIJ"/>
+                                    <constraint firstAttribute="width" constant="138" id="bSt-XL-TTW"/>
+                                </constraints>
+                                <state key="normal" title="End Trip"/>
+                                <connections>
+                                    <action selector="endOrMC:" destination="EVE-Sm-5bW" eventType="touchUpInside" id="K5b-CS-2lR"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YRJ-Su-pF5">
+                                <rect key="frame" x="246" y="105" width="113" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="113" id="2RL-wR-wov"/>
+                                    <constraint firstAttribute="height" constant="30" id="2ce-nd-hQo"/>
+                                </constraints>
+                                <state key="normal" title="+ New Expense"/>
+                                <connections>
+                                    <action selector="newExpense:" destination="EVE-Sm-5bW" eventType="touchUpInside" id="HiJ-xv-WfW"/>
+                                    <segue destination="fod-dB-JEy" kind="show" identifier="toNewExpense" id="K2f-ad-f9A"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6f6-iI-aKy">
+                                <rect key="frame" x="49" y="168" width="185" height="312"/>
                                 <string key="text">Transportation Cost:
 
 Living Cost:
@@ -664,98 +701,53 @@ Total Cost:</string>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GDv-wI-wiu">
-                                <rect key="frame" x="16" y="58" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Back"/>
-                                <connections>
-                                    <action selector="back:" destination="EVE-Sm-5bW" eventType="touchUpInside" id="ZRe-l0-f4t"/>
-                                    <segue destination="BYZ-38-t0r" kind="show" identifier="toHomefromTrip" id="tAf-u8-qwn"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b19-9D-i3R">
-                                <rect key="frame" x="237" y="58" width="138" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="."/>
-                                <connections>
-                                    <action selector="endOrMC:" destination="EVE-Sm-5bW" eventType="touchUpInside" id="K5b-CS-2lR"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="tCost" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jPU-mP-eNQ">
-                                <rect key="frame" x="221" y="161" width="138" height="29"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6ci-Zn-g8B">
+                                <rect key="frame" x="237" y="168" width="130" height="312"/>
+                                <string key="text">TranA
+
+LivingA
+
+EatA
+
+EntA
+
+SouvA
+
+OtherA
+
+
+TotalA</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="livCost" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jQ7-jx-hta">
-                                <rect key="frame" x="221" y="198" width="138" height="25"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="eatCost" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Bf-cy-MOk">
-                                <rect key="frame" x="221" y="241" width="138" height="25"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="entCost" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1C2-Ci-O3L">
-                                <rect key="frame" x="221" y="282" width="138" height="25"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="souCost" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hVF-1Q-mBN">
-                                <rect key="frame" x="221" y="321" width="138" height="25"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="totCost" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6oa-Ye-u64">
-                                <rect key="frame" x="221" y="423" width="138" height="25"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="othCost" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YX9-KV-SOa">
-                                <rect key="frame" x="221" y="364" width="138" height="25"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YRJ-Su-pF5">
-                                <rect key="frame" x="246" y="96" width="113" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="+ New Expense"/>
-                                <connections>
-                                    <action selector="newExpense:" destination="EVE-Sm-5bW" eventType="touchUpInside" id="HiJ-xv-WfW"/>
-                                    <segue destination="fod-dB-JEy" kind="show" identifier="toNewExpense" id="K2f-ad-f9A"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.66512957049999999" green="1" blue="0.75616515559999997" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="b19-9D-i3R" firstAttribute="top" secondItem="GDv-wI-wiu" secondAttribute="top" id="02U-mj-6be"/>
+                            <constraint firstItem="6ci-Zn-g8B" firstAttribute="top" secondItem="6f6-iI-aKy" secondAttribute="top" id="5cN-Zr-FYk"/>
+                            <constraint firstItem="YRJ-Su-pF5" firstAttribute="top" secondItem="b19-9D-i3R" secondAttribute="bottom" constant="8" id="69H-Sh-8gX"/>
+                            <constraint firstAttribute="trailing" secondItem="b19-9D-i3R" secondAttribute="trailing" id="F94-O2-0VW"/>
+                            <constraint firstItem="6ci-Zn-g8B" firstAttribute="bottom" secondItem="6f6-iI-aKy" secondAttribute="bottom" id="KY0-ri-nBz"/>
+                            <constraint firstItem="WHU-BR-W67" firstAttribute="top" secondItem="OOJ-Sp-P2q" secondAttribute="bottom" constant="8" id="NnF-En-nIe"/>
+                            <constraint firstItem="YRJ-Su-pF5" firstAttribute="trailing" secondItem="oX2-B4-fdc" secondAttribute="trailingMargin" id="NoG-Oq-pHV"/>
+                            <constraint firstItem="6ci-Zn-g8B" firstAttribute="top" secondItem="YRJ-Su-pF5" secondAttribute="bottom" constant="33" id="VK7-aw-BIJ"/>
+                            <constraint firstItem="GDv-wI-wiu" firstAttribute="leading" secondItem="oX2-B4-fdc" secondAttribute="leadingMargin" id="agC-sd-qvd"/>
+                            <constraint firstItem="b19-9D-i3R" firstAttribute="top" secondItem="WHU-BR-W67" secondAttribute="bottom" constant="9" id="auu-SB-hy7"/>
+                            <constraint firstItem="b19-9D-i3R" firstAttribute="bottom" secondItem="GDv-wI-wiu" secondAttribute="bottom" id="jL0-aC-EyC"/>
+                            <constraint firstItem="6ci-Zn-g8B" firstAttribute="leading" secondItem="6f6-iI-aKy" secondAttribute="trailing" constant="15" id="nZQ-WD-tv5"/>
+                            <constraint firstItem="WHU-BR-W67" firstAttribute="centerX" secondItem="oX2-B4-fdc" secondAttribute="centerX" id="nsA-cU-Sxh"/>
+                            <constraint firstItem="6f6-iI-aKy" firstAttribute="centerX" secondItem="oX2-B4-fdc" secondAttribute="centerX" constant="-46" id="omt-pi-ybk"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Trip" image="Document" id="phX-po-aXj"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="back" destination="GDv-wI-wiu" id="1Kz-8f-pbS"/>
-                        <outlet property="eatingC" destination="7Bf-cy-MOk" id="fwp-Fq-x9H"/>
+                        <outlet property="categoryAmounts" destination="6ci-Zn-g8B" id="F5n-AM-yqf"/>
                         <outlet property="endOrMC" destination="b19-9D-i3R" id="79Q-5S-EQw"/>
-                        <outlet property="entC" destination="1C2-Ci-O3L" id="Hcw-tw-ccW"/>
-                        <outlet property="livingC" destination="jQ7-jx-hta" id="mEs-0r-j1e"/>
                         <outlet property="nameTextField" destination="WHU-BR-W67" id="FrN-5g-RQA"/>
                         <outlet property="newExpense" destination="YRJ-Su-pF5" id="5Fa-yb-gcH"/>
-                        <outlet property="otherC" destination="YX9-KV-SOa" id="FSX-MX-GQv"/>
-                        <outlet property="souvC" destination="hVF-1Q-mBN" id="kwK-nQ-hSK"/>
-                        <outlet property="totalCost" destination="6oa-Ye-u64" id="Rdn-kG-QvN"/>
-                        <outlet property="tranC" destination="jPU-mP-eNQ" id="YWk-Vh-cd8"/>
                         <outlet property="typeLabels" destination="6f6-iI-aKy" id="XoD-Ji-c5x"/>
                         <segue destination="xy4-4R-iGl" kind="show" identifier="toPastfromTrip" id="qm1-RQ-GZp"/>
                         <segue destination="xy4-4R-iGl" kind="show" identifier="endedTrip" id="XH4-xr-RW5"/>
@@ -791,8 +783,8 @@ Total Cost:</string>
         <image name="Log" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="zcv-ZO-ijD"/>
-        <segue reference="8iL-MJ-9DW"/>
-        <segue reference="cCg-bO-utJ"/>
+        <segue reference="qm1-RQ-GZp"/>
+        <segue reference="QK6-XK-KBu"/>
+        <segue reference="tAf-u8-qwn"/>
     </inferredMetricsTieBreakers>
 </document>
