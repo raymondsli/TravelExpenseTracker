@@ -34,9 +34,9 @@ class DetailedExpense: UIViewController, UITextViewDelegate {
     override func viewWillAppear(_ animated: Bool) {
         expenseTitle.text = titleT
         expenseComment.text = comment
-        date.text = "Date: " + dateT
-        type.text = "Type: " + typeT
-        amount.text = "Amount: " + amountT
+        date.text = dateT
+        type.text = typeT
+        amount.text = amountT
     }
     
     @IBAction func returnBack(_ sender: Any) {
