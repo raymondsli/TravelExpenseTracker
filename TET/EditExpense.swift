@@ -187,9 +187,10 @@ class EditExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, 
         }
     }
     
-    @IBAction func cancelEdit(_ sender: Any) {
+    @IBAction func canceled(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
+    
 
     @IBAction func done(_ sender: Any) {
         if type == nil {
@@ -265,7 +266,7 @@ class EditExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, 
             
             let upcoming: TabVC = segue.destination as! TabVC
             upcoming.selectedIndex = 1
-            upcoming.displayPastTrip = "No"
+            upcoming.displayPastTrip = displayPastTrip
             upcoming.curTrip = curTrip
         }
     }

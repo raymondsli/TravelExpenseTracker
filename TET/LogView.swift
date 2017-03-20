@@ -314,9 +314,17 @@ class LogView: UIViewController, UITableViewDataSource, UITableViewDelegate {
         let deleteExpense = UITableViewRowAction(style: .normal, title: "Delete") { action, index in
             self.expenses.remove(at: editActionsForRowAt.row)
             self.curTrip.expensesLog = self.expenses
+            
             let userDefaults = UserDefaults.standard
-            let encodedPT: Data = NSKeyedArchiver.archivedData(withRootObject: self.curTrip)
-            userDefaults.set(encodedPT, forKey: "currentTrip")
+            if self.displayPastTrip == "Yes" {
+                self.pastTrips.remove(at: self.whichPastTrip)
+                self.pastTrips.insert(self.curTrip, at: self.whichPastTrip)
+                let encodedPT: Data = NSKeyedArchiver.archivedData(withRootObject: self.pastTrips)
+                userDefaults.set(encodedPT, forKey: "pastTrips")
+            } else {
+                let encoded: Data = NSKeyedArchiver.archivedData(withRootObject: self.curTrip)
+                userDefaults.set(encoded, forKey: "currentTrip")
+            }
             userDefaults.synchronize()
             
             self.tableView.reloadData()
