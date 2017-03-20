@@ -33,7 +33,6 @@ class DropMenuButton: UIButton, UITableViewDelegate, UITableViewDataSource
             
         else
         {
-            
             UIView.animate(withDuration: 0.3
                 , animations: {
                     self.table.alpha = 0;

@@ -199,7 +199,9 @@ class TripView: UIViewController, UITextFieldDelegate {
         } else if segue.identifier == "toNewExpense" {
             let upcoming: NewExpense = segue.destination as! NewExpense
             upcoming.displayPastTrip = displayPastTrip
-            //upcoming.curTrip = curTrip
+        } else if segue.identifier == "toHomefromTrip" {
+            let upcoming: HomeView = segue.destination as! HomeView
+            upcoming.isInitialLaunch = "No"
         }
     }
 

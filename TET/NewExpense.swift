@@ -36,7 +36,7 @@ class NewExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, U
     var dateArray = [
         ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
         ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"],
-        ["2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025"]
+        ["2014", "2015", "2016", "2017", "2018", "2019", "2020"]
     ]
     var typeArray = ["Transportation", "Living", "Eating", "Entertainment", "Souvenir", "Other"]
     
@@ -61,7 +61,7 @@ class NewExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, U
         
         datePicker.selectRow(month_now - 1, inComponent: 0, animated: true)
         datePicker.selectRow(day_now - 1, inComponent: 1, animated: true)
-        datePicker.selectRow(year_now - 2017, inComponent: 2, animated: true)
+        datePicker.selectRow(year_now - 2014, inComponent: 2, animated: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -190,9 +190,6 @@ class NewExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, U
     @IBAction func done(_ sender: Any) {
         if type == nil {
             type = "Transportation"
-        }
-        if commentText.text == "" {
-            commentText.text = "No Comment"
         }
         if month == nil {
             month = String(month_now)

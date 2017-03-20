@@ -13,6 +13,7 @@ class PastTrips: UIViewController, UITableViewDataSource, UITableViewDelegate {
     var pastTrips = [Trip]()
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var back: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,7 +37,7 @@ class PastTrips: UIViewController, UITableViewDataSource, UITableViewDelegate {
             
             cell.configureCell(tripN, total: totalC)
             
-            cell.backgroundColor = UIColor(red: 1, green: 0.8, blue: 0, alpha: 1)
+            cell.backgroundColor = UIColor(red: 0, green: 0, blue: 0.7, alpha: 0.5)
             return cell
         } else {
             return PastTripCell()
@@ -62,6 +63,10 @@ class PastTrips: UIViewController, UITableViewDataSource, UITableViewDelegate {
         self.performSegue(withIdentifier: "toDetailedPastTrip", sender: self)
     }
     
+    @IBAction func backA(_ sender: Any) {
+        self.performSegue(withIdentifier: "toHomefromPast", sender: self)
+    }
+    
     //Called before the segue is executed. Sets the comment of the detailed expense.
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toDetailedPastTrip" {
@@ -72,6 +77,9 @@ class PastTrips: UIViewController, UITableViewDataSource, UITableViewDelegate {
             upcoming.displayPastTrip = "Yes"
             UserDefaults.standard.set(indexPath.row, forKey: "whichPastTrip")
             self.tableView.deselectRow(at: indexPath, animated: true)
+        } else if segue.identifier == "toHomefromPast" {
+            let upcoming: HomeView = segue.destination as! HomeView
+            upcoming.isInitialLaunch = "No"
         }
     }
     

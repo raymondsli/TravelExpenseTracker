@@ -268,6 +268,10 @@ class LogView: UIViewController, UITableViewDataSource, UITableViewDelegate {
         }
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        drop.showItems()
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "LogCell") as? LogCell {
             //Load cell labels with appropriate text.
@@ -312,8 +316,12 @@ class LogView: UIViewController, UITableViewDataSource, UITableViewDelegate {
         editExpense.backgroundColor = .lightGray
         
         let deleteExpense = UITableViewRowAction(style: .normal, title: "Delete") { action, index in
+            let prevExp: SingleExpense = self.expenses[editActionsForRowAt.row]
             self.expenses.remove(at: editActionsForRowAt.row)
             self.curTrip.expensesLog = self.expenses
+            let pA: String = prevExp.amount
+            let prevAmount: String! = pA.substring(from: pA.characters.index(pA.startIndex, offsetBy: 1))
+            self.subtractFromCurrentTrip(type: prevExp.type, amount: Double(prevAmount)!)
             
             let userDefaults = UserDefaults.standard
             if self.displayPastTrip == "Yes" {
@@ -332,6 +340,23 @@ class LogView: UIViewController, UITableViewDataSource, UITableViewDelegate {
         deleteExpense.backgroundColor = .red
         
         return [deleteExpense, editExpense]
+    }
+    
+    func subtractFromCurrentTrip(type: String, amount: Double) {
+        if type == "Transportation" {
+            curTrip.transportationCost! -= Double(amount)
+        } else if type == "Living" {
+            curTrip.livingCost! -= Double(amount)
+        } else if type == "Eating" {
+            curTrip.eatingCost! -= Double(amount)
+        } else if type == "Entertainment" {
+            curTrip.entertainmentCost! -= Double(amount)
+        } else if type == "Souvenir" {
+            curTrip.souvenirCost! -= Double(amount)
+        } else if type == "Other" {
+            curTrip.otherCost! -= Double(amount)
+        }
+        curTrip.totalCost! -= Double(amount)
     }
     
     //Called when user taps on a cell. Performs segue to detailed comment.
@@ -365,6 +390,8 @@ class LogView: UIViewController, UITableViewDataSource, UITableViewDelegate {
             upcoming.dateT = expenses[indexPath.row].date
             upcoming.typeT = expenses[indexPath.row].type
             upcoming.amountT = expenses[indexPath.row].amount
+            upcoming.displayPastTrip = displayPastTrip
+            upcoming.currentExpenseRow = indexPath.row
         }
     }
     

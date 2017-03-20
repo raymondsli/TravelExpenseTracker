@@ -22,8 +22,12 @@ class DetailedExpense: UIViewController, UITextViewDelegate {
     var dateT: String!
     var typeT: String!
     var amountT: String!
+    var currentExpenseRow: Int!
     
-    var isPastTrip: String!
+    var displayPastTrip: String!
+    var curTrip: Trip!
+    var pastTrips: [Trip] = [Trip]()
+    var whichPastTrip: Int!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,9 +41,67 @@ class DetailedExpense: UIViewController, UITextViewDelegate {
         date.text = dateT
         type.text = typeT
         amount.text = amountT
+        
+        if displayPastTrip == "Yes" {
+            if let decoded = UserDefaults.standard.object(forKey: "pastTrips") as? Data {
+                pastTrips = NSKeyedUnarchiver.unarchiveObject(with: decoded) as! [Trip]
+            }
+            whichPastTrip = UserDefaults.standard.integer(forKey: "whichPastTrip")
+            curTrip = pastTrips[whichPastTrip]
+        } else {
+            let decoded = UserDefaults.standard.object(forKey: "currentTrip") as! Data
+            curTrip = NSKeyedUnarchiver.unarchiveObject(with: decoded) as! Trip
+        }
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if textView.tag == 0 {
+            return true
+        }
+        //Prevent multiple lines title
+        if text == "\n" {
+            textView.resignFirstResponder()
+        }
+        //Limit title to 22 characters
+        if let x = textView.text {
+            let length = x.characters.count + text.characters.count
+            if length <= 22 {
+                return true
+            } else {
+                return false
+            }
+        }
+        return true
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        expenseTitle.resignFirstResponder()
+        expenseComment.resignFirstResponder()
     }
     
     @IBAction func returnBack(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+        curTrip.expensesLog[currentExpenseRow].expenseTitle = expenseTitle.text
+        curTrip.expensesLog[currentExpenseRow].expenseComment = expenseComment.text
+        
+        let userDefaults = UserDefaults.standard
+        if displayPastTrip == "Yes" {
+            pastTrips.remove(at: whichPastTrip)
+            pastTrips.insert(curTrip, at: whichPastTrip)
+            let encodedPT: Data = NSKeyedArchiver.archivedData(withRootObject: pastTrips)
+            userDefaults.set(encodedPT, forKey: "pastTrips")
+        } else {
+            let encoded: Data = NSKeyedArchiver.archivedData(withRootObject: curTrip)
+            userDefaults.set(encoded, forKey: "currentTrip")
+        }
+        userDefaults.synchronize()
+        
+        performSegue(withIdentifier: "finishedDetailed", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let upcoming: TabVC = segue.destination as! TabVC
+        upcoming.selectedIndex = 1
+        upcoming.displayPastTrip = displayPastTrip
+        upcoming.curTrip = curTrip
     }
 }

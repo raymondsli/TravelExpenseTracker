@@ -11,6 +11,7 @@ import UIKit
 class HomeView: UIViewController {
 
     var curTrip: Trip!
+    var isInitialLaunch: String! = "Yes"
     
     @IBOutlet weak var appTitle: UILabel!
     @IBOutlet weak var currentTrip: UIButton!
@@ -25,7 +26,20 @@ class HomeView: UIViewController {
         let userDefaults = UserDefaults.standard
         if let decoded = userDefaults.object(forKey: "currentTrip") as? Data {
             curTrip = NSKeyedUnarchiver.unarchiveObject(with: decoded) as! Trip
+            //If empty trip
+            if curTrip.tripName == "Untitled Trip" && curTrip.expensesLog.count == 0 {
+                currentTrip.setTitle("New Trip", for: .normal)
+            } else {
+                currentTrip.setTitle("Current Trip", for: .normal)
+                if isInitialLaunch == "Yes" {
+                    self.view.isHidden = true
+                    DispatchQueue.main.async {
+                        self.performSegue(withIdentifier: "toCurTrip", sender: self)
+                    }
+                }
+            }
         } else {
+            currentTrip.setTitle("New Trip", for: .normal)
             curTrip = Trip()
             let encodedData: Data = NSKeyedArchiver.archivedData(withRootObject: curTrip)
             userDefaults.set(encodedData, forKey: "currentTrip")

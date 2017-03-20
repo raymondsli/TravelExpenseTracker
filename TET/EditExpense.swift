@@ -9,8 +9,6 @@
 import UIKit
 
 class EditExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UITextViewDelegate {
-    var curTrip: Trip!
-    
     @IBOutlet weak var cancelB: UIButton!
     @IBOutlet weak var doneB: UIButton!
     @IBOutlet weak var datePicker: UIPickerView!
@@ -43,11 +41,12 @@ class EditExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, 
     var displayPastTrip: String!
     var whichPastTrip: Int!
     var pastTrips: [Trip] = [Trip]()
+    var curTrip: Trip!
     
     var dateArray = [
         ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
         ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"],
-        ["2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025"]
+        ["2014", "2015", "2016", "2017", "2018", "2019", "2020"]
     ]
     var typeArray = ["Transportation", "Living", "Eating", "Entertainment", "Souvenir", "Other"]
     
@@ -68,7 +67,7 @@ class EditExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, 
     override func viewWillAppear(_ animated: Bool) {
         datePicker.selectRow(oldMon - 1, inComponent: 0, animated: true)
         datePicker.selectRow(oldDay - 1, inComponent: 1, animated: true)
-        datePicker.selectRow(oldYear - 2017, inComponent: 2, animated: true)
+        datePicker.selectRow(oldYear - 2014, inComponent: 2, animated: true)
         typePicker.selectRow(oldTypeInt, inComponent: 0, animated: true)
         
         amount.text = oldAmount.substring(with: (oldAmount.characters.index(oldAmount.startIndex, offsetBy: 1) ..< oldAmount.characters.index(oldAmount.endIndex, offsetBy: -3)))
