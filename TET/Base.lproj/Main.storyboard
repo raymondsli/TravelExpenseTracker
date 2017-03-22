@@ -120,7 +120,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Od5-0S-tzS" id="xwe-NP-gWm">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ufS-b4-HSB">
@@ -383,10 +383,9 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="det-oi-cQl">
-                                <rect key="frame" x="29" y="383" width="193" height="35"/>
+                                <rect key="frame" x="29" y="383" width="317" height="35"/>
                                 <color key="backgroundColor" red="0.8404982003" green="0.8404982003" blue="0.8404982003" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="193" id="Whj-tZ-YmI"/>
                                     <constraint firstAttribute="height" constant="35" id="fLk-r9-xFc"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -454,6 +453,7 @@
                             <constraint firstItem="Eb4-mG-zUO" firstAttribute="top" secondItem="uL4-u4-vc2" secondAttribute="bottom" constant="132" id="HoM-HZ-vr4"/>
                             <constraint firstItem="qcJ-uO-84Y" firstAttribute="centerX" secondItem="86t-9a-hRN" secondAttribute="centerX" id="KBh-Gx-gKZ"/>
                             <constraint firstItem="tVr-Fa-IWl" firstAttribute="leading" secondItem="0jK-Yz-O9q" secondAttribute="leading" id="NKq-JD-GX9"/>
+                            <constraint firstItem="RMt-KD-85B" firstAttribute="trailing" secondItem="det-oi-cQl" secondAttribute="trailing" id="ORi-aY-95p"/>
                             <constraint firstItem="RMt-KD-85B" firstAttribute="leading" secondItem="86t-9a-hRN" secondAttribute="leadingMargin" constant="13" id="RCc-xh-aRM"/>
                             <constraint firstItem="Eb4-mG-zUO" firstAttribute="leading" secondItem="qcJ-uO-84Y" secondAttribute="leading" id="RNy-NI-JyP"/>
                             <constraint firstItem="RMt-KD-85B" firstAttribute="trailing" secondItem="uL4-u4-vc2" secondAttribute="trailing" id="Tsp-YM-8lf"/>
@@ -531,14 +531,14 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="eS1-HD-zrr">
-                                <rect key="frame" x="0.0" y="76" width="375" height="542"/>
+                                <rect key="frame" x="0.0" y="76" width="375" height="591"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="PastTripCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="PastTripCell" id="lSk-e7-ypq" customClass="PastTripCell" customModule="TET" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lSk-e7-ypq" id="cnm-ES-KyF">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Trip Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Uv-tg-QtN">
@@ -833,10 +833,9 @@ TotalA</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="BIL-KY-N6W">
-                                <rect key="frame" x="29" y="383" width="193" height="35"/>
+                                <rect key="frame" x="29" y="383" width="317" height="35"/>
                                 <color key="backgroundColor" red="0.8404982003" green="0.8404982003" blue="0.8404982003" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="193" id="ZLf-bU-tM0"/>
                                     <constraint firstAttribute="height" constant="35" id="dxI-Ml-NCh"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -915,6 +914,7 @@ TotalA</string>
                             <constraint firstItem="Zel-Dk-AHH" firstAttribute="top" secondItem="pyI-gt-yLH" secondAttribute="bottom" constant="8" id="orA-Jj-ETP"/>
                             <constraint firstItem="XGM-W2-fnQ" firstAttribute="centerX" secondItem="6Kf-9W-0gY" secondAttribute="centerX" id="rrY-2H-Vdb"/>
                             <constraint firstItem="OwA-T7-r0i" firstAttribute="top" secondItem="pyI-gt-yLH" secondAttribute="bottom" constant="132" id="uvO-yw-lAJ"/>
+                            <constraint firstItem="moP-2v-NlJ" firstAttribute="trailing" secondItem="BIL-KY-N6W" secondAttribute="trailing" id="uwX-Vw-EPU"/>
                             <constraint firstItem="pyI-gt-yLH" firstAttribute="bottom" secondItem="ZIK-dj-Ipc" secondAttribute="bottom" id="vKN-KY-EIW"/>
                             <constraint firstItem="pyI-gt-yLH" firstAttribute="top" secondItem="ZIK-dj-Ipc" secondAttribute="top" id="wI2-wf-Xys"/>
                             <constraint firstItem="XGM-W2-fnQ" firstAttribute="top" secondItem="ZIK-dj-Ipc" secondAttribute="top" id="xeB-ht-WxK"/>
@@ -935,7 +935,7 @@ TotalA</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ct8-yQ-CWV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-370" y="1530"/>
+            <point key="canvasLocation" x="-370.39999999999998" y="1529.6851574212894"/>
         </scene>
     </scenes>
     <resources>
@@ -945,6 +945,6 @@ TotalA</string>
     <inferredMetricsTieBreakers>
         <segue reference="zcv-ZO-ijD"/>
         <segue reference="8iL-MJ-9DW"/>
-        <segue reference="cCg-bO-utJ"/>
+        <segue reference="cBc-OK-pu2"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -130,6 +130,7 @@ class EditExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, 
             textView.resignFirstResponder()
         }
         //Limit title to 22 characters
+        /*
         if let x = textView.text {
             let length = x.characters.count + text.characters.count
             if length <= 22 {
@@ -138,6 +139,7 @@ class EditExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, 
                 return false
             }
         }
+        */
         return true
     }
     
