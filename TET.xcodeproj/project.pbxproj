@@ -18,6 +18,7 @@
 		507D7B832183AE84009666CA /* TripCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507D7B822183AE84009666CA /* TripCell.swift */; };
 		507D7B852183B43D009666CA /* ExpenseCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 507D7B842183B43D009666CA /* ExpenseCell.xib */; };
 		507D7B872183B450009666CA /* ExpenseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507D7B862183B450009666CA /* ExpenseCell.swift */; };
+		507D7B892183BDC8009666CA /* bree-serif in Resources */ = {isa = PBXBuildFile; fileRef = 507D7B882183BDC8009666CA /* bree-serif */; };
 		50D4D1471E12314C00F21FB5 /* PastTrips.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D4D1461E12314C00F21FB5 /* PastTrips.swift */; };
 		50D4D14B1E134E6200F21FB5 /* EditExpense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D4D14A1E134E6200F21FB5 /* EditExpense.swift */; };
 		50EBA69B1E0DF0D800F092A6 /* LogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EBA69A1E0DF0D800F092A6 /* LogView.swift */; };
@@ -42,6 +43,7 @@
 		507D7B822183AE84009666CA /* TripCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripCell.swift; sourceTree = "<group>"; };
 		507D7B842183B43D009666CA /* ExpenseCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExpenseCell.xib; sourceTree = "<group>"; };
 		507D7B862183B450009666CA /* ExpenseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseCell.swift; sourceTree = "<group>"; };
+		507D7B882183BDC8009666CA /* bree-serif */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "bree-serif"; sourceTree = SOURCE_ROOT; };
 		50D4D1461E12314C00F21FB5 /* PastTrips.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PastTrips.swift; sourceTree = "<group>"; };
 		50D4D14A1E134E6200F21FB5 /* EditExpense.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditExpense.swift; sourceTree = "<group>"; };
 		50EBA69A1E0DF0D800F092A6 /* LogView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogView.swift; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 				5026C22B1D63F9D40057D046 /* Main.storyboard */,
 				5026C2301D63F9D40057D046 /* LaunchScreen.storyboard */,
 				5026C22E1D63F9D40057D046 /* Assets.xcassets */,
+				507D7B882183BDC8009666CA /* bree-serif */,
 				501EE9FB1DC712BB003AA27B /* Model */,
 				501EE9FE1DC712F0003AA27B /* View */,
 				501EE9FD1DC712CA003AA27B /* Controller */,
@@ -192,6 +195,7 @@
 			files = (
 				507D7B812183AE7A009666CA /* TripCell.xib in Resources */,
 				5026C2321D63F9D40057D046 /* LaunchScreen.storyboard in Resources */,
+				507D7B892183BDC8009666CA /* bree-serif in Resources */,
 				5026C22F1D63F9D40057D046 /* Assets.xcassets in Resources */,
 				507D7B852183B43D009666CA /* ExpenseCell.xib in Resources */,
 				5026C22D1D63F9D40057D046 /* Main.storyboard in Resources */,
