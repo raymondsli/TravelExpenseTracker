@@ -115,53 +115,13 @@
                                 <rect key="frame" x="0.0" y="116" width="375" height="502"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LogCell" id="Od5-0S-tzS" customClass="LogCell" customModule="TET" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ExpenseCell" id="Od5-0S-tzS" customClass="ExpenseCell" customModule="TET" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Od5-0S-tzS" id="xwe-NP-gWm">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ufS-b4-HSB">
-                                                    <rect key="frame" x="106" y="11.5" width="169" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f6Q-v5-AHC">
-                                                    <rect key="frame" x="283" y="11.5" width="92" height="20.5"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="92" id="aMR-Sm-LBY"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b9P-X2-YfZ">
-                                                    <rect key="frame" x="15" y="11.5" width="91" height="21"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="91" id="vTF-F8-tfE"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="ufS-b4-HSB" firstAttribute="leading" secondItem="b9P-X2-YfZ" secondAttribute="trailing" id="2mO-X0-FHh"/>
-                                                <constraint firstItem="b9P-X2-YfZ" firstAttribute="centerY" secondItem="xwe-NP-gWm" secondAttribute="centerY" id="D3n-zY-54m"/>
-                                                <constraint firstItem="ufS-b4-HSB" firstAttribute="centerY" secondItem="xwe-NP-gWm" secondAttribute="centerY" id="Fy6-9C-vGg"/>
-                                                <constraint firstAttribute="trailing" secondItem="f6Q-v5-AHC" secondAttribute="trailing" id="TOa-rU-MBr"/>
-                                                <constraint firstItem="b9P-X2-YfZ" firstAttribute="leading" secondItem="xwe-NP-gWm" secondAttribute="leadingMargin" id="eJR-sp-HK4"/>
-                                                <constraint firstItem="f6Q-v5-AHC" firstAttribute="centerY" secondItem="xwe-NP-gWm" secondAttribute="centerY" id="p8q-Ut-Y8p"/>
-                                                <constraint firstItem="f6Q-v5-AHC" firstAttribute="leading" secondItem="ufS-b4-HSB" secondAttribute="trailing" constant="8" id="woQ-Zs-Z4D"/>
-                                            </constraints>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="amountLabel" destination="f6Q-v5-AHC" id="w7C-f6-kDF"/>
-                                            <outlet property="dateLabel" destination="b9P-X2-YfZ" id="CDK-rj-1Wu"/>
-                                            <outlet property="titleLabel" destination="ufS-b4-HSB" id="9IR-T8-Q0Z"/>
-                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>

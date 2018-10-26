@@ -23,6 +23,9 @@ class LogView: UIViewController, UITableViewDataSource, UITableViewDelegate {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        
+        let nib = UINib(nibName: "ExpenseCell", bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: "ExpenseCell")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -273,33 +276,39 @@ class LogView: UIViewController, UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "LogCell") as? LogCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "ExpenseCell") as? ExpenseCell {
             //Load cell labels with appropriate text.
             let dateL = expenses[indexPath.row].date
             let titleL = expenses[indexPath.row].expenseTitle
             let typeL = expenses[indexPath.row].type
             let amountL = expenses[indexPath.row].amount
-                
-            //cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
-                
-            cell.configureCell(dateL, title: titleL, amount: amountL)
             
-            //Sets cell background color
-            if typeL == "Transportation" {
-                cell.backgroundColor = UIColor(colorLiteralRed: 0, green: 0, blue: 1, alpha: 0.7)
-            } else if typeL == "Living" {
-                cell.backgroundColor = .yellow
-            } else if typeL == "Eating" {
-                cell.backgroundColor = .green
-            } else if typeL == "Entertainment" {
-                cell.backgroundColor = .orange
-            } else if typeL == "Souvenir" {
-                cell.backgroundColor = .cyan
-            } else if typeL == "Other" {
-                cell.backgroundColor = UIColor(colorLiteralRed: 0.5, green: 0, blue: 0.5, alpha: 0.6)
-            } else {
-                cell.backgroundColor = .black
+            var labelColor: UIColor = .black
+            
+            switch typeL {
+            case "Transportation":
+                labelColor = UIColor(red: 0, green: 0, blue: 1, alpha: 0.7)
+            case "Living":
+                labelColor = .yellow
+            case "Eating":
+                labelColor = .orange
+            case "Entertainment":
+                labelColor = .green
+            case "Souvenir":
+                labelColor = .cyan
+            case "Other":
+                labelColor = UIColor(red: 0.5, green: 0, blue: 0.5, alpha: 0.6)
+            default:
+                labelColor = .black
             }
+            
+            cell.titleLabel.text = titleL
+            cell.dateLabel.text = dateL
+            cell.amountLabel.text = amountL
+            
+            cell.titleLabel.textColor = labelColor
+            cell.dateLabel.textColor = labelColor
+            cell.amountLabel.textColor = labelColor
             
             return cell
         } else {
@@ -428,12 +437,14 @@ class LogView: UIViewController, UITableViewDataSource, UITableViewDelegate {
         return amount.substring(from: amount.characters.index(amount.startIndex, offsetBy: 1))
     }
     
-    //We are using a one column table.
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100.0
+    }
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    //Number of rows is the length of the expenses array.
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return expenses.count
     }
