@@ -19,6 +19,9 @@ class PastTrips: UIViewController, UITableViewDataSource, UITableViewDelegate {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        
+        let nib = UINib(nibName: "TripCell", bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: "TripCell")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -30,17 +33,16 @@ class PastTrips: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "PastTripCell") as? PastTripCell {
-            //Load cell labels with appropriate text.
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "TripCell") as? TripCell {
             let tripN: String! = pastTrips[indexPath.row].tripName
-            let totalC: String! = String(pastTrips[indexPath.row].totalCost)
+            let totalC: String! = "$" + String(pastTrips[indexPath.row].totalCost)
             
-            cell.configureCell(tripN, total: totalC)
-            
-            cell.backgroundColor = UIColor(red: 0, green: 0, blue: 0.7, alpha: 0.5)
+            cell.tripTitle.text = tripN
+            cell.tripCost.text = totalC
+            //cell.backgroundColor = UIColor(red: 0, green: 0, blue: 0.7, alpha: 0.5)
             return cell
         } else {
-            return PastTripCell()
+            return TripCell()
         }
     }
     
@@ -58,7 +60,6 @@ class PastTrips: UIViewController, UITableViewDataSource, UITableViewDelegate {
         }
     }
     
-    //Called when user taps on a cell. Performs segue to detailed comment.
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.performSegue(withIdentifier: "toDetailedPastTrip", sender: self)
     }
@@ -67,7 +68,6 @@ class PastTrips: UIViewController, UITableViewDataSource, UITableViewDelegate {
         self.performSegue(withIdentifier: "toHomefromPast", sender: self)
     }
     
-    //Called before the segue is executed. Sets the comment of the detailed expense.
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toDetailedPastTrip" {
             let upcoming: TabVC = segue.destination as! TabVC
@@ -83,12 +83,14 @@ class PastTrips: UIViewController, UITableViewDataSource, UITableViewDelegate {
         }
     }
     
-    //We are using a one column table.
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 125.0
+    }
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    //Number of rows is the length of the expenses array.
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return pastTrips.count
     }

@@ -10,6 +10,9 @@ import UIKit
 
 class TripCell: UITableViewCell {
     
+    @IBOutlet weak var tripTitle: UILabel!
+    @IBOutlet weak var tripCost: UILabel!
+    
     class func instanceFromNib() -> UIView {
         return UINib(nibName: "TripCell", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! UIView
     }

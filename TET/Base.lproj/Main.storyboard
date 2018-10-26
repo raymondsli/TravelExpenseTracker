@@ -1,12 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1217" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.30.1" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.19.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -23,7 +22,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nfs-z1-cm8">
-                                <rect key="frame" x="138.5" y="316.5" width="98" height="34"/>
+                                <rect key="frame" x="139" y="316.5" width="97" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" title="Current Trip">
                                     <color key="titleColor" red="1" green="0.51426136766344588" blue="0.23143938443718948" alpha="1" colorSpace="calibratedRGB"/>
@@ -34,7 +33,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x45-ZD-SMF">
-                                <rect key="frame" x="147" y="375.5" width="80" height="34"/>
+                                <rect key="frame" x="147.5" y="375.5" width="80" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" title="Past Trips">
                                     <color key="titleColor" red="1" green="0.50217708411878803" blue="0.23253423659371952" alpha="1" colorSpace="calibratedRGB"/>
@@ -90,7 +89,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="116"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Expenses Log" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="icL-qV-xUp">
-                                        <rect key="frame" x="134" y="48" width="106.5" height="21"/>
+                                        <rect key="frame" x="134.5" y="47.5" width="106.5" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.065796339829999995" green="0.62524541879999995" blue="0.38536626060000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -124,7 +123,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ufS-b4-HSB">
-                                                    <rect key="frame" x="99" y="11" width="176" height="21"/>
+                                                    <rect key="frame" x="106" y="11.5" width="169" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -139,7 +138,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b9P-X2-YfZ">
-                                                    <rect key="frame" x="8" y="11" width="91" height="21"/>
+                                                    <rect key="frame" x="15" y="11.5" width="91" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="91" id="vTF-F8-tfE"/>
                                                     </constraints>
@@ -310,7 +309,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New Expense" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q2X-Gj-Rrs">
-                                <rect key="frame" x="135" y="25" width="104" height="20.5"/>
+                                <rect key="frame" x="135.5" y="25" width="104" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -405,7 +404,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qcJ-uO-84Y">
-                                <rect key="frame" x="27" y="63" width="320" height="145"/>
+                                <rect key="frame" x="27.5" y="63" width="320" height="145"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="145" id="F9V-WV-XIe"/>
                                 </constraints>
@@ -415,7 +414,7 @@
                                 </connections>
                             </pickerView>
                             <pickerView tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Eb4-mG-zUO">
-                                <rect key="frame" x="27" y="187" width="320" height="112"/>
+                                <rect key="frame" x="27.5" y="187" width="320" height="112"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="112" id="Qvm-yc-82A"/>
                                     <constraint firstAttribute="width" constant="320" id="XIQ-lQ-7km"/>
@@ -534,42 +533,13 @@
                                 <rect key="frame" x="0.0" y="76" width="375" height="591"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="PastTripCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="PastTripCell" id="lSk-e7-ypq" customClass="PastTripCell" customModule="TET" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="PastTripCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="TripCell" id="lSk-e7-ypq" customClass="TripCell" customModule="TET" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lSk-e7-ypq" id="cnm-ES-KyF">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Trip Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Uv-tg-QtN">
-                                                    <rect key="frame" x="18" y="11" width="181" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amount" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BY3-e1-9t1">
-                                                    <rect key="frame" x="220" y="8" width="147" height="28"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="147" id="MEd-er-dLe"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="BY3-e1-9t1" firstAttribute="trailing" secondItem="cnm-ES-KyF" secondAttribute="trailingMargin" id="7Rb-MV-q4i"/>
-                                                <constraint firstItem="BY3-e1-9t1" firstAttribute="centerY" secondItem="cnm-ES-KyF" secondAttribute="centerY" id="Hul-2i-p9T"/>
-                                                <constraint firstItem="1Uv-tg-QtN" firstAttribute="centerY" secondItem="cnm-ES-KyF" secondAttribute="centerY" id="YsJ-kU-OBB"/>
-                                                <constraint firstItem="BY3-e1-9t1" firstAttribute="leading" secondItem="1Uv-tg-QtN" secondAttribute="trailing" constant="21" id="bpL-nu-aQv"/>
-                                                <constraint firstItem="BY3-e1-9t1" firstAttribute="top" secondItem="cnm-ES-KyF" secondAttribute="topMargin" id="gn2-FC-6A2"/>
-                                                <constraint firstItem="1Uv-tg-QtN" firstAttribute="leading" secondItem="cnm-ES-KyF" secondAttribute="leadingMargin" constant="10" id="oKS-Jb-N3j"/>
-                                            </constraints>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="totalAmount" destination="BY3-e1-9t1" id="vpy-gS-2ut"/>
-                                            <outlet property="tripName" destination="1Uv-tg-QtN" id="E3E-Dn-DyM"/>
-                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -640,7 +610,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6f6-iI-aKy">
-                                <rect key="frame" x="57" y="168" width="157.5" height="284.5"/>
+                                <rect key="frame" x="57" y="168" width="157" height="284.5"/>
                                 <string key="text">Transportation Cost:
 
 Living Cost:
@@ -660,7 +630,7 @@ Total Cost:</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6ci-Zn-g8B">
-                                <rect key="frame" x="229.5" y="168" width="56.5" height="284.5"/>
+                                <rect key="frame" x="229" y="168" width="56.5" height="284.5"/>
                                 <string key="text">TranA
 
 LivingA
@@ -760,7 +730,7 @@ TotalA</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit Expense" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XGM-W2-fnQ">
-                                <rect key="frame" x="137.5" y="25" width="99" height="21"/>
+                                <rect key="frame" x="138" y="25" width="99" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -855,7 +825,7 @@ TotalA</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zel-Dk-AHH">
-                                <rect key="frame" x="27" y="63" width="320" height="145"/>
+                                <rect key="frame" x="27.5" y="63" width="320" height="145"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="145" id="eze-iO-oJ1"/>
                                 </constraints>
@@ -865,7 +835,7 @@ TotalA</string>
                                 </connections>
                             </pickerView>
                             <pickerView tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OwA-T7-r0i">
-                                <rect key="frame" x="27" y="187" width="320" height="112"/>
+                                <rect key="frame" x="27.5" y="187" width="320" height="112"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="320" id="R4F-hV-ri7"/>
                                     <constraint firstAttribute="height" constant="112" id="dkU-mk-E0g"/>
@@ -943,8 +913,8 @@ TotalA</string>
         <image name="Log" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="urH-Ab-8nJ"/>
         <segue reference="zcv-ZO-ijD"/>
         <segue reference="8iL-MJ-9DW"/>
-        <segue reference="cBc-OK-pu2"/>
     </inferredMetricsTieBreakers>
 </document>

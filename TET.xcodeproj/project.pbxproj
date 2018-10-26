@@ -16,6 +16,8 @@
 		5026C2481D64313C0057D046 /* TripView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5026C2471D64313C0057D046 /* TripView.swift */; };
 		507D7B812183AE7A009666CA /* TripCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 507D7B802183AE7A009666CA /* TripCell.xib */; };
 		507D7B832183AE84009666CA /* TripCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507D7B822183AE84009666CA /* TripCell.swift */; };
+		507D7B852183B43D009666CA /* ExpenseCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 507D7B842183B43D009666CA /* ExpenseCell.xib */; };
+		507D7B872183B450009666CA /* ExpenseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507D7B862183B450009666CA /* ExpenseCell.swift */; };
 		50D4D1471E12314C00F21FB5 /* PastTrips.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D4D1461E12314C00F21FB5 /* PastTrips.swift */; };
 		50D4D1491E12321B00F21FB5 /* PastTripCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D4D1481E12321B00F21FB5 /* PastTripCell.swift */; };
 		50D4D14B1E134E6200F21FB5 /* EditExpense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D4D14A1E134E6200F21FB5 /* EditExpense.swift */; };
@@ -40,6 +42,8 @@
 		5026C2471D64313C0057D046 /* TripView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripView.swift; sourceTree = "<group>"; };
 		507D7B802183AE7A009666CA /* TripCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TripCell.xib; sourceTree = "<group>"; };
 		507D7B822183AE84009666CA /* TripCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripCell.swift; sourceTree = "<group>"; };
+		507D7B842183B43D009666CA /* ExpenseCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExpenseCell.xib; sourceTree = "<group>"; };
+		507D7B862183B450009666CA /* ExpenseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseCell.swift; sourceTree = "<group>"; };
 		50D4D1461E12314C00F21FB5 /* PastTrips.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PastTrips.swift; sourceTree = "<group>"; };
 		50D4D1481E12321B00F21FB5 /* PastTripCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PastTripCell.swift; sourceTree = "<group>"; };
 		50D4D14A1E134E6200F21FB5 /* EditExpense.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditExpense.swift; sourceTree = "<group>"; };
@@ -96,6 +100,8 @@
 			children = (
 				507D7B802183AE7A009666CA /* TripCell.xib */,
 				507D7B822183AE84009666CA /* TripCell.swift */,
+				507D7B842183B43D009666CA /* ExpenseCell.xib */,
+				507D7B862183B450009666CA /* ExpenseCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -193,6 +199,7 @@
 				507D7B812183AE7A009666CA /* TripCell.xib in Resources */,
 				5026C2321D63F9D40057D046 /* LaunchScreen.storyboard in Resources */,
 				5026C22F1D63F9D40057D046 /* Assets.xcassets in Resources */,
+				507D7B852183B43D009666CA /* ExpenseCell.xib in Resources */,
 				5026C22D1D63F9D40057D046 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -208,6 +215,7 @@
 				50F2DC231E7A2E9D0075AD9A /* NewExpense.swift in Sources */,
 				50D4D1491E12321B00F21FB5 /* PastTripCell.swift in Sources */,
 				50EBA6A31E0F387200F092A6 /* TabVC.swift in Sources */,
+				507D7B872183B450009666CA /* ExpenseCell.swift in Sources */,
 				507D7B832183AE84009666CA /* TripCell.swift in Sources */,
 				50F2DC1F1E766D630075AD9A /* DropMenuButton.swift in Sources */,
 				50EBA69F1E0DF4AF00F092A6 /* SingleExpense.swift in Sources */,
