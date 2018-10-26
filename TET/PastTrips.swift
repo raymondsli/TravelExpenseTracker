@@ -34,12 +34,8 @@ class PastTrips: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "TripCell") as? TripCell {
-            let tripN: String! = pastTrips[indexPath.row].tripName
-            let totalC: String! = "$" + String(pastTrips[indexPath.row].totalCost)
-            
-            cell.tripTitle.text = tripN
-            cell.tripCost.text = totalC
-            //cell.backgroundColor = UIColor(red: 0, green: 0, blue: 0.7, alpha: 0.5)
+            cell.tripTitle.text = pastTrips[indexPath.row].tripName!
+            cell.tripCost.text = "$" + String(pastTrips[indexPath.row].totalCost)
             return cell
         } else {
             return TripCell()

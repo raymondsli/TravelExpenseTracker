@@ -43,13 +43,11 @@ class TripView: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Handle the text field’s user input through delegate callbacks.
         nameTextField.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        tabcont = self.tabBarController as! TabVC
+        tabcont = self.tabBarController as? TabVC
         displayPastTrip = tabcont.displayPastTrip
         
         if displayPastTrip == "Yes" {
@@ -63,7 +61,7 @@ class TripView: UIViewController, UITextFieldDelegate {
         else {
             endOrMC.setTitle("End Trip", for: .normal)
             if let decoded = UserDefaults.standard.object(forKey: "currentTrip") as? Data {
-                curTrip = NSKeyedUnarchiver.unarchiveObject(with: decoded) as! Trip
+                curTrip = NSKeyedUnarchiver.unarchiveObject(with: decoded) as? Trip
             }
         }
         
@@ -90,7 +88,7 @@ class TripView: UIViewController, UITextFieldDelegate {
     func loopThroughExpenses(expenses: [SingleExpense]) {
         for i in 0..<expenses.count {
             let aString: String! = expenses[i].amount
-            let amount: Double! = Double(aString.substring(from: aString.characters.index(aString.startIndex, offsetBy: 1)))
+            let amount: Double! = Double(aString.substring(from: aString.index(aString.startIndex, offsetBy: 1)))
             let type: String! = expenses[i].type
             
             if type == "Transportation" {

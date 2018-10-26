@@ -14,8 +14,8 @@ class HomeView: UIViewController {
     var isInitialLaunch: String! = "Yes"
     
     @IBOutlet weak var appTitle: UILabel!
-    @IBOutlet weak var currentTrip: UIButton!
-    @IBOutlet weak var pastTrip: UIButton!
+    @IBOutlet weak var currentTripButton: UIButton!
+    @IBOutlet weak var pastTripButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,12 +26,12 @@ class HomeView: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         let userDefaults = UserDefaults.standard
         if let decoded = userDefaults.object(forKey: "currentTrip") as? Data {
-            curTrip = NSKeyedUnarchiver.unarchiveObject(with: decoded) as! Trip
-            //If empty trip
+            curTrip = NSKeyedUnarchiver.unarchiveObject(with: decoded) as? Trip
+            
             if curTrip.tripName == "Untitled Trip" && curTrip.expensesLog.count == 0 {
-                currentTrip.setTitle("New Trip", for: .normal)
+                currentTripButton.setTitle("New Trip", for: .normal)
             } else {
-                currentTrip.setTitle("Current Trip", for: .normal)
+                currentTripButton.setTitle("Current Trip", for: .normal)
                 if isInitialLaunch == "Yes" {
                     self.view.isHidden = true
                     DispatchQueue.main.async {
@@ -40,7 +40,7 @@ class HomeView: UIViewController {
                 }
             }
         } else {
-            currentTrip.setTitle("New Trip", for: .normal)
+            currentTripButton.setTitle("New Trip", for: .normal)
             curTrip = Trip()
             let encodedData: Data = NSKeyedArchiver.archivedData(withRootObject: curTrip)
             userDefaults.set(encodedData, forKey: "currentTrip")
