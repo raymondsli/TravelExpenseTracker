@@ -20,6 +20,7 @@ class HomeView: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         appTitle.text = "Travel Expense Tracker"
+        appTitle.adjustsFontSizeToFitWidth = true
     }
 
     override func viewWillAppear(_ animated: Bool) {

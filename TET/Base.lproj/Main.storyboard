@@ -21,47 +21,57 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nfs-z1-cm8">
-                                <rect key="frame" x="139" y="316.5" width="97" height="34"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <state key="normal" title="Current Trip">
-                                    <color key="titleColor" red="1" green="0.51426136766344588" blue="0.23143938443718948" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="toTab:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jGc-Vb-m46"/>
-                                    <segue destination="fRT-5o-kDR" kind="show" identifier="toCurTrip" id="cCg-bO-utJ"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x45-ZD-SMF">
-                                <rect key="frame" x="147.5" y="375.5" width="80" height="34"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <state key="normal" title="Past Trips">
-                                    <color key="titleColor" red="1" green="0.50217708411878803" blue="0.23253423659371952" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <segue destination="xy4-4R-iGl" kind="show" id="zcv-ZO-ijD"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Travel Expense Tracker" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pnD-ew-g9s">
-                                <rect key="frame" x="16" y="184.5" width="343" height="86"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="86" id="aIt-8m-MhM"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zve-sj-ogL">
+                                <rect key="frame" x="-1" y="286" width="376" height="381"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nfs-z1-cm8">
+                                        <rect key="frame" x="130" y="81" width="117" height="34"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                                        <state key="normal" title="Current Trip">
+                                            <color key="titleColor" red="0.0076774254999999996" green="0.11296613699999999" blue="0.58345891500000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="6"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="toTab:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jGc-Vb-m46"/>
+                                            <segue destination="fRT-5o-kDR" kind="show" identifier="toCurTrip" id="cCg-bO-utJ"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x45-ZD-SMF">
+                                        <rect key="frame" x="130" y="139" width="117" height="34"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                                        <state key="normal" title="Past Trips">
+                                            <color key="titleColor" red="0.0076774254999999996" green="0.11296613699999999" blue="0.58345891500000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="6"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <segue destination="xy4-4R-iGl" kind="show" id="zcv-ZO-ijD"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Travel Expense Tracker" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pnD-ew-g9s">
+                                <rect key="frame" x="37" y="112" width="300" height="86"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Rockwell-Regular" family="Rockwell" pointSize="24"/>
+                                <color key="textColor" red="0.0076774255003739401" green="0.11296613697087197" blue="0.58345891497461921" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="0.66512957049999999" green="1" blue="0.75616515559999997" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstItem="pnD-ew-g9s" firstAttribute="centerX" secondItem="x45-ZD-SMF" secondAttribute="centerX" id="1AK-jC-Gd3"/>
-                            <constraint firstItem="Nfs-z1-cm8" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="MIk-8f-kvp"/>
-                            <constraint firstItem="pnD-ew-g9s" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="UUu-Ed-fUm"/>
-                            <constraint firstItem="Nfs-z1-cm8" firstAttribute="top" secondItem="pnD-ew-g9s" secondAttribute="bottom" constant="46" id="Vgk-sh-638"/>
-                            <constraint firstItem="pnD-ew-g9s" firstAttribute="centerX" secondItem="Nfs-z1-cm8" secondAttribute="centerX" id="aad-Fc-Zja"/>
-                            <constraint firstItem="Nfs-z1-cm8" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="gUV-yL-7vT"/>
-                            <constraint firstItem="x45-ZD-SMF" firstAttribute="top" secondItem="Nfs-z1-cm8" secondAttribute="bottom" constant="25" id="l6I-m5-aoX"/>
-                        </constraints>
                     </view>
                     <connections>
                         <outlet property="appTitle" destination="pnD-ew-g9s" id="cvo-Aq-OMF"/>
@@ -71,7 +81,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1383" y="27"/>
+            <point key="canvasLocation" x="-1383.2" y="26.53673163418291"/>
         </scene>
         <!--Log-->
         <scene sceneID="0Ii-HP-uJD">
@@ -458,39 +468,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dZq-er-b57" userLabel="UpperView">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="76"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RZW-xp-f5S">
-                                        <rect key="frame" x="19" y="23" width="47" height="30"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="47" id="GYV-eh-0l2"/>
-                                            <constraint firstAttribute="height" constant="30" id="i1o-0r-22U"/>
-                                        </constraints>
-                                        <state key="normal" title="Back"/>
-                                        <connections>
-                                            <action selector="backA:" destination="xy4-4R-iGl" eventType="touchUpInside" id="9Zh-hf-Qxd"/>
-                                            <segue destination="BYZ-38-t0r" kind="show" identifier="toHomefromPast" id="8iL-MJ-9DW"/>
-                                        </connections>
-                                    </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Past Trips" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dix-fp-f9a">
-                                        <rect key="frame" x="149.5" y="28" width="76" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" red="0.29620441966494659" green="0.89122983271429723" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstItem="Dix-fp-f9a" firstAttribute="centerX" secondItem="dZq-er-b57" secondAttribute="centerX" id="XpS-f3-erb"/>
-                                    <constraint firstAttribute="height" constant="76" id="b0i-5A-xFb"/>
-                                    <constraint firstItem="Dix-fp-f9a" firstAttribute="centerY" secondItem="dZq-er-b57" secondAttribute="centerY" id="eVT-9G-6MO"/>
-                                    <constraint firstItem="RZW-xp-f5S" firstAttribute="leading" secondItem="dZq-er-b57" secondAttribute="leading" constant="19" id="lRS-4a-ofq"/>
-                                    <constraint firstItem="RZW-xp-f5S" firstAttribute="centerY" secondItem="dZq-er-b57" secondAttribute="centerY" id="tsJ-rR-pYf"/>
-                                </constraints>
-                            </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="eS1-HD-zrr">
-                                <rect key="frame" x="0.0" y="76" width="375" height="591"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="eS1-HD-zrr">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="PastTripCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="TripCell" id="lSk-e7-ypq" customClass="TripCell" customModule="TET" customModuleProvider="target">
@@ -503,27 +483,45 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KZk-Dc-5AX">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <color key="barTintColor" red="0.31110096230000001" green="0.56249310539999997" blue="0.66666666669999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <items>
+                                    <navigationItem title="Past Trips" id="eRp-yl-qKc">
+                                        <barButtonItem key="leftBarButtonItem" image="Back" style="plain" id="CAC-F2-X6A">
+                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="eb4-ki-Z0k">
+                                                <rect key="frame" x="16" y="0.0" width="60" height="44"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" image="Back"/>
+                                                <connections>
+                                                    <action selector="backA:" destination="xy4-4R-iGl" eventType="touchUpInside" id="WQU-Tn-A2U"/>
+                                                </connections>
+                                            </button>
+                                            <connections>
+                                                <segue destination="BYZ-38-t0r" kind="show" identifier="toHomefromPast" id="1hC-oP-U0O"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="barPosition">
+                                        <integer key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="dZq-er-b57" secondAttribute="trailing" id="7ZD-4i-OFm"/>
-                            <constraint firstItem="dZq-er-b57" firstAttribute="top" secondItem="B3P-i6-3nE" secondAttribute="top" id="B5L-SK-lMj"/>
-                            <constraint firstItem="dZq-er-b57" firstAttribute="leading" secondItem="B3P-i6-3nE" secondAttribute="leading" id="HTO-hx-fvr"/>
-                            <constraint firstItem="dZq-er-b57" firstAttribute="leading" secondItem="eS1-HD-zrr" secondAttribute="leading" id="OuK-GL-ylT"/>
-                            <constraint firstItem="eS1-HD-zrr" firstAttribute="bottom" secondItem="XMF-Ws-HlQ" secondAttribute="top" id="W8D-wB-wyT"/>
-                            <constraint firstItem="dZq-er-b57" firstAttribute="trailing" secondItem="eS1-HD-zrr" secondAttribute="trailing" id="oGe-Jq-co5"/>
-                            <constraint firstItem="eS1-HD-zrr" firstAttribute="top" secondItem="dZq-er-b57" secondAttribute="bottom" id="uQL-ap-aT4"/>
-                        </constraints>
                     </view>
                     <connections>
-                        <outlet property="back" destination="RZW-xp-f5S" id="N6T-JO-UsJ"/>
+                        <outlet property="back" destination="eb4-ki-Z0k" id="e7i-Jr-Yjp"/>
                         <outlet property="tableView" destination="eS1-HD-zrr" id="DbB-a5-b8B"/>
                         <segue destination="fRT-5o-kDR" kind="show" identifier="toDetailedPastTrip" id="urH-Ab-8nJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bXk-as-Vsx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1383" y="-777"/>
+            <point key="canvasLocation" x="-1383.2" y="-777.66116941529242"/>
         </scene>
         <!--Trip-->
         <scene sceneID="J4y-PT-R00">
@@ -869,12 +867,13 @@ TotalA</string>
         </scene>
     </scenes>
     <resources>
+        <image name="Back" width="50" height="50"/>
         <image name="Document" width="25" height="25"/>
         <image name="Log" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="urH-Ab-8nJ"/>
         <segue reference="zcv-ZO-ijD"/>
-        <segue reference="8iL-MJ-9DW"/>
+        <segue reference="1hC-oP-U0O"/>
     </inferredMetricsTieBreakers>
 </document>

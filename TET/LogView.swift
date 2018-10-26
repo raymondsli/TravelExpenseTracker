@@ -312,7 +312,7 @@ class LogView: UIViewController, UITableViewDataSource, UITableViewDelegate {
             
             return cell
         } else {
-            return LogCell()
+            return ExpenseCell()
         }
     }
     

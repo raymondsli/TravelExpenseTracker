@@ -19,10 +19,8 @@
 		507D7B852183B43D009666CA /* ExpenseCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 507D7B842183B43D009666CA /* ExpenseCell.xib */; };
 		507D7B872183B450009666CA /* ExpenseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507D7B862183B450009666CA /* ExpenseCell.swift */; };
 		50D4D1471E12314C00F21FB5 /* PastTrips.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D4D1461E12314C00F21FB5 /* PastTrips.swift */; };
-		50D4D1491E12321B00F21FB5 /* PastTripCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D4D1481E12321B00F21FB5 /* PastTripCell.swift */; };
 		50D4D14B1E134E6200F21FB5 /* EditExpense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D4D14A1E134E6200F21FB5 /* EditExpense.swift */; };
 		50EBA69B1E0DF0D800F092A6 /* LogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EBA69A1E0DF0D800F092A6 /* LogView.swift */; };
-		50EBA69D1E0DF25700F092A6 /* LogCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EBA69C1E0DF25700F092A6 /* LogCell.swift */; };
 		50EBA69F1E0DF4AF00F092A6 /* SingleExpense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EBA69E1E0DF4AF00F092A6 /* SingleExpense.swift */; };
 		50EBA6A31E0F387200F092A6 /* TabVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EBA6A21E0F387200F092A6 /* TabVC.swift */; };
 		50EBA6EA1E1204AC00F092A6 /* DetailedExpense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EBA6E91E1204AC00F092A6 /* DetailedExpense.swift */; };
@@ -45,10 +43,8 @@
 		507D7B842183B43D009666CA /* ExpenseCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExpenseCell.xib; sourceTree = "<group>"; };
 		507D7B862183B450009666CA /* ExpenseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseCell.swift; sourceTree = "<group>"; };
 		50D4D1461E12314C00F21FB5 /* PastTrips.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PastTrips.swift; sourceTree = "<group>"; };
-		50D4D1481E12321B00F21FB5 /* PastTripCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PastTripCell.swift; sourceTree = "<group>"; };
 		50D4D14A1E134E6200F21FB5 /* EditExpense.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditExpense.swift; sourceTree = "<group>"; };
 		50EBA69A1E0DF0D800F092A6 /* LogView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogView.swift; sourceTree = "<group>"; };
-		50EBA69C1E0DF25700F092A6 /* LogCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogCell.swift; sourceTree = "<group>"; };
 		50EBA69E1E0DF4AF00F092A6 /* SingleExpense.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleExpense.swift; sourceTree = "<group>"; };
 		50EBA6A21E0F387200F092A6 /* TabVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabVC.swift; sourceTree = "<group>"; };
 		50EBA6E91E1204AC00F092A6 /* DetailedExpense.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailedExpense.swift; sourceTree = "<group>"; };
@@ -72,8 +68,6 @@
 			children = (
 				5026C2391D63FE4A0057D046 /* Trip.swift */,
 				50EBA69E1E0DF4AF00F092A6 /* SingleExpense.swift */,
-				50EBA69C1E0DF25700F092A6 /* LogCell.swift */,
-				50D4D1481E12321B00F21FB5 /* PastTripCell.swift */,
 				50F2DC1E1E766D630075AD9A /* DropMenuButton.swift */,
 			);
 			name = Model;
@@ -127,10 +121,10 @@
 			children = (
 				5026C22B1D63F9D40057D046 /* Main.storyboard */,
 				5026C2301D63F9D40057D046 /* LaunchScreen.storyboard */,
+				5026C22E1D63F9D40057D046 /* Assets.xcassets */,
 				501EE9FB1DC712BB003AA27B /* Model */,
 				501EE9FE1DC712F0003AA27B /* View */,
 				501EE9FD1DC712CA003AA27B /* Controller */,
-				5026C22E1D63F9D40057D046 /* Assets.xcassets */,
 				5026C2331D63F9D40057D046 /* Info.plist */,
 			);
 			path = TET;
@@ -213,7 +207,6 @@
 			files = (
 				50D4D14B1E134E6200F21FB5 /* EditExpense.swift in Sources */,
 				50F2DC231E7A2E9D0075AD9A /* NewExpense.swift in Sources */,
-				50D4D1491E12321B00F21FB5 /* PastTripCell.swift in Sources */,
 				50EBA6A31E0F387200F092A6 /* TabVC.swift in Sources */,
 				507D7B872183B450009666CA /* ExpenseCell.swift in Sources */,
 				507D7B832183AE84009666CA /* TripCell.swift in Sources */,
@@ -224,7 +217,6 @@
 				5026C22A1D63F9D40057D046 /* HomeView.swift in Sources */,
 				50EBA69B1E0DF0D800F092A6 /* LogView.swift in Sources */,
 				50EBA6EA1E1204AC00F092A6 /* DetailedExpense.swift in Sources */,
-				50EBA69D1E0DF25700F092A6 /* LogCell.swift in Sources */,
 				5026C2281D63F9D40057D046 /* AppDelegate.swift in Sources */,
 				5026C2481D64313C0057D046 /* TripView.swift in Sources */,
 			);
