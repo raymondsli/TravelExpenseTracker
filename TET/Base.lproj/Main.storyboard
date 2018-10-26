@@ -80,8 +80,8 @@
                     </view>
                     <connections>
                         <outlet property="appTitle" destination="pnD-ew-g9s" id="cvo-Aq-OMF"/>
-                        <outlet property="currentTrip" destination="Nfs-z1-cm8" id="Smr-UW-q3Z"/>
-                        <outlet property="pastTrip" destination="x45-ZD-SMF" id="CHl-FK-38e"/>
+                        <outlet property="currentTripButton" destination="Nfs-z1-cm8" id="LV3-AF-9gY"/>
+                        <outlet property="pastTripButton" destination="x45-ZD-SMF" id="BuK-gn-4Bc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -915,8 +915,8 @@ TotalA</string>
         <image name="Log" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="QK6-XK-KBu"/>
-        <segue reference="XH4-xr-RW5"/>
+        <segue reference="cCg-bO-utJ"/>
+        <segue reference="zcv-ZO-ijD"/>
         <segue reference="72w-7r-eXi"/>
     </inferredMetricsTieBreakers>
 </document>

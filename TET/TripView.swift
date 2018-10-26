@@ -109,7 +109,6 @@ class TripView: UIViewController, UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        //Hide the keyboard when the user presses return key
         textField.resignFirstResponder()
         return true
     }
@@ -153,7 +152,6 @@ class TripView: UIViewController, UITextFieldDelegate {
             pastTrips = NSKeyedUnarchiver.unarchiveObject(with: decoded) as! [Trip]
         }
         if displayPastTrip != "Yes" {
-            //End Trip
             pastTrips.append(curTrip)
             
             let freshTrip: Trip! = Trip()
@@ -170,7 +168,7 @@ class TripView: UIViewController, UITextFieldDelegate {
             pastTrips.remove(at: whichPastTrip)
             
             let decoded = UserDefaults.standard.object(forKey: "currentTrip") as! Data
-            let prevCurrent: Trip! = NSKeyedUnarchiver.unarchiveObject(with: decoded) as! Trip
+            let prevCurrent: Trip! = NSKeyedUnarchiver.unarchiveObject(with: decoded) as? Trip
             
             if prevCurrent.tripName != "Untitled Trip" || prevCurrent.expensesLog.count != 0 {
                 pastTrips.append(prevCurrent)
@@ -192,8 +190,6 @@ class TripView: UIViewController, UITextFieldDelegate {
             let upcoming: TabVC = segue.destination as! TabVC
             upcoming.displayPastTrip = "No"
             upcoming.curTrip = curTrip
-        } else if segue.identifier == "endedTrip" {
-            //let upcoming: PastTrips = segue.destination as! PastTrips
         } else if segue.identifier == "toNewExpense" {
             let upcoming: NewExpense = segue.destination as! NewExpense
             upcoming.displayPastTrip = displayPastTrip
