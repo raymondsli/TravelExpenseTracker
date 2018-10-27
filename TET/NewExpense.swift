@@ -36,7 +36,7 @@ class NewExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, U
     var dateArray = [
         ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
         ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"],
-        ["2014", "2015", "2016", "2017", "2018", "2019", "2020"]
+        ["2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022"]
     ]
     var typeArray = ["Transportation", "Living", "Eating", "Entertainment", "Souvenir", "Other"]
     
@@ -74,13 +74,12 @@ class NewExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, U
         }
         else {
             if let decoded = UserDefaults.standard.object(forKey: "currentTrip") as? Data {
-                curTrip = NSKeyedUnarchiver.unarchiveObject(with: decoded) as! Trip
+                curTrip = NSKeyedUnarchiver.unarchiveObject(with: decoded) as? Trip
             }
         }
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        //Hide the keyboard when the user presses return key
         textField.resignFirstResponder()
         return true
     }
@@ -96,23 +95,21 @@ class NewExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, U
         //Limit Dollars textfield to $10000
         if textField.tag == 1 {
             if let x = textField.text {
-                let length = x.characters.count + string.characters.count
+                let length = x.count + string.count
                 if length <= 5 {
                     return true
-                } else {
-                    return false
                 }
+                return false
             }
         }
         //Limit Cents textfield to two digits
         if textField.tag == 2 {
             if let x = textField.text {
-                let length = x.characters.count + string.characters.count
+                let length = x.count + string.count
                 if length <= 2 {
                     return true
-                } else {
-                    return false
                 }
+                return false
             }
         }
         return true
@@ -122,14 +119,14 @@ class NewExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, U
         if textView.tag == 0 {
             return true
         }
-        //Prevent multiple lines title
+        
         if text == "\n" {
             textView.resignFirstResponder()
         }
         //Limit title to 22 characters
         /*
         if let x = textView.text {
-            let length = x.characters.count + text.characters.count
+            let length = x.count + text.count
             if length <= 22 {
                 return true
             } else {
@@ -194,9 +191,7 @@ class NewExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, U
             type = "Transportation"
         }
         if month == nil {
-            month = String(month_now)
-        } else {
-            month = changeMonthToNumber(mon: month)
+            month = changeMonthToString(mon: month_now)
         }
         if date == nil {
             date = String(day_now)
@@ -205,7 +200,7 @@ class NewExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, U
             year = String(year_now)
         }
         
-        let combinedDate: String = month + "/" + date + "/" + year
+        let combinedDate: String = month + " " + date + ", " + year
         var combinedAmount: String
         var dollarD: String! = amount.text
         var centsD: String! = centsAmount.text
@@ -214,7 +209,7 @@ class NewExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, U
         }
         if centsD == "" {
             centsD = "00"
-        } else if centsD.characters.count == 1 {
+        } else if centsD.count == 1 {
             centsD = centsD + "0"
         }
         if (Int(dollarD!) == nil || Int(centsD!) == nil) {
@@ -251,38 +246,69 @@ class NewExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, U
         upcoming.curTrip = curTrip
     }
     
-    func changeMonthToNumber(mon: String) -> String {
-        if (Int(mon) != nil) {
-            return mon
-        }
-        if mon == "Jan" {
-            return "1"
-        } else if mon == "Feb" {
-            return "2"
-        } else if mon == "Mar" {
-            return "3"
-        } else if mon == "Apr" {
-            return "4"
-        } else if mon == "May" {
-            return "5"
-        } else if mon == "Jun" {
-            return "6"
-        } else if mon == "Jul" {
-            return "7"
-        } else if mon == "Aug" {
-            return "8"
-        } else if mon == "Sep" {
-            return "9"
-        } else if mon == "Oct" {
-            return "10"
-        } else if mon == "Nov" {
-            return "11"
-        } else if mon == "Dec" {
-            return "12"
-        } else {
-            return "1"
+    func changeMonthToString(mon: Int) -> String {
+        switch mon {
+        case 1:
+            return "Jan"
+        case 2:
+            return "Feb"
+        case 3:
+            return "Mar"
+        case 4:
+            return "Apr"
+        case 5:
+            return "May"
+        case 6:
+            return "Jun"
+        case 7:
+            return "Jul"
+        case 8:
+            return "Aug"
+        case 9:
+            return "Sep"
+        case 10:
+            return "Oct"
+        case 11:
+            return "Nov"
+        case 12:
+            return "Dec"
+        default:
+            return ""
         }
     }
+    
+//    func changeMonthToNumber(mon: String) -> String {
+//        if (Int(mon) != nil) {
+//            return mon
+//        }
+//        if mon == "Jan" {
+//            return "1"
+//        } else if mon == "Feb" {
+//            return "2"
+//        } else if mon == "Mar" {
+//            return "3"
+//        } else if mon == "Apr" {
+//            return "4"
+//        } else if mon == "May" {
+//            return "5"
+//        } else if mon == "Jun" {
+//            return "6"
+//        } else if mon == "Jul" {
+//            return "7"
+//        } else if mon == "Aug" {
+//            return "8"
+//        } else if mon == "Sep" {
+//            return "9"
+//        } else if mon == "Oct" {
+//            return "10"
+//        } else if mon == "Nov" {
+//            return "11"
+//        } else if mon == "Dec" {
+//            return "12"
+//        } else {
+//            return "1"
+//        }
+//    }
     
     func addToCurrentTrip(type: String, amount: Double) {
         if type == "Transportation" {

@@ -218,12 +218,15 @@ class LogView: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     //returns 1 if date1 is older than date2, -1 is newer, 0 is same
     func whichDateOlder(date1: String, date2: String) -> Int {
-        let oMon: Int! = Int(getMonth(oldDate: date1))
-        let oDay: Int! = Int(getDay(oldDate: date1))
-        let oYear: Int! = Int(getYear(oldDate: date1))
-        let nMon: Int! = Int(getMonth(oldDate: date2))
-        let nDay: Int! = Int(getDay(oldDate: date2))
-        let nYear: Int! = Int(getYear(oldDate: date2))
+        let date1Array = parseDate(date: date1)
+        let date2Array = parseDate(date: date2)
+        
+        let oMon: Int = date1Array[1]
+        let oDay: Int = date1Array[0]
+        let oYear: Int = date1Array[2]
+        let nMon: Int = date2Array[1]
+        let nDay: Int = date2Array[0]
+        let nYear: Int = date2Array[2]
         
         if nYear > oYear {
             return 1
@@ -241,34 +244,78 @@ class LogView: UIViewController, UITableViewDataSource, UITableViewDelegate {
         return -1
     }
     
+    //Take in Feb 1, 2018 and return [1, 2, 2018]
+    func parseDate(date: String) -> [Int] {
+        let dateArray = date.components(separatedBy: ",")
+        let dayMonth = dateArray[0]
+        let yearString = dateArray[1]
+        
+        let yearStartIndex = yearString.index(yearString.startIndex, offsetBy: 1)
+        let yearInt = Int(yearString.suffix(from: yearStartIndex))!
+        
+        let monthEndIndex = dayMonth.index(dayMonth.startIndex, offsetBy: 3)
+        let dayStartIndex = dayMonth.index(dayMonth.startIndex, offsetBy: 4)
+        
+        let monthInt = monthToInt(mon: dayMonth.substring(to: monthEndIndex))
+        let dayInt = Int(dayMonth.suffix(from: dayStartIndex))!
+        
+        return [dayInt, monthInt, yearInt]
+    }
+    
+    func monthToInt(mon: String) -> Int {
+        switch mon {
+        case "Jan":
+            return 1
+        case "Feb":
+            return 2
+        case "Mar":
+            return 3
+        case "Apr":
+            return 4
+        case "May":
+            return 5
+        case "Jun":
+            return 6
+        case "Jul":
+            return 7
+        case "Aug":
+            return 8
+        case "Sep":
+            return 9
+        case "Oct":
+            return 10
+        case "Nov":
+            return 11
+        case "Dec":
+            return 12
+        default:
+            return 0
+        }
+    }
+    
     /* Return 1 is t1 comes before t2, 0 if same type, and -1 is t1 comes after t2
     *  Ordering is Transportation, Living, Eating, Entertainment, Souvenir, Other
     */
     func checkTypeOrder(t1: String, t2: String) -> Int {
-        let t1_int: Int! = typeToInt(type: t1)
-        let t2_int: Int! = typeToInt(type: t2)
-        if t1_int < t2_int {
+        let ordering = ["Transportation", "Living", "Eating", "Entertainment", "Souvenir", "Other"]
+        var t1Int = 0
+        var t2Int = 0
+        
+        for i in 0..<ordering.count {
+            if t1 == ordering[i] {
+                t1Int = i
+            }
+            if t2 == ordering[i] {
+                t2Int = i
+            }
+        }
+        
+        if t1Int < t2Int {
             return 1
-        } else if t1_int > t2_int {
+        } else if t1Int > t2Int {
             return -1
         }
         return 0
-    }
-    
-    func typeToInt(type: String) -> Int {
-        if type == "Transportation" {
-            return 0
-        } else if type == "Living" {
-            return 1
-        } else if type == "Eating" {
-            return 2
-        } else if type == "Entertainment" {
-            return 3
-        } else if type == "Souvenir" {
-            return 4
-        } else {
-            return 5
-        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -277,7 +324,6 @@ class LogView: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "ExpenseCell") as? ExpenseCell {
-            //Load cell labels with appropriate text.
             let dateL = expenses[indexPath.row].date
             let titleL = expenses[indexPath.row].expenseTitle
             let typeL = expenses[indexPath.row].type
@@ -287,15 +333,15 @@ class LogView: UIViewController, UITableViewDataSource, UITableViewDelegate {
             
             switch typeL {
             case "Transportation":
-                labelColor = UIColor(red: 0, green: 0, blue: 1, alpha: 0.7)
+                labelColor = .blue
             case "Living":
-                labelColor = .yellow
+                labelColor = .cyan
             case "Eating":
                 labelColor = .orange
             case "Entertainment":
                 labelColor = .green
             case "Souvenir":
-                labelColor = .cyan
+                labelColor = .darkGray
             case "Other":
                 labelColor = UIColor(red: 0.5, green: 0, blue: 0.5, alpha: 0.6)
             default:
@@ -305,10 +351,17 @@ class LogView: UIViewController, UITableViewDataSource, UITableViewDelegate {
             cell.titleLabel.text = titleL
             cell.dateLabel.text = dateL
             cell.amountLabel.text = amountL
+            cell.typeLabel.text = typeL
             
             cell.titleLabel.textColor = labelColor
             cell.dateLabel.textColor = labelColor
             cell.amountLabel.textColor = labelColor
+            cell.typeLabel.textColor = labelColor
+            
+            cell.titleLabel.adjustsFontSizeToFitWidth = true
+            cell.dateLabel.adjustsFontSizeToFitWidth = true
+            cell.amountLabel.adjustsFontSizeToFitWidth = true
+            cell.typeLabel.adjustsFontSizeToFitWidth = true
             
             return cell
         } else {
@@ -438,7 +491,7 @@ class LogView: UIViewController, UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100.0
+        return 140.0
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
