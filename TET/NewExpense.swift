@@ -13,8 +13,6 @@ class NewExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, U
     @IBOutlet weak var cancelB: UIButton!
     @IBOutlet weak var doneB: UIButton!
     @IBOutlet weak var datePicker: UIPickerView!
-    @IBOutlet weak var typePicker: UIPickerView!
-    
     
     @IBOutlet weak var amount: UITextField!
     @IBOutlet weak var centsAmount: UITextField!
@@ -38,15 +36,12 @@ class NewExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, U
         ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"],
         ["2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022"]
     ]
-    var typeArray = ["Transportation", "Living", "Eating", "Entertainment", "Souvenir", "Other"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         datePicker.delegate = self
         datePicker.dataSource = self
-        typePicker.delegate = self
-        typePicker.dataSource = self
         
         amount.delegate = self
         centsAmount.delegate = self
@@ -145,40 +140,24 @@ class NewExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, U
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        if pickerView.tag == 0 {
-            return dateArray[component][row]
-        } else {
-            return typeArray[row]
-        }
+        return dateArray[component][row]
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        if pickerView.tag == 0 {
-            return dateArray[component].count
-        } else {
-            return typeArray.count
-        }
+        return dateArray[component].count
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        if pickerView.tag == 0 {
-            return 3
-        } else {
-            return 1
-        }
+        return 3
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        if pickerView.tag != 1 {
-            if component == 0 {
-                month = dateArray[component][row]
-            } else if component == 1 {
-                date = dateArray[component][row]
-            } else {
-                year = dateArray[component][row]
-            }
+        if component == 0 {
+            month = dateArray[component][row]
+        } else if component == 1 {
+            date = dateArray[component][row]
         } else {
-            type = typeArray[row]
+            year = dateArray[component][row]
         }
     }
     
@@ -187,9 +166,6 @@ class NewExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, U
     }
     
     @IBAction func done(_ sender: Any) {
-        if type == nil {
-            type = "Transportation"
-        }
         if month == nil {
             month = changeMonthToString(mon: month_now)
         }
