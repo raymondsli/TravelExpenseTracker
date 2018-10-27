@@ -662,6 +662,25 @@ TotalA</string>
                                     <action selector="newExpense:" destination="EVE-Sm-5bW" eventType="touchUpInside" id="LnY-Ao-Reb"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aHn-md-Vf7" customClass="TypeRow" customModule="TET" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="481" width="375" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Total Cost" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bjh-8i-qnu">
+                                <rect key="frame" x="57" y="539" width="92" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="BreeSerif-Regular" family="Bree Serif" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Total Amount" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VQH-oj-3fH">
+                                <rect key="frame" x="206" y="539" width="115" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="BreeSerif-Regular" family="Bree Serif" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.66512957049999999" green="1" blue="0.75616515559999997" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
@@ -673,6 +692,7 @@ TotalA</string>
                         <outlet property="endOrMC" destination="qiv-BR-qGU" id="rqv-yu-pGS"/>
                         <outlet property="nameTextField" destination="Q8G-nK-nhh" id="lh9-YJ-kvc"/>
                         <outlet property="newExpense" destination="YRJ-Su-pF5" id="5Fa-yb-gcH"/>
+                        <outlet property="otherRow" destination="aHn-md-Vf7" id="kuI-UA-PBu"/>
                         <outlet property="typeLabels" destination="6f6-iI-aKy" id="XoD-Ji-c5x"/>
                         <segue destination="xy4-4R-iGl" kind="show" identifier="toPastfromTrip" id="qm1-RQ-GZp"/>
                         <segue destination="xy4-4R-iGl" kind="show" identifier="endedTrip" id="XH4-xr-RW5"/>

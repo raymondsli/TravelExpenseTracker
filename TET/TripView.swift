@@ -19,6 +19,7 @@ class TripView: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var categoryAmounts: UILabel!
     
     @IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var otherRow: TypeRow!
     
     var tranA: Double!
     var livingA: Double!
@@ -41,9 +42,15 @@ class TripView: UIViewController, UITextFieldDelegate {
     var tabcont: TabVC!
     var pastTrips: [Trip] = [Trip]()
     
+    var typeSender = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         nameTextField.delegate = self
+        
+        otherRow.typeLabel.text = "Other Cost"
+        otherRow.plusButton.type = "Other"
+        otherRow.plusButton.addTarget(self, action: #selector(plusButtonPressed), for: .touchUpInside)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -83,6 +90,8 @@ class TripView: UIViewController, UITextFieldDelegate {
         otherC = "$" + String(format: "%.2f", otherA)
         totalC = "$" + String(format: "%.2f", totalA)
         categoryAmounts.text = tranC + "\n\n" + livingC + "\n\n" + eatingC + "\n\n" + entC + "\n\n" + souvC + "\n\n" + otherC + "\n\n\n" + totalC
+        
+        otherRow.amountLabel.text = "$" + String(format: "%.2f", otherA)
     }
     
     func loopThroughExpenses(expenses: [SingleExpense]) {
@@ -131,6 +140,11 @@ class TripView: UIViewController, UITextFieldDelegate {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         nameTextField.resignFirstResponder()
+    }
+    
+    @objc func plusButtonPressed(sender: PlusButton) {
+        typeSender = sender.type
+        performSegue(withIdentifier: "toNewExpense", sender: self)
     }
     
     @IBAction func newExpense(_ sender: Any) {
@@ -193,6 +207,7 @@ class TripView: UIViewController, UITextFieldDelegate {
         } else if segue.identifier == "toNewExpense" {
             let upcoming: NewExpense = segue.destination as! NewExpense
             upcoming.displayPastTrip = displayPastTrip
+            upcoming.type = typeSender
         } else if segue.identifier == "toHomefromTrip" {
             let upcoming: HomeView = segue.destination as! HomeView
             upcoming.isInitialLaunch = "No"
