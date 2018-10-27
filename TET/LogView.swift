@@ -44,7 +44,7 @@ class LogView: UIViewController, UITableViewDataSource, UITableViewDelegate {
         }
         else {
             if let decoded = UserDefaults.standard.object(forKey: "currentTrip") as? Data {
-                curTrip = NSKeyedUnarchiver.unarchiveObject(with: decoded) as! Trip
+                curTrip = NSKeyedUnarchiver.unarchiveObject(with: decoded) as? Trip
             }
         }
         
@@ -382,7 +382,7 @@ class LogView: UIViewController, UITableViewDataSource, UITableViewDelegate {
             self.expenses.remove(at: editActionsForRowAt.row)
             self.curTrip.expensesLog = self.expenses
             let pA: String = prevExp.amount
-            let prevAmount: String! = pA.substring(from: pA.characters.index(pA.startIndex, offsetBy: 1))
+            let prevAmount: String! = pA.substring(from: pA.index(pA.startIndex, offsetBy: 1))
             self.subtractFromCurrentTrip(type: prevExp.type, amount: Double(prevAmount)!)
             
             let userDefaults = UserDefaults.standard
@@ -431,11 +431,11 @@ class LogView: UIViewController, UITableViewDataSource, UITableViewDelegate {
         if segue.identifier == "toEditExpense" {
             let upcoming: EditExpense = segue.destination as! EditExpense
             
-            let oldDate: String! = expenses[selectedRow].date
+            let oldDateArray: [Int] = parseDate(date: expenses[selectedRow].date)
             
-            upcoming.oldMon = Int(getMonth(oldDate: oldDate))
-            upcoming.oldDay = Int(getDay(oldDate: oldDate))
-            upcoming.oldYear = Int(getYear(oldDate: oldDate))
+            upcoming.oldMon = oldDateArray[1]
+            upcoming.oldDay = oldDateArray[0]
+            upcoming.oldYear = oldDateArray[2]
             upcoming.oldType = expenses[selectedRow].type
             upcoming.oldTypeInt = getNumberFromType(type: expenses[selectedRow].type)
             upcoming.oldAmount = expenses[selectedRow].amount
@@ -457,37 +457,9 @@ class LogView: UIViewController, UITableViewDataSource, UITableViewDelegate {
         }
     }
     
-    func getMonth(oldDate: String) -> String {
-        let index = oldDate.index(oldDate.startIndex, offsetBy:2)
-        
-        if oldDate[index] == "/" {
-            //Form xx/?/xx
-            return oldDate.substring(to: oldDate.characters.index(oldDate.startIndex, offsetBy: 2))
-        } else {
-            //Form x/?/xx
-            return oldDate.substring(to: oldDate.characters.index(oldDate.startIndex, offsetBy: 1))
-        }
-    }
-    
-    func getDay(oldDate: String) -> String {
-        let index = oldDate.index(oldDate.startIndex, offsetBy:2)
-        
-        if oldDate[index] == "/" {
-            //Form xx/?/xx
-            return oldDate.substring(with: (oldDate.characters.index(oldDate.startIndex, offsetBy: 3) ..< oldDate.characters.index(oldDate.endIndex, offsetBy: -3)))
-        } else {
-            //Form x/?/xx
-            return oldDate.substring(with: (oldDate.characters.index(oldDate.startIndex, offsetBy: 2) ..< oldDate.characters.index(oldDate.endIndex, offsetBy: -5)))
-        }
-    }
-    
-    func getYear(oldDate: String) -> String {
-        return oldDate.substring(from: oldDate.characters.index(oldDate.endIndex, offsetBy: -4))
-    }
-    
     //Gets rid of dollar sign at the beginning
     func truncateAmount(amount: String) -> String {
-        return amount.substring(from: amount.characters.index(amount.startIndex, offsetBy: 1))
+        return amount.substring(from: amount.index(amount.startIndex, offsetBy: 1))
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
