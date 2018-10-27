@@ -487,48 +487,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6f6-iI-aKy">
-                                <rect key="frame" x="57" y="168" width="157" height="284.5"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <string key="text">Transportation Cost:
-
-Living Cost:
-
-Eating Cost:
-
-Entertainment Cost:
-
-Souvenir Cost:
-
-Other Cost:
-
-
-Total Cost:</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6ci-Zn-g8B">
-                                <rect key="frame" x="229" y="168" width="56.5" height="284.5"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <string key="text">TranA
-
-LivingA
-
-EatA
-
-EntA
-
-SouvA
-
-OtherA
-
-
-TotalA</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="A5n-su-nhk">
                                 <rect key="frame" x="0.0" y="19" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
@@ -577,105 +535,45 @@ TotalA</string>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </navigationBar>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YRJ-Su-pF5">
-                                <rect key="frame" x="309" y="157" width="44" height="40"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.72156862745098038" green="0.98431372549019602" blue="0.80392156862745101" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" image="Plus"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="6"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="newExpense:" destination="EVE-Sm-5bW" eventType="touchUpInside" id="HiJ-xv-WfW"/>
-                                    <segue destination="fod-dB-JEy" kind="show" identifier="toNewExpense" id="K2f-ad-f9A"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="36P-WU-hXu">
-                                <rect key="frame" x="309" y="201" width="44" height="40"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.72156862749999995" green="0.98431372549999996" blue="0.80392156859999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" image="Plus"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="6"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="newExpense:" destination="EVE-Sm-5bW" eventType="touchUpInside" id="Lpy-f2-RHX"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mYH-8c-Lep">
-                                <rect key="frame" x="309" y="244" width="44" height="40"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.72156862749999995" green="0.98431372549999996" blue="0.80392156859999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" image="Plus"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="6"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="newExpense:" destination="EVE-Sm-5bW" eventType="touchUpInside" id="vZe-dB-R1q"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a9C-ZK-ifB">
-                                <rect key="frame" x="309" y="324" width="44" height="40"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.72156862749999995" green="0.98431372549999996" blue="0.80392156859999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" image="Plus"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="6"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="newExpense:" destination="EVE-Sm-5bW" eventType="touchUpInside" id="Am3-mI-hgy"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gf9-KO-2c5">
-                                <rect key="frame" x="309" y="364" width="44" height="40"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.72156862749999995" green="0.98431372549999996" blue="0.80392156859999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" image="Plus"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="6"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="newExpense:" destination="EVE-Sm-5bW" eventType="touchUpInside" id="xnI-cK-RMw"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qEH-IT-T3h">
-                                <rect key="frame" x="309" y="282" width="44" height="40"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.72156862749999995" green="0.98431372549999996" blue="0.80392156859999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" image="Plus"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="6"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="newExpense:" destination="EVE-Sm-5bW" eventType="touchUpInside" id="LnY-Ao-Reb"/>
-                                </connections>
-                            </button>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aHn-md-Vf7" customClass="TypeRow" customModule="TET" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="481" width="375" height="50"/>
+                                <rect key="frame" x="0.0" y="429" width="375" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Total Cost" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bjh-8i-qnu">
-                                <rect key="frame" x="57" y="539" width="92" height="40"/>
+                                <rect key="frame" x="61" y="508" width="92" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="BreeSerif-Regular" family="Bree Serif" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jL1-Ui-duW" customClass="TypeRow" customModule="TET" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="313" width="375" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lMA-eS-O67" customClass="TypeRow" customModule="TET" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="255" width="375" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KjX-Kv-XDL" customClass="TypeRow" customModule="TET" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="197" width="375" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AUO-5E-S9N" customClass="TypeRow" customModule="TET" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="139" width="375" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4he-8k-rhA" customClass="TypeRow" customModule="TET" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="371" width="375" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Total Amount" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VQH-oj-3fH">
-                                <rect key="frame" x="206" y="539" width="115" height="40"/>
+                                <rect key="frame" x="212" y="508" width="115" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="BreeSerif-Regular" family="Bree Serif" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -688,15 +586,19 @@ TotalA</string>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="back" destination="lbv-Rq-uQp" id="5FS-A6-3AK"/>
-                        <outlet property="categoryAmounts" destination="6ci-Zn-g8B" id="F5n-AM-yqf"/>
+                        <outlet property="eatingRow" destination="lMA-eS-O67" id="pfa-iA-64t"/>
                         <outlet property="endOrMC" destination="qiv-BR-qGU" id="rqv-yu-pGS"/>
+                        <outlet property="entertainmentRow" destination="jL1-Ui-duW" id="XAo-lv-sTg"/>
+                        <outlet property="livingRow" destination="KjX-Kv-XDL" id="H1c-hH-a3D"/>
                         <outlet property="nameTextField" destination="Q8G-nK-nhh" id="lh9-YJ-kvc"/>
-                        <outlet property="newExpense" destination="YRJ-Su-pF5" id="5Fa-yb-gcH"/>
                         <outlet property="otherRow" destination="aHn-md-Vf7" id="kuI-UA-PBu"/>
-                        <outlet property="typeLabels" destination="6f6-iI-aKy" id="XoD-Ji-c5x"/>
+                        <outlet property="souvenirRow" destination="4he-8k-rhA" id="HAm-aO-E30"/>
+                        <outlet property="totalAmountLabel" destination="VQH-oj-3fH" id="NdD-G4-QgY"/>
+                        <outlet property="transportationRow" destination="AUO-5E-S9N" id="geu-l8-16V"/>
                         <segue destination="xy4-4R-iGl" kind="show" identifier="toPastfromTrip" id="qm1-RQ-GZp"/>
                         <segue destination="xy4-4R-iGl" kind="show" identifier="endedTrip" id="XH4-xr-RW5"/>
                         <segue destination="fRT-5o-kDR" kind="show" identifier="makeCurrent" id="QK6-XK-KBu"/>
+                        <segue destination="fod-dB-JEy" kind="show" identifier="toNewExpense" id="mgp-QS-YMY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ekS-ME-Sfm" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -922,7 +824,6 @@ TotalA</string>
         <image name="Back" width="50" height="50"/>
         <image name="Document" width="25" height="25"/>
         <image name="Log" width="25" height="25"/>
-        <image name="Plus" width="50" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="QK6-XK-KBu"/>

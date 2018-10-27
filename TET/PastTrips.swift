@@ -35,7 +35,7 @@ class PastTrips: UIViewController, UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "TripCell") as? TripCell {
             cell.tripTitle.text = pastTrips[indexPath.row].tripName!
-            cell.tripCost.text = "$" + String(pastTrips[indexPath.row].totalCost)
+            cell.tripCost.text = "$" + String(format: "%.2f", pastTrips[indexPath.row].totalCost)
             return cell
         } else {
             return TripCell()

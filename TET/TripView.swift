@@ -10,16 +10,19 @@ import UIKit
 
 class TripView: UIViewController, UITextFieldDelegate {
     var curTrip: Trip!
-    
-    @IBOutlet weak var newExpense: UIButton!
+
     @IBOutlet weak var back: UIButton!
     @IBOutlet weak var endOrMC: UIButton!
     
-    @IBOutlet weak var typeLabels: UILabel!
-    @IBOutlet weak var categoryAmounts: UILabel!
-    
     @IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var transportationRow: TypeRow!
+    @IBOutlet weak var livingRow: TypeRow!
+    @IBOutlet weak var eatingRow: TypeRow!
+    @IBOutlet weak var entertainmentRow: TypeRow!
+    @IBOutlet weak var souvenirRow: TypeRow!
     @IBOutlet weak var otherRow: TypeRow!
+    
+    @IBOutlet weak var totalAmountLabel: UILabel!
     
     var tranA: Double!
     var livingA: Double!
@@ -47,6 +50,27 @@ class TripView: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         nameTextField.delegate = self
+        totalAmountLabel.adjustsFontSizeToFitWidth = true
+        
+        transportationRow.typeLabel.text = "Transportation Cost"
+        transportationRow.plusButton.type = "Transportation"
+        transportationRow.plusButton.addTarget(self, action: #selector(plusButtonPressed), for: .touchUpInside)
+        
+        livingRow.typeLabel.text = "Living Cost"
+        livingRow.plusButton.type = "Living"
+        livingRow.plusButton.addTarget(self, action: #selector(plusButtonPressed), for: .touchUpInside)
+        
+        eatingRow.typeLabel.text = "Eating Cost"
+        eatingRow.plusButton.type = "Eating"
+        eatingRow.plusButton.addTarget(self, action: #selector(plusButtonPressed), for: .touchUpInside)
+        
+        entertainmentRow.typeLabel.text = "Entertainment Cost"
+        entertainmentRow.plusButton.type = "Entertainment"
+        entertainmentRow.plusButton.addTarget(self, action: #selector(plusButtonPressed), for: .touchUpInside)
+        
+        souvenirRow.typeLabel.text = "Souvenir Cost"
+        souvenirRow.plusButton.type = "Souvenir"
+        souvenirRow.plusButton.addTarget(self, action: #selector(plusButtonPressed), for: .touchUpInside)
         
         otherRow.typeLabel.text = "Other Cost"
         otherRow.plusButton.type = "Other"
@@ -58,7 +82,7 @@ class TripView: UIViewController, UITextFieldDelegate {
         displayPastTrip = tabcont.displayPastTrip
         
         if displayPastTrip == "Yes" {
-            endOrMC.setTitle("Make Current Trip", for: .normal)
+            endOrMC.setTitle("Make Current", for: .normal)
             if let decoded = UserDefaults.standard.object(forKey: "pastTrips") as? Data {
                 pastTrips = NSKeyedUnarchiver.unarchiveObject(with: decoded) as! [Trip]
             }
@@ -82,16 +106,14 @@ class TripView: UIViewController, UITextFieldDelegate {
         loopThroughExpenses(expenses: curTrip.expensesLog)
         
         nameTextField.text = curTrip.tripName
-        tranC = "$" + String(format: "%.2f", tranA)
-        livingC = "$" + String(format: "%.2f", livingA)
-        eatingC = "$" + String(format: "%.2f", eatingA)
-        entC = "$" + String(format: "%.2f", entA)
-        souvC = "$" + String(format: "%.2f", souvA)
-        otherC = "$" + String(format: "%.2f", otherA)
-        totalC = "$" + String(format: "%.2f", totalA)
-        categoryAmounts.text = tranC + "\n\n" + livingC + "\n\n" + eatingC + "\n\n" + entC + "\n\n" + souvC + "\n\n" + otherC + "\n\n\n" + totalC
         
+        transportationRow.amountLabel.text = "$" + String(format: "%.2f", tranA)
+        livingRow.amountLabel.text = "$" + String(format: "%.2f", livingA)
+        eatingRow.amountLabel.text = "$" + String(format: "%.2f", eatingA)
+        entertainmentRow.amountLabel.text = "$" + String(format: "%.2f", entA)
+        souvenirRow.amountLabel.text = "$" + String(format: "%.2f", souvA)
         otherRow.amountLabel.text = "$" + String(format: "%.2f", otherA)
+        totalAmountLabel.text = "$" + String(format: "%.2f", totalA)
     }
     
     func loopThroughExpenses(expenses: [SingleExpense]) {
