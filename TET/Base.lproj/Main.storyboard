@@ -308,8 +308,9 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="RMt-KD-85B">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="RMt-KD-85B">
                                 <rect key="frame" x="29" y="457" width="317" height="190"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.8404982003" green="0.8404982003" blue="0.8404982003" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
@@ -317,40 +318,32 @@
                                     <outlet property="delegate" destination="fod-dB-JEy" id="GD7-Od-xIP"/>
                                 </connections>
                             </textView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Comment" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N0r-7h-aJQ">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Comment" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N0r-7h-aJQ">
                                 <rect key="frame" x="29" y="428" width="97" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="4C7-wY-IHw"/>
-                                    <constraint firstAttribute="width" constant="97" id="Uku-xc-4ao"/>
-                                </constraints>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="scaleToFill" ambiguous="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="det-oi-cQl">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="det-oi-cQl">
                                 <rect key="frame" x="29" y="385" width="317" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.8404982003" green="0.8404982003" blue="0.8404982003" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="35" id="fLk-r9-xFc"/>
-                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                 <connections>
                                     <outlet property="delegate" destination="fod-dB-JEy" id="AFg-JK-fzw"/>
                                 </connections>
                             </textView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Expense Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tVr-Fa-IWl">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Expense Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tVr-Fa-IWl">
                                 <rect key="frame" x="29" y="356" width="125" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="DqP-xP-dNJ"/>
-                                    <constraint firstAttribute="width" constant="125" id="U9l-ns-jeq"/>
-                                </constraints>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qcJ-uO-84Y">
-                                <rect key="frame" x="27.5" y="65" width="320" height="145"/>
+                                <rect key="frame" x="29" y="119" width="320" height="145"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <outlet property="dataSource" destination="fod-dB-JEy" id="BQM-7u-9JM"/>
@@ -375,24 +368,15 @@
                                     <segue destination="fRT-5o-kDR" kind="show" identifier="finishedExpense" id="nNV-k3-wNI"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="New Expense" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q2X-Gj-Rrs">
-                                <rect key="frame" x="134" y="25" width="107" height="32"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Transportation Expense" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q2X-Gj-Rrs">
+                                <rect key="frame" x="56" y="72" width="267" height="39"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="BreeSerif-Regular" family="Bree Serif" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="BreeSerif-Regular" family="Bree Serif" pointSize="24"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="0.66512957048006394" green="1" blue="0.75616515559667075" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="RMt-KD-85B" secondAttribute="trailing" constant="13" id="0d0-2G-lmd"/>
-                            <constraint firstItem="RMt-KD-85B" firstAttribute="trailing" secondItem="det-oi-cQl" secondAttribute="trailing" id="ORi-aY-95p"/>
-                            <constraint firstItem="RMt-KD-85B" firstAttribute="leading" secondItem="86t-9a-hRN" secondAttribute="leadingMargin" constant="13" id="RCc-xh-aRM"/>
-                            <constraint firstItem="det-oi-cQl" firstAttribute="top" secondItem="tVr-Fa-IWl" secondAttribute="bottom" constant="8" id="idx-Ek-W5S"/>
-                            <constraint firstItem="N0r-7h-aJQ" firstAttribute="top" secondItem="det-oi-cQl" secondAttribute="bottom" constant="8" id="pzK-9N-b5A"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="RMt-KD-85B" secondAttribute="bottom" constant="20" id="rY5-GN-Kv0"/>
-                            <constraint firstItem="RMt-KD-85B" firstAttribute="top" secondItem="N0r-7h-aJQ" secondAttribute="bottom" constant="8" id="ymQ-7r-OyT"/>
-                        </constraints>
                     </view>
                     <connections>
                         <outlet property="amount" destination="utV-yw-xip" id="OV3-wE-BhA"/>
@@ -402,11 +386,12 @@
                         <outlet property="datePicker" destination="qcJ-uO-84Y" id="si8-dP-KEW"/>
                         <outlet property="doneB" destination="uL4-u4-vc2" id="VIZ-Az-FpI"/>
                         <outlet property="expenseTitle" destination="det-oi-cQl" id="dhx-NK-P5L"/>
+                        <outlet property="typeTitle" destination="q2X-Gj-Rrs" id="ENz-9o-Nca"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9AF-fv-CQl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="585" y="27"/>
+            <point key="canvasLocation" x="584.79999999999995" y="26.53673163418291"/>
         </scene>
         <!--Past Trips-->
         <scene sceneID="u2T-jl-aim">
@@ -826,7 +811,7 @@
         <image name="Log" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="QK6-XK-KBu"/>
+        <segue reference="nNV-k3-wNI"/>
         <segue reference="qm1-RQ-GZp"/>
         <segue reference="72w-7r-eXi"/>
     </inferredMetricsTieBreakers>

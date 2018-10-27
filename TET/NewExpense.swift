@@ -18,6 +18,7 @@ class NewExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, U
     @IBOutlet weak var centsAmount: UITextField!
     @IBOutlet weak var expenseTitle: UITextView!
     @IBOutlet weak var commentText: UITextView!
+    @IBOutlet weak var typeTitle: UILabel!
     
     var month: String!
     var date: String!
@@ -39,6 +40,9 @@ class NewExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, U
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        typeTitle.adjustsFontSizeToFitWidth = true
+        typeTitle.text = type + " Expense"
         
         datePicker.delegate = self
         datePicker.dataSource = self
