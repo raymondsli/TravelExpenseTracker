@@ -70,8 +70,9 @@ class EditExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, 
         datePicker.selectRow(oldYear - 2014, inComponent: 2, animated: true)
         typePicker.selectRow(oldTypeInt, inComponent: 0, animated: true)
         
-        amount.text = oldAmount.substring(with: (oldAmount.index(oldAmount.startIndex, offsetBy: 1) ..< oldAmount.index(oldAmount.endIndex, offsetBy: -3)))
-        centsAmount.text = oldAmount.substring(from: oldAmount.index(oldAmount.endIndex, offsetBy: -2))
+        let oldAmountRange = oldAmount.index(oldAmount.startIndex, offsetBy: 1) ..< oldAmount.index(oldAmount.endIndex, offsetBy: -3)
+        amount.text = String(oldAmount[oldAmountRange])
+        centsAmount.text = String(oldAmount.suffix(2))
         expenseTitle.text = oldExpenseTitle
         commentText.text = oldComment
         if displayPastTrip == "Yes" {
@@ -148,6 +149,16 @@ class EditExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, 
         centsAmount.resignFirstResponder()
         expenseTitle.resignFirstResponder()
         commentText.resignFirstResponder()
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
+        if pickerView.tag == 0 {
+            let attributedString = NSAttributedString(string: dateArray[component][row], attributes: [NSAttributedStringKey.foregroundColor : UIColor.blue])
+            return attributedString
+        } else {
+            let attributedString = NSAttributedString(string: typeArray[row], attributes: [NSAttributedStringKey.foregroundColor : UIColor.blue])
+            return attributedString
+        }
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {

@@ -122,17 +122,7 @@ class NewExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, U
         if text == "\n" {
             textView.resignFirstResponder()
         }
-        //Limit title to 22 characters
-        /*
-        if let x = textView.text {
-            let length = x.count + text.count
-            if length <= 22 {
-                return true
-            } else {
-                return false
-            }
-        }
-        */
+        
         return true
     }
     
@@ -141,6 +131,11 @@ class NewExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, U
         centsAmount.resignFirstResponder()
         expenseTitle.resignFirstResponder()
         commentText.resignFirstResponder()
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
+        let attributedString = NSAttributedString(string: dateArray[component][row], attributes: [NSAttributedStringKey.foregroundColor : UIColor.blue])
+        return attributedString
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {

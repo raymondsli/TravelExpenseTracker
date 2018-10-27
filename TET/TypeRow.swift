@@ -33,7 +33,7 @@ class TypeRow: UIView  {
         
         typeLabel.adjustsFontSizeToFitWidth = true
         amountLabel.adjustsFontSizeToFitWidth = true
-        plusButton.tintColor = .black
+        //plusButton.tintColor = .black
     }
     
 }

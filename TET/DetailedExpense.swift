@@ -50,7 +50,7 @@ class DetailedExpense: UIViewController, UITextViewDelegate {
             curTrip = pastTrips[whichPastTrip]
         } else {
             let decoded = UserDefaults.standard.object(forKey: "currentTrip") as! Data
-            curTrip = NSKeyedUnarchiver.unarchiveObject(with: decoded) as! Trip
+            curTrip = NSKeyedUnarchiver.unarchiveObject(with: decoded) as? Trip
         }
     }
     
