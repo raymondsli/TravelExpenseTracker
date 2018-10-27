@@ -23,6 +23,8 @@ class TripView: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var otherRow: TypeRow!
     
     @IBOutlet weak var totalAmountLabel: UILabel!
+    @IBOutlet weak var startDateButton: UIButton!
+    @IBOutlet weak var endDateButton: UIButton!
     
     var tranA: Double!
     var livingA: Double!
@@ -46,6 +48,7 @@ class TripView: UIViewController, UITextFieldDelegate {
     var pastTrips: [Trip] = [Trip]()
     
     var typeSender = ""
+    var whichDatePressed = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,6 +78,9 @@ class TripView: UIViewController, UITextFieldDelegate {
         otherRow.typeLabel.text = "Other Cost"
         otherRow.plusButton.type = "Other"
         otherRow.plusButton.addTarget(self, action: #selector(plusButtonPressed), for: .touchUpInside)
+        
+        startDateButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        endDateButton.titleLabel?.adjustsFontSizeToFitWidth = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -114,6 +120,9 @@ class TripView: UIViewController, UITextFieldDelegate {
         souvenirRow.amountLabel.text = "$" + String(format: "%.2f", souvA)
         otherRow.amountLabel.text = "$" + String(format: "%.2f", otherA)
         totalAmountLabel.text = "$" + String(format: "%.2f", totalA)
+        
+        startDateButton.setTitle(curTrip.startDate, for: .normal)
+        endDateButton.setTitle(curTrip.endDate, for: .normal)
     }
     
     func loopThroughExpenses(expenses: [SingleExpense]) {
@@ -181,6 +190,16 @@ class TripView: UIViewController, UITextFieldDelegate {
         }
     }
 
+    @IBAction func startDateButtonPressed(_ sender: Any) {
+        whichDatePressed = "startDate"
+        performSegue(withIdentifier: "editDate", sender: self)
+    }
+    
+    @IBAction func endDateButtonPressed(_ sender: Any) {
+        whichDatePressed = "endDate"
+        performSegue(withIdentifier: "editDate", sender: self)
+    }
+    
     @IBAction func endOrMC(_ sender: Any) {
         let userDefaults = UserDefaults.standard
         var pastTrips: [Trip] = [Trip]()
@@ -188,7 +207,9 @@ class TripView: UIViewController, UITextFieldDelegate {
             pastTrips = NSKeyedUnarchiver.unarchiveObject(with: decoded) as! [Trip]
         }
         if displayPastTrip != "Yes" {
-            curTrip.endDate = getCurrentDate()
+            if curTrip.endDate == "Present" {
+                curTrip.endDate = getCurrentDate()
+            }
             pastTrips.append(curTrip)
             
             let freshTrip: Trip! = Trip()
@@ -235,6 +256,11 @@ class TripView: UIViewController, UITextFieldDelegate {
         } else if segue.identifier == "toHomefromTrip" {
             let upcoming: HomeView = segue.destination as! HomeView
             upcoming.isInitialLaunch = "No"
+        } else if segue.identifier == "editDate" {
+            let upcoming: DatePickerVC = segue.destination as! DatePickerVC
+            upcoming.curTrip = curTrip
+            upcoming.whichDate = whichDatePressed
+            upcoming.displayPastTrip = displayPastTrip
         }
     }
     

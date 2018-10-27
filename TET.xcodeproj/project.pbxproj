@@ -19,6 +19,7 @@
 		507D7B852183B43D009666CA /* ExpenseCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 507D7B842183B43D009666CA /* ExpenseCell.xib */; };
 		507D7B872183B450009666CA /* ExpenseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507D7B862183B450009666CA /* ExpenseCell.swift */; };
 		507D7B892183BDC8009666CA /* bree-serif in Resources */ = {isa = PBXBuildFile; fileRef = 507D7B882183BDC8009666CA /* bree-serif */; };
+		508C43FE2184E891007A82AE /* DatePickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508C43FD2184E891007A82AE /* DatePickerVC.swift */; };
 		50D4D1471E12314C00F21FB5 /* PastTrips.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D4D1461E12314C00F21FB5 /* PastTrips.swift */; };
 		50D4D14B1E134E6200F21FB5 /* EditExpense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D4D14A1E134E6200F21FB5 /* EditExpense.swift */; };
 		50DB267D2183FD2A009A7048 /* TypeRow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50DB267C2183FD2A009A7048 /* TypeRow.xib */; };
@@ -46,6 +47,7 @@
 		507D7B842183B43D009666CA /* ExpenseCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExpenseCell.xib; sourceTree = "<group>"; };
 		507D7B862183B450009666CA /* ExpenseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseCell.swift; sourceTree = "<group>"; };
 		507D7B882183BDC8009666CA /* bree-serif */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "bree-serif"; sourceTree = SOURCE_ROOT; };
+		508C43FD2184E891007A82AE /* DatePickerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerVC.swift; sourceTree = "<group>"; };
 		50D4D1461E12314C00F21FB5 /* PastTrips.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PastTrips.swift; sourceTree = "<group>"; };
 		50D4D14A1E134E6200F21FB5 /* EditExpense.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditExpense.swift; sourceTree = "<group>"; };
 		50DB267C2183FD2A009A7048 /* TypeRow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TypeRow.xib; sourceTree = "<group>"; };
@@ -91,6 +93,7 @@
 				50F2DC221E7A2E9D0075AD9A /* NewExpense.swift */,
 				50D4D14A1E134E6200F21FB5 /* EditExpense.swift */,
 				50EBA6E91E1204AC00F092A6 /* DetailedExpense.swift */,
+				508C43FD2184E891007A82AE /* DatePickerVC.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -223,6 +226,7 @@
 				507D7B832183AE84009666CA /* TripCell.swift in Sources */,
 				50F2DC1F1E766D630075AD9A /* DropMenuButton.swift in Sources */,
 				50EBA69F1E0DF4AF00F092A6 /* SingleExpense.swift in Sources */,
+				508C43FE2184E891007A82AE /* DatePickerVC.swift in Sources */,
 				50D4D1471E12314C00F21FB5 /* PastTrips.swift in Sources */,
 				5026C23A1D63FE4A0057D046 /* Trip.swift in Sources */,
 				5026C22A1D63F9D40057D046 /* HomeView.swift in Sources */,

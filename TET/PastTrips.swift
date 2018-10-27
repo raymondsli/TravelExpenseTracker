@@ -97,7 +97,7 @@ class PastTrips: UIViewController, UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 125.0
+        return 175.0
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {

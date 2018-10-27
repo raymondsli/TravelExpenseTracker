@@ -468,6 +468,68 @@
             </objects>
             <point key="canvasLocation" x="-1383.2" y="-777.66116941529242"/>
         </scene>
+        <!--Date PickerVC-->
+        <scene sceneID="i3D-z3-hW3">
+            <objects>
+                <viewController id="QE4-Zb-qR8" customClass="DatePickerVC" customModule="TET" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="bhv-p3-3xH"/>
+                        <viewControllerLayoutGuide type="bottom" id="PX6-e9-ksJ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="tcd-U3-3hK">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qmn-m5-E1w">
+                                <rect key="frame" x="0.0" y="120" width="375" height="216"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            </pickerView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="td6-DI-hX9">
+                                <rect key="frame" x="298" y="51" width="61" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                <state key="normal" title="Done">
+                                    <color key="titleColor" red="0.0076774254999999996" green="0.11296613699999999" blue="0.58345891500000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="6"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="donePressed:" destination="QE4-Zb-qR8" eventType="touchUpInside" id="3cT-cM-EiB"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hy9-HV-gE0">
+                                <rect key="frame" x="16" y="51" width="75" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                <state key="normal" title="Cancel">
+                                    <color key="titleColor" red="0.0076774254999999996" green="0.11296613699999999" blue="0.58345891500000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="6"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="cancelPressed:" destination="QE4-Zb-qR8" eventType="touchUpInside" id="Esx-CW-14x"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.66512957049999999" green="1" blue="0.75616515559999997" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <connections>
+                        <outlet property="datePicker" destination="qmn-m5-E1w" id="dfK-i6-QGq"/>
+                        <segue destination="fRT-5o-kDR" kind="show" identifier="finishedDate" id="5df-Ud-PxK"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ftp-3U-aNA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-370" y="-778"/>
+        </scene>
         <!--Trip-->
         <scene sceneID="J4y-PT-R00">
             <objects>
@@ -572,6 +634,35 @@
                                 <color key="textColor" red="0.19215686274509805" green="0.31372549019607843" blue="0.55294117647058827" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="-" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QeE-1b-H54">
+                                <rect key="frame" x="180" y="564" width="14" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="BreeSerif-Regular" family="Bree Serif" pointSize="17"/>
+                                <color key="textColor" red="0.19215686269999999" green="0.31372549020000001" blue="0.55294117649999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oN2-lp-dAD">
+                                <rect key="frame" x="81" y="564" width="98" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="17"/>
+                                <state key="normal" title="Jan 12, 2018">
+                                    <color key="titleColor" red="0.19215686269999999" green="0.31372549020000001" blue="0.55294117649999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="startDateButtonPressed:" destination="EVE-Sm-5bW" eventType="touchUpInside" id="hIc-Aj-7lY"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5nR-g2-ycl">
+                                <rect key="frame" x="194" y="564" width="99" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="17"/>
+                                <state key="normal" title="Jan 13, 2018">
+                                    <color key="titleColor" red="0.19215686269999999" green="0.31372549020000001" blue="0.55294117649999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="endDateButtonPressed:" destination="EVE-Sm-5bW" eventType="touchUpInside" id="KMN-gi-pUZ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.66512957049999999" green="1" blue="0.75616515559999997" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
@@ -580,18 +671,21 @@
                     <connections>
                         <outlet property="back" destination="lbv-Rq-uQp" id="5FS-A6-3AK"/>
                         <outlet property="eatingRow" destination="lMA-eS-O67" id="pfa-iA-64t"/>
+                        <outlet property="endDateButton" destination="5nR-g2-ycl" id="Els-C8-ujj"/>
                         <outlet property="endOrMC" destination="qiv-BR-qGU" id="rqv-yu-pGS"/>
                         <outlet property="entertainmentRow" destination="jL1-Ui-duW" id="XAo-lv-sTg"/>
                         <outlet property="livingRow" destination="KjX-Kv-XDL" id="H1c-hH-a3D"/>
                         <outlet property="nameTextField" destination="Q8G-nK-nhh" id="lh9-YJ-kvc"/>
                         <outlet property="otherRow" destination="aHn-md-Vf7" id="kuI-UA-PBu"/>
                         <outlet property="souvenirRow" destination="4he-8k-rhA" id="HAm-aO-E30"/>
+                        <outlet property="startDateButton" destination="oN2-lp-dAD" id="AHk-8S-5tS"/>
                         <outlet property="totalAmountLabel" destination="VQH-oj-3fH" id="NdD-G4-QgY"/>
                         <outlet property="transportationRow" destination="AUO-5E-S9N" id="geu-l8-16V"/>
                         <segue destination="xy4-4R-iGl" kind="show" identifier="toPastfromTrip" id="qm1-RQ-GZp"/>
                         <segue destination="xy4-4R-iGl" kind="show" identifier="endedTrip" id="XH4-xr-RW5"/>
                         <segue destination="fRT-5o-kDR" kind="show" identifier="makeCurrent" id="QK6-XK-KBu"/>
                         <segue destination="fod-dB-JEy" kind="show" identifier="toNewExpense" id="mgp-QS-YMY"/>
+                        <segue destination="QE4-Zb-qR8" kind="show" identifier="editDate" id="uKS-eJ-nvB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ekS-ME-Sfm" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -776,8 +870,8 @@
         <image name="Log" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="cBc-OK-pu2"/>
+        <segue reference="QK6-XK-KBu"/>
         <segue reference="qm1-RQ-GZp"/>
-        <segue reference="1hC-oP-U0O"/>
+        <segue reference="72w-7r-eXi"/>
     </inferredMetricsTieBreakers>
 </document>

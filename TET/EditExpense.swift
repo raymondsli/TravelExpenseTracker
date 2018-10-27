@@ -46,7 +46,7 @@ class EditExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, 
     var dateArray = [
         ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
         ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"],
-        ["2014", "2015", "2016", "2017", "2018", "2019", "2020"]
+        ["2015", "2016", "2017", "2018", "2019", "2020"]
     ]
     var typeArray = ["Transportation", "Living", "Eating", "Entertainment", "Souvenir", "Other"]
     
@@ -67,7 +67,7 @@ class EditExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, 
     override func viewWillAppear(_ animated: Bool) {
         datePicker.selectRow(oldMon - 1, inComponent: 0, animated: true)
         datePicker.selectRow(oldDay - 1, inComponent: 1, animated: true)
-        datePicker.selectRow(oldYear - 2014, inComponent: 2, animated: true)
+        datePicker.selectRow(oldYear - 2015, inComponent: 2, animated: true)
         typePicker.selectRow(oldTypeInt, inComponent: 0, animated: true)
         
         let oldAmountRange = oldAmount.index(oldAmount.startIndex, offsetBy: 1) ..< oldAmount.index(oldAmount.endIndex, offsetBy: -3)
@@ -130,17 +130,6 @@ class EditExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, 
         if text == "\n" {
             textView.resignFirstResponder()
         }
-        //Limit title to 22 characters
-        /*
-        if let x = textView.text {
-            let length = x.characters.count + text.characters.count
-            if length <= 22 {
-                return true
-            } else {
-                return false
-            }
-        }
-        */
         return true
     }
     

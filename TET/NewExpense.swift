@@ -60,7 +60,7 @@ class NewExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, U
         
         datePicker.selectRow(month_now - 1, inComponent: 0, animated: true)
         datePicker.selectRow(day_now - 1, inComponent: 1, animated: true)
-        datePicker.selectRow(year_now - 2014, inComponent: 2, animated: true)
+        datePicker.selectRow(year_now - 2015, inComponent: 2, animated: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
