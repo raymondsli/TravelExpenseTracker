@@ -249,17 +249,9 @@ class LogView: UIViewController, UITableViewDataSource, UITableViewDelegate {
     //Take in Feb 1, 2018 and return [1, 2, 2018]
     func parseDate(date: String) -> [Int] {
         let dateArray = date.components(separatedBy: ",")
-        let dayMonth = dateArray[0]
-        let yearString = dateArray[1]
-        
-        let yearStartIndex = yearString.index(yearString.startIndex, offsetBy: 1)
-        let yearInt = Int(yearString.suffix(from: yearStartIndex))!
-        
-        let monthEndIndex = dayMonth.index(dayMonth.startIndex, offsetBy: 3)
-        let dayStartIndex = dayMonth.index(dayMonth.startIndex, offsetBy: 4)
-        
-        let monthInt = monthToInt(mon: dayMonth.substring(to: monthEndIndex))
-        let dayInt = Int(dayMonth.suffix(from: dayStartIndex))!
+        let yearInt = Int(dateArray[1].suffix(4))!
+        let monthInt = monthToInt(mon: String(dateArray[0].prefix(3)))
+        let dayInt = Int(dateArray[0].suffix(2))!
         
         return [dayInt, monthInt, yearInt]
     }
@@ -337,15 +329,16 @@ class LogView: UIViewController, UITableViewDataSource, UITableViewDelegate {
             case "Transportation":
                 labelColor = .blue
             case "Living":
-                labelColor = .cyan
+                labelColor = UIColor(red: 153/255, green: 0, blue: 51/255, alpha: 1)
             case "Eating":
                 labelColor = .orange
             case "Entertainment":
-                labelColor = .green
+                labelColor = UIColor(red: 0, green: 102/255, blue: 0, alpha: 1)
             case "Souvenir":
                 labelColor = .darkGray
             case "Other":
-                labelColor = UIColor(red: 0.5, green: 0, blue: 0.5, alpha: 0.6)
+                //labelColor = UIColor(red: 0.5, green: 0, blue: 0.5, alpha: 1)
+                labelColor = .purple
             default:
                 labelColor = .black
             }
@@ -364,6 +357,8 @@ class LogView: UIViewController, UITableViewDataSource, UITableViewDelegate {
             cell.dateLabel.adjustsFontSizeToFitWidth = true
             cell.amountLabel.adjustsFontSizeToFitWidth = true
             cell.typeLabel.adjustsFontSizeToFitWidth = true
+            
+            cell.backgroundColor = UIColor(red: 184/255, green: 252/255, blue: 205/255, alpha: 1)
             
             return cell
         } else {

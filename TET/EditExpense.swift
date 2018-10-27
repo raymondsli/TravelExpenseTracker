@@ -314,7 +314,7 @@ class EditExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, 
     
     //Subtract previous amount and add new amount
     func addToCurrentTrip(type: String, amount: Double) {
-        let temp: String! = oldAmount.substring(from: oldAmount.index(oldAmount.startIndex, offsetBy: 1))
+        let temp: String! = String(oldAmount.suffix(from: oldAmount.index(oldAmount.startIndex, offsetBy: 1)))
         let prevAmount: Double! = Double(temp)
         if oldType == "Transportation" {
             curTrip.transportationCost! -= prevAmount

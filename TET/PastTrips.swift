@@ -22,6 +22,8 @@ class PastTrips: UIViewController, UITableViewDataSource, UITableViewDelegate {
         
         let nib = UINib(nibName: "TripCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "TripCell")
+        
+        tableView.separatorColor = UIColor.darkGray
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -34,8 +36,13 @@ class PastTrips: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "TripCell") as? TripCell {
+            cell.tripTitle.adjustsFontSizeToFitWidth = true
+            cell.tripCost.adjustsFontSizeToFitWidth = true
+            
             cell.tripTitle.text = pastTrips[indexPath.row].tripName!
             cell.tripCost.text = "$" + String(format: "%.2f", pastTrips[indexPath.row].totalCost)
+            
+            cell.backgroundColor = UIColor(red: 184/255, green: 252/255, blue: 205/255, alpha: 1)
             return cell
         } else {
             return TripCell()

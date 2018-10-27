@@ -114,6 +114,8 @@ class DropMenuButton: UIButton, UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.titleLabel?.numberOfLines = 1
+        self.titleLabel?.adjustsFontSizeToFitWidth = true
         self.setTitle(items[(indexPath as NSIndexPath).row], for: UIControlState())
         self.setTitle(items[(indexPath as NSIndexPath).row], for: UIControlState.highlighted)
         self.setTitle(items[(indexPath as NSIndexPath).row], for: UIControlState.selected)
