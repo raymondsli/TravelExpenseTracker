@@ -38,9 +38,11 @@ class PastTrips: UIViewController, UITableViewDataSource, UITableViewDelegate {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "TripCell") as? TripCell {
             cell.tripTitle.adjustsFontSizeToFitWidth = true
             cell.tripCost.adjustsFontSizeToFitWidth = true
+            cell.dateLabel.adjustsFontSizeToFitWidth = true
             
             cell.tripTitle.text = pastTrips[indexPath.row].tripName!
             cell.tripCost.text = "$" + String(format: "%.2f", pastTrips[indexPath.row].totalCost)
+            cell.dateLabel.text = pastTrips[indexPath.row].startDate + " - " + pastTrips[indexPath.row].endDate
             
             cell.backgroundColor = UIColor(red: 184/255, green: 252/255, blue: 205/255, alpha: 1)
             return cell
@@ -53,14 +55,22 @@ class PastTrips: UIViewController, UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             pastTrips.remove(at: indexPath.row)
-            
+
             let userDefaults = UserDefaults.standard
             let encodedPT: Data = NSKeyedArchiver.archivedData(withRootObject: pastTrips)
             userDefaults.set(encodedPT, forKey: "pastTrips")
             userDefaults.synchronize()
-            
+
             self.tableView.reloadData()
         }
+    }
+    
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+        if tableView.isEditing {
+            return .delete
+        }
+        
+        return .none
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

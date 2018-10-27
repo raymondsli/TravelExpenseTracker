@@ -188,6 +188,7 @@ class TripView: UIViewController, UITextFieldDelegate {
             pastTrips = NSKeyedUnarchiver.unarchiveObject(with: decoded) as! [Trip]
         }
         if displayPastTrip != "Yes" {
+            curTrip.endDate = getCurrentDate()
             pastTrips.append(curTrip)
             
             let freshTrip: Trip! = Trip()
@@ -201,6 +202,7 @@ class TripView: UIViewController, UITextFieldDelegate {
             performSegue(withIdentifier: "endedTrip", sender: self)
         } else {
             //Make Current Trip
+            curTrip.endDate = "Present"
             pastTrips.remove(at: whichPastTrip)
             
             let decoded = UserDefaults.standard.object(forKey: "currentTrip") as! Data
@@ -233,6 +235,47 @@ class TripView: UIViewController, UITextFieldDelegate {
         } else if segue.identifier == "toHomefromTrip" {
             let upcoming: HomeView = segue.destination as! HomeView
             upcoming.isInitialLaunch = "No"
+        }
+    }
+    
+    //Current date in Jan 1, 2018 form
+    func getCurrentDate() -> String {
+        let date = Date()
+        let calendar = Calendar.current
+        let year_now = String(calendar.component(.year, from: date))
+        let month_now = changeMonthToString(mon: calendar.component(.month, from: date))
+        let day_now = String(calendar.component(.day, from: date))
+        return month_now + " " + day_now + ", " + year_now
+    }
+    
+    func changeMonthToString(mon: Int) -> String {
+        switch mon {
+        case 1:
+            return "Jan"
+        case 2:
+            return "Feb"
+        case 3:
+            return "Mar"
+        case 4:
+            return "Apr"
+        case 5:
+            return "May"
+        case 6:
+            return "Jun"
+        case 7:
+            return "Jul"
+        case 8:
+            return "Aug"
+        case 9:
+            return "Sep"
+        case 10:
+            return "Oct"
+        case 11:
+            return "Nov"
+        case 12:
+            return "Dec"
+        default:
+            return ""
         }
     }
 

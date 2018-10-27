@@ -379,7 +379,7 @@ class LogView: UIViewController, UITableViewDataSource, UITableViewDelegate {
             self.expenses.remove(at: editActionsForRowAt.row)
             self.curTrip.expensesLog = self.expenses
             let pA: String = prevExp.amount
-            let prevAmount: String! = pA.substring(from: pA.index(pA.startIndex, offsetBy: 1))
+            let prevAmount: String! = String(pA.suffix(from: pA.index(pA.startIndex, offsetBy: 1)))
             self.subtractFromCurrentTrip(type: prevExp.type, amount: Double(prevAmount)!)
             
             let userDefaults = UserDefaults.standard

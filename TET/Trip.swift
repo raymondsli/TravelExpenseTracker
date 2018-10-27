@@ -19,10 +19,12 @@ class Trip: NSObject, NSCoding {
     var otherCost: Double!
     var totalCost: Double!
     var orderBy: String!
+    var startDate: String!
+    var endDate: String!
     
     var expensesLog = [SingleExpense]()
     
-    init(trip:String, transportation:Double, living:Double, eating:Double, entertainment:Double, souvenir:Double, other:Double, total:Double, expenses: [SingleExpense], order: String) {
+    init(trip:String, transportation:Double, living:Double, eating:Double, entertainment:Double, souvenir:Double, other:Double, total:Double, expenses: [SingleExpense], order: String, start: String, end: String) {
         super.init()
         tripName = trip
         transportationCost = transportation
@@ -34,6 +36,8 @@ class Trip: NSObject, NSCoding {
         totalCost = total
         expensesLog = expenses
         orderBy = order
+        startDate = start
+        endDate = end
     }
     
     override init() {
@@ -49,6 +53,8 @@ class Trip: NSObject, NSCoding {
         totalCost = 0.0
         expensesLog = [SingleExpense]()
         orderBy = "Date: Oldest First"
+        endDate = "Present"
+        startDate = getCurrentDate()
     }
     
     required convenience init(coder aDecoder: NSCoder) {
@@ -62,8 +68,10 @@ class Trip: NSObject, NSCoding {
         let totalCost = aDecoder.decodeObject(forKey: "totalCost") as! Double
         let expenses = aDecoder.decodeObject(forKey: "expenses") as! [SingleExpense]
         let orderBy = aDecoder.decodeObject(forKey: "orderBy") as! String
+        let startDate = aDecoder.decodeObject(forKey: "startDate") as! String
+        let endDate = aDecoder.decodeObject(forKey: "endDate") as! String
         
-        self.init(trip: tripName, transportation: transportationCost, living: livingCost, eating:eatingCost, entertainment: entertainmentCost, souvenir: souvenirCost, other: otherCost, total: totalCost, expenses: expenses, order: orderBy)
+        self.init(trip: tripName, transportation: transportationCost, living: livingCost, eating:eatingCost, entertainment: entertainmentCost, souvenir: souvenirCost, other: otherCost, total: totalCost, expenses: expenses, order: orderBy, start: startDate, end: endDate)
     }
     
     func encode(with aCoder: NSCoder) {
@@ -77,10 +85,53 @@ class Trip: NSObject, NSCoding {
         aCoder.encode(totalCost, forKey: "totalCost")
         aCoder.encode(expensesLog, forKey: "expenses")
         aCoder.encode(orderBy, forKey: "orderBy")
+        aCoder.encode(startDate, forKey: "startDate")
+        aCoder.encode(endDate, forKey: "endDate")
     }
     
     func returnTotalCost() -> Double {
         let temp = transportationCost + livingCost
         return temp + eatingCost + entertainmentCost + souvenirCost
+    }
+    
+    //Current date in Jan 1, 2018 form
+    func getCurrentDate() -> String {
+        let date = Date()
+        let calendar = Calendar.current
+        let year_now = String(calendar.component(.year, from: date))
+        let month_now = changeMonthToString(mon: calendar.component(.month, from: date))
+        let day_now = String(calendar.component(.day, from: date))
+        return month_now + " " + day_now + ", " + year_now
+    }
+    
+    func changeMonthToString(mon: Int) -> String {
+        switch mon {
+        case 1:
+            return "Jan"
+        case 2:
+            return "Feb"
+        case 3:
+            return "Mar"
+        case 4:
+            return "Apr"
+        case 5:
+            return "May"
+        case 6:
+            return "Jun"
+        case 7:
+            return "Jul"
+        case 8:
+            return "Aug"
+        case 9:
+            return "Sep"
+        case 10:
+            return "Oct"
+        case 11:
+            return "Nov"
+        case 12:
+            return "Dec"
+        default:
+            return ""
+        }
     }
 }
