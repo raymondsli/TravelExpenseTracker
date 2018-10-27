@@ -133,6 +133,27 @@ class EditExpense: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, 
         return true
     }
     
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.tag == 0 {
+            animateViewMoving(moveValue: -200)
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.tag == 0 {
+            animateViewMoving(moveValue: 200)
+        }
+    }
+    
+    func animateViewMoving (moveValue: CGFloat){
+        UIView.beginAnimations("animateView", context: nil)
+        UIView.setAnimationBeginsFromCurrentState(true)
+        UIView.setAnimationDuration(0.3)
+        
+        self.view.frame = self.view.frame.offsetBy(dx: 0, dy: moveValue)
+        UIView.commitAnimations()
+    }
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         amount.resignFirstResponder()
         centsAmount.resignFirstResponder()

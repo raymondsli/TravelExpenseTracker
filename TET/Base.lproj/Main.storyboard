@@ -187,7 +187,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="scaleToFill" fixedFrame="YES" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="8h1-i3-Ez0">
-                                <rect key="frame" x="61" y="100" width="259" height="56"/>
+                                <rect key="frame" x="61" y="110" width="259" height="46"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.8404982003" green="0.8404982003" blue="0.8404982003" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                 <color key="textColor" red="0.0076774254999999996" green="0.11296613699999999" blue="0.58345891500000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -870,7 +870,7 @@
         <image name="Log" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="QK6-XK-KBu"/>
+        <segue reference="MS4-rZ-HQY"/>
         <segue reference="qm1-RQ-GZp"/>
         <segue reference="72w-7r-eXi"/>
     </inferredMetricsTieBreakers>

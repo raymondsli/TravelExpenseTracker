@@ -64,7 +64,7 @@ class DetailedExpense: UIViewController, UITextViewDelegate {
         }
         //Limit title to 22 characters
         if let x = textView.text {
-            let length = x.characters.count + text.characters.count
+            let length = x.count + text.count
             if length <= 22 {
                 return true
             } else {
@@ -72,6 +72,27 @@ class DetailedExpense: UIViewController, UITextViewDelegate {
             }
         }
         return true
+    }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.tag == 0 {
+            animateViewMoving(moveValue: -200)
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.tag == 0 {
+            animateViewMoving(moveValue: 200)
+        }
+    }
+    
+    func animateViewMoving (moveValue: CGFloat){
+        UIView.beginAnimations("animateView", context: nil)
+        UIView.setAnimationBeginsFromCurrentState(true)
+        UIView.setAnimationDuration(0.3)
+        
+        self.view.frame = self.view.frame.offsetBy(dx: 0, dy: moveValue)
+        UIView.commitAnimations()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
