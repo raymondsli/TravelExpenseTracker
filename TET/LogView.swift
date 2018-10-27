@@ -24,6 +24,8 @@ class LogView: UIViewController, UITableViewDataSource, UITableViewDelegate {
         tableView.delegate = self
         tableView.dataSource = self
         
+        tableView.separatorColor = UIColor.darkGray
+        
         let nib = UINib(nibName: "ExpenseCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "ExpenseCell")
     }
