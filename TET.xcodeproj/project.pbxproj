@@ -21,6 +21,8 @@
 		507D7B892183BDC8009666CA /* bree-serif in Resources */ = {isa = PBXBuildFile; fileRef = 507D7B882183BDC8009666CA /* bree-serif */; };
 		50D4D1471E12314C00F21FB5 /* PastTrips.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D4D1461E12314C00F21FB5 /* PastTrips.swift */; };
 		50D4D14B1E134E6200F21FB5 /* EditExpense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D4D14A1E134E6200F21FB5 /* EditExpense.swift */; };
+		50DB267D2183FD2A009A7048 /* TypeRow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50DB267C2183FD2A009A7048 /* TypeRow.xib */; };
+		50DB267F2183FD32009A7048 /* TypeRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DB267E2183FD32009A7048 /* TypeRow.swift */; };
 		50EBA69B1E0DF0D800F092A6 /* LogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EBA69A1E0DF0D800F092A6 /* LogView.swift */; };
 		50EBA69F1E0DF4AF00F092A6 /* SingleExpense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EBA69E1E0DF4AF00F092A6 /* SingleExpense.swift */; };
 		50EBA6A31E0F387200F092A6 /* TabVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EBA6A21E0F387200F092A6 /* TabVC.swift */; };
@@ -46,6 +48,8 @@
 		507D7B882183BDC8009666CA /* bree-serif */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "bree-serif"; sourceTree = SOURCE_ROOT; };
 		50D4D1461E12314C00F21FB5 /* PastTrips.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PastTrips.swift; sourceTree = "<group>"; };
 		50D4D14A1E134E6200F21FB5 /* EditExpense.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditExpense.swift; sourceTree = "<group>"; };
+		50DB267C2183FD2A009A7048 /* TypeRow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TypeRow.xib; sourceTree = "<group>"; };
+		50DB267E2183FD32009A7048 /* TypeRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeRow.swift; sourceTree = "<group>"; };
 		50EBA69A1E0DF0D800F092A6 /* LogView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogView.swift; sourceTree = "<group>"; };
 		50EBA69E1E0DF4AF00F092A6 /* SingleExpense.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleExpense.swift; sourceTree = "<group>"; };
 		50EBA6A21E0F387200F092A6 /* TabVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabVC.swift; sourceTree = "<group>"; };
@@ -98,6 +102,8 @@
 				507D7B822183AE84009666CA /* TripCell.swift */,
 				507D7B842183B43D009666CA /* ExpenseCell.xib */,
 				507D7B862183B450009666CA /* ExpenseCell.swift */,
+				50DB267C2183FD2A009A7048 /* TypeRow.xib */,
+				50DB267E2183FD32009A7048 /* TypeRow.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -193,6 +199,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50DB267D2183FD2A009A7048 /* TypeRow.xib in Resources */,
 				507D7B812183AE7A009666CA /* TripCell.xib in Resources */,
 				5026C2321D63F9D40057D046 /* LaunchScreen.storyboard in Resources */,
 				507D7B892183BDC8009666CA /* bree-serif in Resources */,
@@ -219,6 +226,7 @@
 				50D4D1471E12314C00F21FB5 /* PastTrips.swift in Sources */,
 				5026C23A1D63FE4A0057D046 /* Trip.swift in Sources */,
 				5026C22A1D63F9D40057D046 /* HomeView.swift in Sources */,
+				50DB267F2183FD32009A7048 /* TypeRow.swift in Sources */,
 				50EBA69B1E0DF0D800F092A6 /* LogView.swift in Sources */,
 				50EBA6EA1E1204AC00F092A6 /* DetailedExpense.swift in Sources */,
 				5026C2281D63F9D40057D046 /* AppDelegate.swift in Sources */,
