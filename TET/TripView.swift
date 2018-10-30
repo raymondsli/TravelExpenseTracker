@@ -81,6 +81,8 @@ class TripView: UIViewController, UITextFieldDelegate {
         
         startDateButton.titleLabel?.adjustsFontSizeToFitWidth = true
         endDateButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        startDateButton.contentHorizontalAlignment = .right
+        endDateButton.contentHorizontalAlignment = .left
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -128,7 +130,7 @@ class TripView: UIViewController, UITextFieldDelegate {
     func loopThroughExpenses(expenses: [SingleExpense]) {
         for i in 0..<expenses.count {
             let aString: String! = expenses[i].amount
-            let amount: Double! = Double(aString.substring(from: aString.index(aString.startIndex, offsetBy: 1)))
+            let amount: Double! = Double(aString.suffix(from: aString.index(aString.startIndex, offsetBy: 1)))
             let type: String! = expenses[i].type
             
             if type == "Transportation" {
