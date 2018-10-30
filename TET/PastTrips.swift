@@ -65,14 +65,6 @@ class PastTrips: UIViewController, UITableViewDataSource, UITableViewDelegate {
         }
     }
     
-    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
-        if tableView.isEditing {
-            return .delete
-        }
-        
-        return .none
-    }
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.performSegue(withIdentifier: "toDetailedPastTrip", sender: self)
     }

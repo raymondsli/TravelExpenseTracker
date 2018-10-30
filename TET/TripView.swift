@@ -234,6 +234,9 @@ class TripView: UIViewController, UITextFieldDelegate {
             if prevCurrent.tripName != "Untitled Trip" || prevCurrent.expensesLog.count != 0 {
                 pastTrips.append(prevCurrent)
             }
+            if prevCurrent.endDate == "Present" {
+                prevCurrent.endDate = getCurrentDate()
+            }
             let encodedPT: Data = NSKeyedArchiver.archivedData(withRootObject: pastTrips)
             userDefaults.set(encodedPT, forKey: "pastTrips")
             

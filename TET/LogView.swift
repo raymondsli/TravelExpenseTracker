@@ -251,7 +251,7 @@ class LogView: UIViewController, UITableViewDataSource, UITableViewDelegate {
         let dateArray = date.components(separatedBy: ",")
         let yearInt = Int(dateArray[1].suffix(4))!
         let monthInt = monthToInt(mon: String(dateArray[0].prefix(3)))
-        let dayInt = Int(dateArray[0].suffix(2))!
+        let dayInt = Int(dateArray[0].suffix(from: dateArray[0].index(dateArray[0].startIndex, offsetBy: 4)))!
         
         return [dayInt, monthInt, yearInt]
     }
