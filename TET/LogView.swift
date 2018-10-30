@@ -456,7 +456,7 @@ class LogView: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     //Gets rid of dollar sign at the beginning
     func truncateAmount(amount: String) -> String {
-        return amount.substring(from: amount.index(amount.startIndex, offsetBy: 1))
+        return String(amount.suffix(from: amount.index(amount.startIndex, offsetBy: 1)))
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

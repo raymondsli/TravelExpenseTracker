@@ -26,14 +26,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zve-sj-ogL">
-                                <rect key="frame" x="-1" y="286" width="376" height="381"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zve-sj-ogL">
+                                <rect key="frame" x="0.0" y="289" width="375" height="378"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nfs-z1-cm8">
-                                        <rect key="frame" x="130" y="81" width="117" height="34"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nfs-z1-cm8">
+                                        <rect key="frame" x="127.5" y="80" width="120" height="35"/>
                                         <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="35" id="H2z-5m-eWU"/>
+                                            <constraint firstAttribute="width" constant="120" id="taz-HO-Ajp"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" name="BreeSerif-Regular" family="Bree Serif" pointSize="18"/>
                                         <state key="normal" title="Current Trip">
                                             <color key="titleColor" red="0.0076774254999999996" green="0.11296613699999999" blue="0.58345891500000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -48,10 +50,13 @@
                                             <segue destination="fRT-5o-kDR" kind="show" identifier="toCurTrip" id="cCg-bO-utJ"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x45-ZD-SMF">
-                                        <rect key="frame" x="130" y="139" width="117" height="34"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x45-ZD-SMF">
+                                        <rect key="frame" x="127.5" y="140" width="120" height="35"/>
                                         <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="120" id="tJ3-0r-TBW"/>
+                                            <constraint firstAttribute="height" constant="35" id="xti-LG-CKw"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" name="BreeSerif-Regular" family="Bree Serif" pointSize="18"/>
                                         <state key="normal" title="Past Trips">
                                             <color key="titleColor" red="0.0076774254999999996" green="0.11296613699999999" blue="0.58345891500000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -67,19 +72,32 @@
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="Nfs-z1-cm8" firstAttribute="centerX" secondItem="Zve-sj-ogL" secondAttribute="centerX" id="cBA-xm-ZaC"/>
+                                    <constraint firstItem="x45-ZD-SMF" firstAttribute="centerX" secondItem="Zve-sj-ogL" secondAttribute="centerX" id="jaK-qE-5Zh"/>
+                                    <constraint firstItem="x45-ZD-SMF" firstAttribute="top" secondItem="Nfs-z1-cm8" secondAttribute="bottom" constant="25" id="n3c-ku-AmN"/>
+                                    <constraint firstItem="Nfs-z1-cm8" firstAttribute="top" secondItem="Zve-sj-ogL" secondAttribute="top" constant="80" id="rHK-Po-qge"/>
+                                </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Travel Expense Tracker" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pnD-ew-g9s">
-                                <rect key="frame" x="37" y="112" width="300" height="86"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Rockwell-Regular" family="Rockwell" pointSize="24"/>
-                                <color key="textColor" red="0.0076774255003739401" green="0.11296613697087197" blue="0.58345891497461921" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TitleText" translatesAutoresizingMaskIntoConstraints="NO" id="CP5-Ug-gXn">
+                                <rect key="frame" x="27.5" y="100" width="320" height="105"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="105" id="evP-d7-Y1b"/>
+                                    <constraint firstAttribute="width" constant="320" id="tRD-4H-yZU"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.66512957049999999" green="1" blue="0.75616515559999997" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="CP5-Ug-gXn" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="0cH-Je-fP6"/>
+                            <constraint firstItem="Zve-sj-ogL" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="79b-AP-t2V"/>
+                            <constraint firstAttribute="trailing" secondItem="Zve-sj-ogL" secondAttribute="trailing" id="D4Q-Ng-ry4"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Zve-sj-ogL" secondAttribute="bottom" id="i0E-ae-Cx2"/>
+                            <constraint firstItem="CP5-Ug-gXn" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="80" id="lAD-hB-5Jk"/>
+                            <constraint firstItem="Zve-sj-ogL" firstAttribute="top" secondItem="CP5-Ug-gXn" secondAttribute="bottom" constant="84" id="x7H-jF-hBF"/>
+                        </constraints>
                     </view>
                     <connections>
-                        <outlet property="appTitle" destination="pnD-ew-g9s" id="cvo-Aq-OMF"/>
                         <outlet property="currentTripButton" destination="Nfs-z1-cm8" id="LV3-AF-9gY"/>
                         <outlet property="pastTripButton" destination="x45-ZD-SMF" id="BuK-gn-4Bc"/>
                     </connections>
@@ -868,10 +886,11 @@
         <image name="Back" width="50" height="50"/>
         <image name="Document" width="25" height="25"/>
         <image name="Log" width="25" height="25"/>
+        <image name="TitleText" width="398" height="96"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="urH-Ab-8nJ"/>
-        <segue reference="qm1-RQ-GZp"/>
+        <segue reference="cCg-bO-utJ"/>
+        <segue reference="zcv-ZO-ijD"/>
         <segue reference="1hC-oP-U0O"/>
     </inferredMetricsTieBreakers>
 </document>

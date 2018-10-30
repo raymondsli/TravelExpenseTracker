@@ -13,14 +13,11 @@ class HomeView: UIViewController {
     var curTrip: Trip!
     var isInitialLaunch: String! = "Yes"
     
-    @IBOutlet weak var appTitle: UILabel!
     @IBOutlet weak var currentTripButton: UIButton!
     @IBOutlet weak var pastTripButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        appTitle.text = "Travel Expense Tracker"
-        appTitle.adjustsFontSizeToFitWidth = true
     }
 
     override func viewWillAppear(_ animated: Bool) {
