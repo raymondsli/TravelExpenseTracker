@@ -96,6 +96,17 @@ class LogView: UIViewController, UITableViewDataSource, UITableViewDelegate {
         if expenses.count > 1 {
             sortedExpenses.append(expenses[0])
         } else {
+            let userDefaults = UserDefaults.standard
+            if displayPastTrip == "Yes" {
+                pastTrips.remove(at: whichPastTrip)
+                pastTrips.insert(curTrip, at: whichPastTrip)
+                let encodedPT: Data = NSKeyedArchiver.archivedData(withRootObject: pastTrips)
+                userDefaults.set(encodedPT, forKey: "pastTrips")
+            } else {
+                let encoded: Data = NSKeyedArchiver.archivedData(withRootObject: curTrip)
+                userDefaults.set(encoded, forKey: "currentTrip")
+            }
+            userDefaults.synchronize()
             return
         }
         if order == "Date: Newest First" {
