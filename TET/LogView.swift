@@ -468,6 +468,11 @@ class LogView: UIViewController, UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if expenses.count == 0 {
+            self.tableView.setEmptyMessage("No expenses to show")
+        } else {
+            self.tableView.restore()
+        }
         return expenses.count
     }
     
