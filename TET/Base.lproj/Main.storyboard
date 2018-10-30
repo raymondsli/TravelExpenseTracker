@@ -118,9 +118,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="W8Q-Cn-EmF">
-                                <rect key="frame" x="0.0" y="134" width="375" height="484"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="W8Q-Cn-EmF">
+                                <rect key="frame" x="0.0" y="126" width="375" height="492"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ExpenseCell" rowHeight="150" id="Od5-0S-tzS" customClass="ExpenseCell" customModule="TET" customModuleProvider="target">
@@ -133,9 +132,8 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Eaf-bc-VsR">
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Eaf-bc-VsR">
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <color key="barTintColor" red="0.31110096230000001" green="0.56249310539999997" blue="0.66666666669999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <textAttributes key="titleTextAttributes">
                                     <color key="textColor" red="0.0076774254999999996" green="0.11296613699999999" blue="0.58345891500000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -149,22 +147,41 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </navigationBar>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Um4-Lv-MXK" userLabel="HeaderView">
-                                <rect key="frame" x="0.0" y="58" width="375" height="68"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Um4-Lv-MXK" userLabel="HeaderView">
+                                <rect key="frame" x="0.0" y="64" width="375" height="62"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iec-zE-a1J" customClass="DropMenuButton" customModule="TET" customModuleProvider="target">
-                                        <rect key="frame" x="53" y="22" width="269" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iec-zE-a1J" customClass="DropMenuButton" customModule="TET" customModuleProvider="target">
+                                        <rect key="frame" x="52.5" y="16" width="270" height="30"/>
                                         <color key="backgroundColor" red="0.50878700194468995" green="1" blue="0.98656144149584679" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="270" id="CHS-e3-wju"/>
+                                            <constraint firstAttribute="height" constant="30" id="p8X-wK-tut"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                         <state key="normal" title="Ordered By"/>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.47058823529411764" green="0.68235294117647061" blue="0.75686274509803919" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="62" id="UcN-m3-4Qk"/>
+                                    <constraint firstItem="Iec-zE-a1J" firstAttribute="centerX" secondItem="Um4-Lv-MXK" secondAttribute="centerX" id="hr4-af-OlF"/>
+                                    <constraint firstItem="Iec-zE-a1J" firstAttribute="centerY" secondItem="Um4-Lv-MXK" secondAttribute="centerY" id="qiR-xz-TBK"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Xan-GG-ZdN" firstAttribute="top" secondItem="W8Q-Cn-EmF" secondAttribute="bottom" id="CEC-eW-WCt"/>
+                            <constraint firstAttribute="trailing" secondItem="Um4-Lv-MXK" secondAttribute="trailing" id="CHb-vQ-l0c"/>
+                            <constraint firstItem="Um4-Lv-MXK" firstAttribute="top" secondItem="Eaf-bc-VsR" secondAttribute="bottom" id="Eul-TC-eCm"/>
+                            <constraint firstItem="W8Q-Cn-EmF" firstAttribute="top" secondItem="Um4-Lv-MXK" secondAttribute="bottom" id="SbR-fI-RGq"/>
+                            <constraint firstItem="Um4-Lv-MXK" firstAttribute="leading" secondItem="vHR-O5-zHi" secondAttribute="leading" id="UIK-p8-f80"/>
+                            <constraint firstAttribute="trailing" secondItem="W8Q-Cn-EmF" secondAttribute="trailing" id="VLL-Ju-H9z"/>
+                            <constraint firstAttribute="trailing" secondItem="Eaf-bc-VsR" secondAttribute="trailing" id="asc-OV-8jj"/>
+                            <constraint firstItem="Eaf-bc-VsR" firstAttribute="top" secondItem="ZQD-sz-Nil" secondAttribute="bottom" id="hYO-24-rw3"/>
+                            <constraint firstItem="W8Q-Cn-EmF" firstAttribute="leading" secondItem="vHR-O5-zHi" secondAttribute="leading" id="kvC-f1-qC5"/>
+                            <constraint firstItem="Eaf-bc-VsR" firstAttribute="leading" secondItem="vHR-O5-zHi" secondAttribute="leading" id="tTo-Ni-itL"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Log" image="Log" id="lcH-jy-IEb"/>
                     <connections>
@@ -426,9 +443,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="eS1-HD-zrr">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="eS1-HD-zrr">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="PastTripCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="TripCell" rowHeight="175" id="lSk-e7-ypq" customClass="TripCell" customModule="TET" customModuleProvider="target">
@@ -443,9 +459,8 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KZk-Dc-5AX">
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KZk-Dc-5AX">
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <color key="barTintColor" red="0.31110096230000001" green="0.56249310539999997" blue="0.66666666669999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <textAttributes key="titleTextAttributes">
                                     <color key="textColor" red="0.19215686269999999" green="0.31372549020000001" blue="0.55294117649999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -475,6 +490,15 @@
                             </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="eS1-HD-zrr" secondAttribute="trailing" id="8Oe-XI-WrU"/>
+                            <constraint firstItem="KZk-Dc-5AX" firstAttribute="top" secondItem="wkk-qy-hbg" secondAttribute="bottom" id="J2I-7Y-QZe"/>
+                            <constraint firstItem="eS1-HD-zrr" firstAttribute="leading" secondItem="B3P-i6-3nE" secondAttribute="leading" id="LmN-YV-naJ"/>
+                            <constraint firstItem="XMF-Ws-HlQ" firstAttribute="top" secondItem="eS1-HD-zrr" secondAttribute="bottom" id="dN5-ID-O1A"/>
+                            <constraint firstAttribute="trailing" secondItem="KZk-Dc-5AX" secondAttribute="trailing" id="gP7-yA-s5e"/>
+                            <constraint firstItem="KZk-Dc-5AX" firstAttribute="leading" secondItem="B3P-i6-3nE" secondAttribute="leading" id="nfo-Is-iIq"/>
+                            <constraint firstItem="eS1-HD-zrr" firstAttribute="top" secondItem="KZk-Dc-5AX" secondAttribute="bottom" id="tEi-rm-O8F"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="back" destination="eb4-ki-Z0k" id="e7i-Jr-Yjp"/>
@@ -889,7 +913,7 @@
         <image name="TitleText" width="398" height="96"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="cCg-bO-utJ"/>
+        <segue reference="urH-Ab-8nJ"/>
         <segue reference="zcv-ZO-ijD"/>
         <segue reference="1hC-oP-U0O"/>
     </inferredMetricsTieBreakers>
